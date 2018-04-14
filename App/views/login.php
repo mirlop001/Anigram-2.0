@@ -1,5 +1,6 @@
 <?php
 	include '../controllers/usuario_controller.php';
+	include '../controllers/mensajes_controller.php';
 	include 'Templates/cabecera.php';
 	session_start();
 	
@@ -15,7 +16,6 @@
 
 <body>
 <img id="logo-grande" src="../../public/img/Logo-Completo.png" alt="">
-	<?php include '../controllers/mensajes_controller.php'; ?>
 	
 	<div class="container container-anigram">
 			<div class="col align-self-center col-lg-8 offset-lg-2">

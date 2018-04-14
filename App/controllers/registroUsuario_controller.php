@@ -14,11 +14,11 @@
     $nombreCompleto = htmlspecialchars(trim(strip_tags($_REQUEST['nombreCompleto'])));
     $email = htmlspecialchars(trim(strip_tags($_REQUEST['email'])));
     $clave1 = htmlspecialchars(trim(strip_tags($_REQUEST['clave1'])));
-    $clave2 = htmlspecialchars(trim(strip_tags($_REQUEST['clave1'])));
+    $clave2 = htmlspecialchars(trim(strip_tags($_REQUEST['clave2'])));
     $clave = password_hash($clave1, PASSWORD_BCRYPT);
     $rol = htmlspecialchars(trim(strip_tags($_REQUEST['rol'])));
 
-    if(!strcmp($clave1 ,$clave2)){
+    if(strcmp($clave1 ,$clave2)){
         $_SESSION['MensajeError'] = "clavesDistintas";
         header('Location: ../views/registro.php');   
     }
