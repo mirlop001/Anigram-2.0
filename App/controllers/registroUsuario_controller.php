@@ -26,6 +26,6 @@ if($modeloUsuario->registraUsuario($nickname, $nombreCompleto, $email, $clave, $
     }
 }
 
-header('Location: ../views/login.php');
+header('Location: ../views/home.php');
 
 ?>

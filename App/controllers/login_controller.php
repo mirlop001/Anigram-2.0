@@ -10,15 +10,16 @@
 
     $result = $modeloUsuario->getDatosLogin($usuario, $pass);
     
-    if($result){
+    if($result != null){
         $_SESSION['LoginSuccess'] = true;
         $_SESSION['UserID'] = $result['ID'];
         $_SESSION['Nombre'] = $result['Nombre'];
         $_SESSION['RolUsuario'] = $result['Rol'];
+        header('Location: ../views/home.php');
     }
     else {
         $_SESSION['LoginSuccess'] = false;
+        header('Location: ../views/login.php');
     }
-
-    header('Location: ../views/home.php');
+    
 ?>

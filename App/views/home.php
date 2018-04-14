@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php
         include 'Templates/cabecera.php';
+        session_start();
     ?>
     <title>Home</title>
 </head>
@@ -14,8 +15,8 @@
 
 <h1>Bienvenido al home
 <? 
-    if(isset($_SESSION['LoginSuccess']))
-        ($_SESSION['LoginSuccess'])? $_SESSION['Nombre']:' invitado ';
+    if(isset($_SESSION['Nombre']))  echo $_SESSION['Nombre'];
+    else echo 'invitado';
 ?>
 !!</h1>
 </body>

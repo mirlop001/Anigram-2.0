@@ -1,5 +1,5 @@
 /*------------------------- Fuentes ------------------------- */
-h1, h2, h3, h4, h5, h6, a{
+  h3, h4, h5, h6, a{
     font-family: 'Playfair Display', serif;    
 }
 p, label, textarea, input{
@@ -8,14 +8,19 @@ p, label, textarea, input{
 
 textarea, input{
     color: #787979;
-    font-size: 2vw;
+    font-size: 20px;
+}
+h1 {
+    font-size: 130px;
+    text-align: center;
 }
 
-h1{
-    color: #e8c36f;
+h1, h2{
+    color: #ffde93;
+    font-family: 'Dancing Script', cursive;
 }
 label{
-    font-size: 4vw;
+    font-size:30px;
     margin-bottom: -15px;
     margin-top: 20px;
 }
@@ -30,14 +35,39 @@ h2,h3, label{
 .italic{
     font-style: italic;
 }
-/*------------------------- General ------------------------- */
-body{
-    background-image: url("/Anigram2/public/img/fondo-body-semitransparente.png");
-}
-.container-anigram{
-    background-color: transparent;
+.references a:hover {
+    text-decoration: none;
+    color: #d8af52;
 }
 
+.references a {
+    margin: 5px;
+    color: #aaa;
+}
+/*------------------------- General ------------------------- */
+body{
+    background-image: url("/Anigram2/public/img/fondo-body-transparente.png");
+}
+#vertical-separator {
+    color: #e8dab9;
+}
+#logo-grande{
+    position:relative;
+    width: 200px;
+    margin: 10px 50px;
+}
+
+.container-anigram{
+    min-width: 350px;
+}
+
+.alert{
+    width: 100%;
+    margin: 20px 0;
+}
+.alert h6{
+    text-align: center;
+}
 /* Tabs */
 
 .select-tabs {
@@ -101,7 +131,7 @@ form.centered {
     width: 100%;
     border: solid 1px #ffc8a0;
     margin: 10px 0px;
-    background-color: #fffdfb;
+    background-color: #ffffff;
     padding: 5px;
 }
 
@@ -142,11 +172,17 @@ form.centered {
 }
 
 
-div#boton_enviar h5 {
-    height: 150px;
+.submitHueso {
     position: relative;
-    top: 40%;
+    background-color: transparent;
+    border: none;
+    top: 45px;
     color: white;
+    cursor: pointer;
+    font-size: 30px;
+}
+.submitHueso:focus {
+    outline: 0;
 }
 
 #boton_enviar {
