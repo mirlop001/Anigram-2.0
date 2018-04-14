@@ -95,8 +95,11 @@ body{
     background-color: #ab6563 !important;
 }
 .tab-content{
-    display:none;
+    border-left: 2px dashed #deb2b0;
+    height: 50%;
+    padding: 10px 40px;
 }
+
 .tab-content.active {
     display: inherit;
 }
