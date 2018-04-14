@@ -23,9 +23,9 @@
             }
         }
 
-        function getDatosLogin($email, $clave){
+        function getDatosLogin($email){
             $usuario = null;
-            if ($result = mysqli_query($this->db, "SELECT * from Usuario where Email = '$email' AND Clave='$clave'")) 
+            if ($result = mysqli_query($this->db, "SELECT * from Usuario where Email = '$email' ")) 
                 printf("La selección devolvió %d filas.\n", mysqli_num_rows($result));
             else    
                 printf("No se ha devuelto nada con los valores %s %s", $email, $clave);
@@ -35,6 +35,7 @@
                     $usuario['ID'] = $row['ID'];
                     $usuario['Nombre'] = $row['NombreCompleto'];
                     $usuario['Rol'] = $row['Rol'];
+                    $usuario['Clave'] = $row['Clave'];
                 }
             }
             return $usuario;
@@ -43,12 +44,17 @@
         function buscaUsuarioPorEmail($email){
             $result = mysqli_query($this->db, "SELECT * from Usuario where Email = '$email' ");
             return mysqli_num_rows($result);
+        } 
+
+        function buscaUsuarioPorNickname($nickname){
+            $result = mysqli_query($this->db, "SELECT * from Usuario where Nickname = '$nickname' ");
+            return mysqli_num_rows($result);
         }   
         
-        function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol){
+        function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol,$urlfoto){
             $result = false;
 
-            if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Email, Clave, Rol) VALUES ('$nickname', '$nombreCompleto', '$email', '$clave', '$rol')")) 
+            if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nickname', '$nombreCompleto', '$email', '$clave', '$rol', '$urlfoto')")) 
                 $result = mysqli_insert_id ($this->db);
 
             return $result;

@@ -11,5 +11,10 @@
     // document.getElementById("boton_enviar").addEventListener("click", function () {
     //   form.submit();
     // });
- 
+    $(document).ready(function(){
+        $("#fotoPerfilUsuario").on("change",function(event){
+            muestraImagen(event);
+        });
+    });
+    
  })();

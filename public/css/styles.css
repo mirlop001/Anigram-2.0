@@ -101,12 +101,12 @@ body{
     display: inherit;
 }
 
-
-/* Contenedor */
-.contenedor{
-    margin-top: 15%;
+.references h1 {
+    font-size: 80px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 70px;
 }
-
 /* subir foto */
 .subir-foto:hover {
     width: 210px;

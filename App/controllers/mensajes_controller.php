@@ -9,16 +9,16 @@
                     $mensaje = Mensajes::loginError;
                     break;
                     
-                case 'registroError_nick':
-                    $mensaje = Mensajes::registroError_nick;
+                case 'nicknameExistente':
+                    $mensaje = Mensajes::nicknameExistente;
                     break;
 
-                case 'registroError_email':
-                    $mensaje = Mensajes::registroError_email;
+                case 'usuarioExistente':
+                    $mensaje = Mensajes::usuarioExistente;
                     break;
 
-                case 'registroError_claves':
-                    $mensaje = Mensajes::registroError_claves;
+                case 'clavesDistintas':
+                    $mensaje = Mensajes::clavesDistintas;
                     break;
                 default:
                     $mensaje = "Se ha producido un error";
@@ -26,7 +26,7 @@
             }
 
             echo '<div class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"><img src="../../public/img/ic_pets_white_24px.svg"></span>
+                    <span><img src="../../public/img/ic_pets_white_24px.svg"></span>
                     <span class="bold">Wooops!</span>
                     <h6>'.$mensaje.'</h6>
                 </div>';

@@ -6,11 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registro</title>
     <?php
+        session_start();
         include 'Templates/cabecera.php';
+    	include '../controllers/mensajes_controller.php';
+        
     ?>
 </head>
 <body>
+    
     <div class="container-anigram container">
+        <div class="row references">
+            <h3><img src="../../public/img/ic_keyboard_arrow_left_black_24px.svg" alt="" /><a href="login.php">Volver</a></h3>
+        </div>
         <div class="row">
             <div class="contenedor contedor-izquierdo col-md-12 col-lg-5">
                 <?php include 'registroUsuario.php' ?>
@@ -37,3 +44,4 @@
     </div>
 </body>
 </html>
+<?php session_destroy();?>

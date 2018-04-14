@@ -20,10 +20,10 @@
 	<div class="container container-anigram">
 			<div class="col align-self-center col-lg-8 offset-lg-2">
 			<h1>Login</h1>
-				<?php if(isset($_SESSION['LoginSuccess']) && !$_SESSION['LoginSuccess']){ 
-					Mensajes_Controller::mostrarMensaje($_SESSION['TipoError']);
-				 } ?>
-				 
+				<?php if(isset($_SESSION['MensajeError']))
+						Mensajes_Controller::mostrarMensaje($_SESSION['MensajeError']);
+				  ?>
+
 				<form id="form-login" class="centered" method="POST" action='../controllers/login_controller.php'>
 					<label for="Email" >Email</label> 
 					<input id="Email" type="email" name="user" class="formulario-textbox"/>
