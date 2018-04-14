@@ -1,5 +1,5 @@
 <?php
-    require("../config/conexion.php");
+    require("../connection/conexion.php");
 
     class Usuario_Model{
         private $db;

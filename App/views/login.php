@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<h1><? dirname(__DIR__) ?></h1>
 <img id="logo-grande" src="../../public/img/Logo-Completo.png" alt="">
 	
 	<div class="container container-anigram">
@@ -37,10 +38,10 @@
 						<input id="submit" type="submit" name="submit" class="submitHueso" value="Entrar"/>	
 					</div>
 				</form>
-				<div class="col offset-lg-4 references">
-					<span><a href="registro.php">Registrarme</a></span>
+				<div class="col offset-lg-4 offset-md-3 offset-2 references">
+					<span ><a href="registro.php">Registrarme</a></span>
 					<span id="vertical-separator">|</span>
-					<span><a href="home.php">Entrar como invitado</a></span>
+					<span ><a href="home.php">Entrar como invitado</a></span>
 				</div>
 			</div>
 		</div>

@@ -46,7 +46,7 @@ h2,h3, label{
 }
 /*------------------------- General ------------------------- */
 body{
-    background-image: url("/Anigram2/public/img/fondo-body-transparente.png");
+    background-image: url("../img/fondo-body-transparente.png");
 }
 #vertical-separator {
     color: #e8dab9;
@@ -143,7 +143,7 @@ form.centered {
 }
 
 .foto-perfil{
-    background-image: url('/Anigram/Desarrollo/img/PataIcon.png');   
+    background-image: url('../img/PataIcon.png');   
     border-radius: 50%;
     box-shadow: 0px 0px 8px 1px #aaaaaa38;
     background-repeat: no-repeat;
@@ -186,7 +186,7 @@ form.centered {
 }
 
 #boton_enviar {
-    background-image: url(/Anigram2/public/img/botosico_sinfondo.png);
+    background-image: url('../img/botosico_sinfondo.png');
     background-repeat: no-repeat;
     height: 130px;
     background-size: 300px;

@@ -3,7 +3,7 @@ session_start();
 	
 require_once "../models/usuario_model.php";   
 $modeloUsuario = new Usuario_Model();
-const _IMG_PATH = '/Anigram2/public/img/';
+
 
 //Obtener datos usuario
 if(isset($_FILES["fotoPerfilUsuario"]["name"][0]))
