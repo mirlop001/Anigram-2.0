@@ -1,3 +1,5 @@
+  
+  <link rel="icon" href="../../public/img/PataFondo.ico" type="image/x-icon">
    <?php
    
    include '../../config.php';

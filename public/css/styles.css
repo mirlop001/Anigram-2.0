@@ -46,7 +46,7 @@ h2,h3, label{
 }
 /*------------------------- General ------------------------- */
 body{
-    background-image: url("../img/fondo-body-transparente.png");
+    background-image: url("../img/fondo-body-semitransparente.png");
 }
 #vertical-separator {
     color: #e8dab9;
@@ -129,6 +129,33 @@ body{
 form.centered {
     text-align: center;
 }
+
+.formulario-textbox-mascota{
+    border-radius: 5px;
+    width: 50%;
+    border: solid 1px #ffc8a0;
+    margin: 10px 0px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+.mascota-nombre-raza{
+    width: 250px;
+    float: right; 
+}
+.tipomascota{
+    margin-top: 100px;
+    float: right; 
+}
+.biomascota{
+    margin-top: 100px;
+    width: 1000px; 
+}
+
+.col-md-2{
+    width: 300px;
+    float: left; 
+}
+
 .formulario-textbox{
     border-radius: 5px;
     width: 100%;
