@@ -7,6 +7,6 @@ function selectTab(elem){
 
     $(".tab-content").removeClass("active");
     $("#div-"+elem).addClass( "active" );
-    $("#rol").value=elem;
+    $("#rol").value=(elem == 'Mascota')?1:2;
 }
 

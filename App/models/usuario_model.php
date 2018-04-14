@@ -51,7 +51,7 @@
             return mysqli_num_rows($result);
         }   
         
-        function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol,$urlfoto){
+        function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol, $urlfoto){
             $result = false;
 
             if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nickname', '$nombreCompleto', '$email', '$clave', '$rol', '$urlfoto')")) 

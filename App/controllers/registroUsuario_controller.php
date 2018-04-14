@@ -5,7 +5,7 @@
     require_once "../models/usuario_model.php";   
     $modeloUsuario = new Usuario_Model();
 
-    
+    $urlFoto = null;
     //Obtener datos usuario
     if(isset($_FILES["fotoPerfilUsuario"]["name"][0]))
         $urlFoto = basename($_FILES["fotoPerfilUsuario"]["name"]);
@@ -46,7 +46,10 @@
             header('Location: ../views/home.php');
         }
 
-
+        else{
+            $_SESSION['MensajeError'] = "otro";
+            header('Location: ../views/registro.php');
+        }
     }
 
 ?>

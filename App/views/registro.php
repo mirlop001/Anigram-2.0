@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registro</title>
     <?php
-        session_start();
         include 'Templates/cabecera.php';
     	include '../controllers/mensajes_controller.php';
+        session_start();
         
     ?>
 </head>

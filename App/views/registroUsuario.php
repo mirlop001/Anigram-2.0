@@ -17,7 +17,7 @@
     <input type="email" class="formulario-textbox" id="email" name="email" placeholder="Tu Email" required>
     <input type="password" class="formulario-textbox" id="clave1" name="clave1" placeholder="Tu contraseña" required>
     <input type="password" class="formulario-textbox" id="clave2" name="clave2" placeholder="Repite tu contraseña" required>
-    <input type="hidden" class="formulario-textbox" id="rol" name="rol" value="4">
+    <input type="hidden" class="formulario-textbox" id="rol" name="rol" value="1">
     <div id="boton_enviar">
         <input id="submit" type="submit" name="submit"  onchange="muestraImagen" class="submitHueso" value="Guardar"/>	
     </div>
