@@ -1,0 +1,166 @@
+/*------------------------- Fuentes ------------------------- */
+h1, h2, h3, h4, h5, h6, a{
+    font-family: 'Playfair Display', serif;    
+}
+p, label, textarea, input{
+    font-family: 'Cormorant Garamond', serif;
+}
+
+textarea, input{
+    color: #787979;
+    font-size: 2vw;
+}
+
+h1{
+    color: #e8c36f;
+}
+label{
+    font-size: 4vw;
+    margin-bottom: -15px;
+    margin-top: 20px;
+}
+h2,h3, label{
+    color: #e07070;    
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
+}
+/*------------------------- General ------------------------- */
+body{
+    background-image: url("/Anigram2/public/img/fondo-body-semitransparente.png");
+}
+.container-anigram{
+    background-color: transparent;
+}
+
+/* Tabs */
+
+.select-tabs {
+    border-bottom: 5px solid #ab6563;
+    box-shadow: -2px 4px 7px -3px #aaa;
+    text-align: center;
+}
+.select-tabs .nav-item {
+    width: 40%;
+}
+
+.select-tabs .nav-link{
+    border-radius: 10px 10px 0px 0px;
+}
+
+.select-tabs .nav-item a {
+    color: white !important;
+    font-size: 25px;
+    background-color: #deb2b0 !important;
+    height: 100%;
+    border:none;
+}
+
+.select-tabs .nav-item a.active {
+    background-color: #ab6563 !important;
+}
+.tab-content{
+    display:none;
+}
+.tab-content.active {
+    display: inherit;
+}
+
+
+/* Contenedor */
+.contenedor{
+    margin-top: 15%;
+}
+
+/* subir foto */
+.subir-foto:hover {
+    width: 210px;
+    height: 210px;
+}
+
+.subir-foto {
+    cursor: pointer;
+    background-color: white;
+    transition: width 0.3s, height 0.3s;
+}
+
+/*------------------------- Formularios ------------------------- */
+#perfil-usuario{
+    display:none;
+}
+form.centered {
+    text-align: center;
+}
+.formulario-textbox{
+    border-radius: 5px;
+    width: 100%;
+    border: solid 1px #ffc8a0;
+    margin: 10px 0px;
+    background-color: #fffdfb;
+    padding: 5px;
+}
+
+.formulario-textbox:focus{
+    outline: none;
+    box-shadow: 0px 0px 4px 0px #ffc194;
+    background-color:#fffdfb;
+    background-position: center;
+}
+
+.foto-perfil{
+    background-image: url('/Anigram/Desarrollo/img/PataIcon.png');   
+    border-radius: 50%;
+    box-shadow: 0px 0px 8px 1px #aaaaaa38;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto;
+}
+.perfil-gr{
+     
+    width: 200px;
+    height: 200px;
+    background-size: 195px;
+    
+}
+
+.perfil-md{   
+    width: 100px;
+    height: 100px;
+    background-size: 150px;
+   
+}
+
+.perfil-pe{   
+    width: 50px;
+    height: 50px;
+    background-size: 70px;
+}
+
+
+div#boton_enviar h5 {
+    height: 150px;
+    position: relative;
+    top: 40%;
+    color: white;
+}
+
+#boton_enviar {
+    background-image: url(/Anigram2/public/img/botosico_sinfondo.png);
+    background-repeat: no-repeat;
+    height: 130px;
+    background-size: 300px;
+    background-position: center;
+    cursor: pointer;
+    transition: background-size 0.4s;
+    width: 170px;
+    margin:auto;
+}
+
+#boton_enviar:hover{
+    background-size:  320px;
+}
