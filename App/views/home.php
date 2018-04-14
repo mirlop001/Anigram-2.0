@@ -13,11 +13,11 @@
 </head>
 <body>
 
-<h1>Bienvenido al home
+<h2>Bienvenido al home
 <? 
     if(isset($_SESSION['Nombre']))  echo $_SESSION['Nombre'];
     else echo 'invitado';
 ?>
-!!</h1>
+!!</h2>
 </body>
 </html>

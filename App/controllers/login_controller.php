@@ -2,6 +2,7 @@
     session_start();
         
     require_once "../models/usuario_model.php";   
+    require_once "../configuracion/mensajes.php";   
     $modeloUsuario = new Usuario_Model();
         
         
@@ -18,7 +19,8 @@
         header('Location: ../views/home.php');
     }
     else {
-        $_SESSION['LoginSuccess'] = false;
+        $_SESSION['TipoError'] = 'loginError';
+
         header('Location: ../views/login.php');
     }
     

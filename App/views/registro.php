@@ -10,15 +10,30 @@
     ?>
 </head>
 <body>
-    <form action="../controllers/registroUsuario_controller.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fotoPerfilUsuario" id="fotoPerfilUsuario">
-        <input type="text" id="nickname" name="nickname" placeholder="Nickname" required>
-        <input type="text" id="nombreCompleto" name="nombreCompleto" placeholder="Tu nombre completo" required>
-        <input type="email" id="email" name="email" placeholder="Tu Email" required>
-        <input type="password" id="clave1" name="clave1" placeholder="Tu contraseña" required>
-        <input type="password" id="clave2" name="clave2" placeholder="Repite tu contraseña" required>
-        <input type="hidden" id="rol" name="rol" value="4">
-        <input type="submit" value="registrar">
-    </form>
+    <div class="container-anigram container">
+        <div class="row">
+            <div class="contenedor contedor-izquierdo col-md-12 col-lg-5">
+                <?php include 'registroUsuario.php' ?>
+            </div>
+        
+            <div class="contenedor contedor-derecho separador col-md-12 col-lg-6 offset-lg-1">
+                <ul class="nav nav-tabs select-tabs">
+                    <li class="nav-item">
+                        <a id="Mascota" class="menu-tabs nav-link active" aria-label="div-mascota" href="#" onclick="selectTab('Mascota');">Mascota</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="Comercio" class="menu-tabs nav-link" href="#" aria-label="div-comercio" onclick="selectTab('Comercio');">Comercio</a>
+                    </li>
+                </ul>
+
+                <div id="div-Mascota" class="tab-content active">
+                    <?php include 'registroMascota.php' ?>
+                </div>
+                <div id="div-Comercio" class="tab-content">
+                    <?php /*include 'registroComercio.php'*/ ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

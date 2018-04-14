@@ -1,5 +1,5 @@
 <?php
-    require("../connection/conexion.php");
+    require("../configuracion/conexion.php");
 
     class Usuario_Model{
         private $db;
@@ -13,7 +13,7 @@
         private $Bio;
         private $Bloqueado;
 
-        function __Construct()
+        function __construct()
         {
             try {
                 $this->db=Conexion::conec();
@@ -21,16 +21,6 @@
             } catch (PDOException $e) {
                 exit('No se ha podido conectar con la base de datos.');
             }
-        }
-
-        function __Contruct($ID, $Rol, $Nickname, $NombreCompleto, $Email, $Clave, $URLFoto){
-            $this->ID = $ID;
-            $this->Rol = $Rol;
-            $this->Nickname = $Nickname;
-            $this->NombreCompleto = $NombreCompleto;
-            $this->Email = $Email;
-            $this->Clave = $Clave;
-            $this->URLFoto = $URLFoto;
         }
 
         function getDatosLogin($email, $clave){
@@ -50,13 +40,22 @@
             return $usuario;
         }
 
+        function buscaUsuarioPorEmail($email){
+            $result = mysqli_query($this->db, "SELECT * from Usuario where Email = '$email' ");
+            return mysqli_num_rows($result);
+        }   
+        
         function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol){
-            $ok = false;
+            $result = false;
 
-            if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Clave, Email, Rol) VALUES ('$nickname', '$nombreCompleto', '$email', '$clave', '$rol')")) 
-                $ok = true;
+            if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Email, Clave, Rol) VALUES ('$nickname', '$nombreCompleto', '$email', '$clave', '$rol')")) 
+                $result = mysqli_insert_id ($this->db);
 
-            return $ok;
+            return $result;
+        }
+
+        function __destruct(){
+            mysqli_close($this->db);
         }
     }
 
