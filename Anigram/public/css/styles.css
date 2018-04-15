@@ -96,7 +96,7 @@ body{
 }
 .tab-content{
     border-left: 2px dashed #deb2b0;
-    height: 50%;
+    height: 70%;
     padding: 10px 40px;
     display: none;
 }
@@ -148,16 +148,20 @@ form.centered {
     padding: 5px;
 }
 .mascota-nombre-raza{
-    width: 250px;
-    float: right; 
+    width: 600px;
+    float: right;
+    margin-right: -345px;
 }
 .tipomascota{
-    margin-top: 100px;
-    float: right; 
+    margin-top: 43px;
+    float: right;
+    margin-right: -47px;
+    margin-bottom: 51px;
 }
 .biomascota{
     margin-top: 100px;
     width: 1000px; 
+    float: initial; 
 }
 
 .col-md-2{
