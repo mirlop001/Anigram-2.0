@@ -10,18 +10,23 @@
     $pass = htmlspecialchars(trim(strip_tags($_REQUEST['password'])));
     
     $result = $modeloUsuario->getDatosLogin($usuario);
+    //password_verify($pass, $result['Clave'])
+    $cifrada = md5($pass);
+
     if($result != null){
-        if(password_verify($pass, $result['Clave'])){
+        if(strcmp($result['Clave'], $cifrada)){
             $_SESSION['LoginSuccess'] = true;
             $_SESSION['UserID'] = $result['ID'];
             $_SESSION['Nombre'] = $result['Nombre'];
             $_SESSION['RolUsuario'] = $result['Rol'];
             header('Location: ../views/home.php');
             echo 'SI!';
-        }       
-        echo 'nope!';
-        $verify = password_verify($pass, $result['Clave']);
-        echo 'verify: '.$verify;
+        } 
+        else{      
+            echo 'nope!';
+            $verify = password_verify($pass, $result['Clave']);
+            echo 'verify: '.$verify;
+        }
     }
     else {
         $_SESSION['MensajeError'] = 'loginError';

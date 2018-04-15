@@ -22,11 +22,10 @@ if($modeloMascota->registraMascota($tipo, $nombre, $raza, $bio, $urlFoto)){
 		
 		move_uploaded_file($imagen_tmp,"../../public/img/saved/" . '-' .$urlFoto);
 	}
-
 	header('Location: ../views/home.php');
 }
 else {
-	header('Location: ../views/registro.php');
+	header('Location: ../views/home.php');
 }
 
 

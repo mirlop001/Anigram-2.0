@@ -1,10 +1,10 @@
 	<h2>Este es el espacio para mascota</h2>
 
-    <form method="post" id="Reg_mascota" action="../controllers/registroMascota_controller.php">
+    <form method="post" id="Reg_mascota" action="../controllers/registroMascota_controller.php"  enctype="multipart/form-data">
 	
         <div class="col-md-2"  >
             <label for="fotoPerfilMascota">
-                <div id="perfil-mascota" class="foto-perfil perfil-md subir-foto-md" style="background-image:url('/Anigram/Desarrollo/img/IMG_0547.jpg')"></div>
+                <div id="perfil-mascota" class="foto-perfil-mascota perfil-md subir-foto-md"></div>
 			</label>
 			<input id="fotoPerfilMascota" class="input-perfil" name="fotoPerfilMascota" type="file"/>
 		</div>
@@ -14,6 +14,9 @@
 			<input type="text" class="formulario-textbox-mascota" name="raza" placeholder="Su raza" required />
 		</div>
 		<br>
+		<div class="fotomascota">
+			<h2>Foto perfil mascota</h2>
+		</div>
 
 		<div class="tipomascota">
 			Perro <input type="radio" name="tipo" value="1" checked>
@@ -25,6 +28,7 @@
         </div>
 
 		<!-- PRUEBA SELECTOR TIPO MASCOTA
+	 style="background-image:url('/Anigram/Desarrollo/img/IMG_0547.jpg')"
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
@@ -49,7 +53,7 @@
 		--> 
         
 		<div class="biomascota">
-			<textarea name="bio" class="formulario-textbox-mascota" rows="5" cols="30" > Descripción </textarea>
+			<textarea name="bio" class="formulario-textbox-mascota" rows="5" placeholder="Descripción" cols="30" ></textarea>
 		</div>
         <div id="boton_enviar">
             <input id="submitMascota" type="submit" name="submit" class="submitHueso" value="Añadir"/>	

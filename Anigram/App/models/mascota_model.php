@@ -33,7 +33,7 @@ class Mascota_Model{
     public function registraMascota($tipo, $nombre, $raza, $bio, $URLFoto){
         $ok = false;
 
-        if (mysqli_query($this->db, "INSERT INTO mascota (`ID`, `Amo`, `Tipo`, `Nombre`, `Raza`, `URLFoto`, `Bio`) VALUES (NULL, '4', '$tipo', '$nombre', '$raza', '$URLFoto', '$bio')")) 
+        if (mysqli_query($this->db, "INSERT INTO mascota (`ID`, `Amo`, `Tipo`, `Nombre`, `Raza`, `URLFoto`, `Bio`) VALUES (NULL, '14', '$tipo', '$nombre', '$raza', '$URLFoto', '$bio')")) 
             $ok = true;
 
         return $ok;

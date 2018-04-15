@@ -53,7 +53,7 @@
         
         function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol, $urlfoto){
             $result = false;
-            $cifrada= password_hash($clave, PASSWORD_BCRYPT);
+            $cifrada= md5($clave);
 
             if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nickname', '$nombreCompleto', '$email', '$cifrada', '$rol', '$urlfoto')")) 
                 $result = mysqli_insert_id ($this->db);

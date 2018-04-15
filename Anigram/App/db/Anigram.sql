@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 14-04-2018 a las 23:51:24
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-04-2018 a las 01:29:19
+-- Versión del servidor: 10.1.31-MariaDB
+-- Versión de PHP: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,16 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `Anigram`
+-- Base de datos: `anigram`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Amigos`
+-- Estructura de tabla para la tabla `amigos`
 --
 
-CREATE TABLE `Amigos` (
+CREATE TABLE `amigos` (
   `IDSeguidor` int(11) NOT NULL,
   `IDSeguido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -36,10 +36,10 @@ CREATE TABLE `Amigos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Comentario`
+-- Estructura de tabla para la tabla `comentario`
 --
 
-CREATE TABLE `Comentario` (
+CREATE TABLE `comentario` (
   `ID` int(11) NOT NULL,
   `IDUsuario` int(11) NOT NULL,
   `IDMedia` int(11) NOT NULL,
@@ -49,10 +49,10 @@ CREATE TABLE `Comentario` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Comercio`
+-- Estructura de tabla para la tabla `comercio`
 --
 
-CREATE TABLE `Comercio` (
+CREATE TABLE `comercio` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `Correo` varchar(30) NOT NULL,
@@ -64,10 +64,10 @@ CREATE TABLE `Comercio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Denuncia`
+-- Estructura de tabla para la tabla `denuncia`
 --
 
-CREATE TABLE `Denuncia` (
+CREATE TABLE `denuncia` (
   `ID` int(11) NOT NULL,
   `IDMedia` int(11) NOT NULL,
   `motivo` varchar(300) NOT NULL
@@ -76,10 +76,10 @@ CREATE TABLE `Denuncia` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Hashtag`
+-- Estructura de tabla para la tabla `hashtag`
 --
 
-CREATE TABLE `Hashtag` (
+CREATE TABLE `hashtag` (
   `ID` int(11) NOT NULL,
   `Comentario` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL
@@ -88,10 +88,10 @@ CREATE TABLE `Hashtag` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Mascota`
+-- Estructura de tabla para la tabla `mascota`
 --
 
-CREATE TABLE `Mascota` (
+CREATE TABLE `mascota` (
   `ID` int(11) NOT NULL,
   `Amo` int(11) NOT NULL,
   `Tipo` int(11) NOT NULL,
@@ -104,10 +104,10 @@ CREATE TABLE `Mascota` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Media`
+-- Estructura de tabla para la tabla `media`
 --
 
-CREATE TABLE `Media` (
+CREATE TABLE `media` (
   `ID` int(11) NOT NULL,
   `Mascota` int(11) NOT NULL,
   `Tipo` int(11) NOT NULL,
@@ -117,10 +117,10 @@ CREATE TABLE `Media` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Notificaciones`
+-- Estructura de tabla para la tabla `notificaciones`
 --
 
-CREATE TABLE `Notificaciones` (
+CREATE TABLE `notificaciones` (
   `ID` int(11) NOT NULL,
   `IDReceptor` int(11) NOT NULL,
   `IDEmisor` int(11) NOT NULL,
@@ -130,41 +130,53 @@ CREATE TABLE `Notificaciones` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Rol`
+-- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE `Rol` (
+CREATE TABLE `rol` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `Rol`
+-- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `Rol` (`ID`, `Nombre`) VALUES
+INSERT INTO `rol` (`ID`, `Nombre`) VALUES
 (1, 'Dueño'),
 (2, 'Comercio');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Tipo_Mascota`
+-- Estructura de tabla para la tabla `tipo_mascota`
 --
 
-CREATE TABLE `Tipo_Mascota` (
+CREATE TABLE `tipo_mascota` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `URLIcono` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tipo_mascota`
+--
+
+INSERT INTO `tipo_mascota` (`ID`, `Nombre`, `URLIcono`) VALUES
+(1, 'Perro', ''),
+(2, 'gato', ''),
+(3, 'conejo', ''),
+(4, 'hamster', ''),
+(5, 'ave', ''),
+(6, 'cobaya', '');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Tipo_media`
+-- Estructura de tabla para la tabla `tipo_media`
 --
 
-CREATE TABLE `Tipo_media` (
+CREATE TABLE `tipo_media` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -172,10 +184,10 @@ CREATE TABLE `Tipo_media` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Tipo_Notificacion`
+-- Estructura de tabla para la tabla `tipo_notificacion`
 --
 
-CREATE TABLE `Tipo_Notificacion` (
+CREATE TABLE `tipo_notificacion` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -183,10 +195,10 @@ CREATE TABLE `Tipo_Notificacion` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `Usuario` (
+CREATE TABLE `usuario` (
   `ID` int(11) NOT NULL,
   `Rol` int(11) NOT NULL,
   `Nickname` varchar(10) NOT NULL,
@@ -199,20 +211,20 @@ CREATE TABLE `Usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `Usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `Usuario` (`ID`, `Rol`, `Nickname`, `NombreCompleto`, `Email`, `Clave`, `URLFoto`, `Bio`, `Bloqueado`) VALUES
+INSERT INTO `usuario` (`ID`, `Rol`, `Nickname`, `NombreCompleto`, `Email`, `Clave`, `URLFoto`, `Bio`, `Bloqueado`) VALUES
 (14, 1, 'a', 'aa', 'asd@ad.cas', '$2y$10$lX796irJn7xQbQED.uHsc.LSHMOW2.IFH1mr/2v6eGY', '', NULL, 0),
 (16, 1, 'Mirilopsi', 'Miriam LÃ³pez Sierra', 'mirilopsi@email.com', '$2y$10$6oAczs.Uz/rHPLo1fNkBuOFAKfjuui17.GoJQZFJe6R', 'doge-pixilart.png', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Usuarios_comercio`
+-- Estructura de tabla para la tabla `usuarios_comercio`
 --
 
-CREATE TABLE `Usuarios_comercio` (
+CREATE TABLE `usuarios_comercio` (
   `IDUsuario` int(11) NOT NULL,
   `IDComercio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -220,10 +232,10 @@ CREATE TABLE `Usuarios_comercio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Woofs`
+-- Estructura de tabla para la tabla `woofs`
 --
 
-CREATE TABLE `Woofs` (
+CREATE TABLE `woofs` (
   `IDUsuario` int(11) NOT NULL,
   `IDMedia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -233,107 +245,107 @@ CREATE TABLE `Woofs` (
 --
 
 --
--- Indices de la tabla `Amigos`
+-- Indices de la tabla `amigos`
 --
-ALTER TABLE `Amigos`
+ALTER TABLE `amigos`
   ADD PRIMARY KEY (`IDSeguidor`,`IDSeguido`),
   ADD KEY `FK_Amigos_seguido` (`IDSeguido`);
 
 --
--- Indices de la tabla `Comentario`
+-- Indices de la tabla `comentario`
 --
-ALTER TABLE `Comentario`
+ALTER TABLE `comentario`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Comentario_usuario` (`IDUsuario`),
   ADD KEY `FK_Comentario_media` (`IDMedia`);
 
 --
--- Indices de la tabla `Comercio`
+-- Indices de la tabla `comercio`
 --
-ALTER TABLE `Comercio`
+ALTER TABLE `comercio`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indices de la tabla `Denuncia`
+-- Indices de la tabla `denuncia`
 --
-ALTER TABLE `Denuncia`
+ALTER TABLE `denuncia`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Denundia_media` (`IDMedia`);
 
 --
--- Indices de la tabla `Hashtag`
+-- Indices de la tabla `hashtag`
 --
-ALTER TABLE `Hashtag`
+ALTER TABLE `hashtag`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Hashtag_comentario` (`Comentario`);
 
 --
--- Indices de la tabla `Mascota`
+-- Indices de la tabla `mascota`
 --
-ALTER TABLE `Mascota`
+ALTER TABLE `mascota`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Mascota_amo` (`Amo`),
   ADD KEY `FK_Mascota_tipo` (`Tipo`);
 
 --
--- Indices de la tabla `Media`
+-- Indices de la tabla `media`
 --
-ALTER TABLE `Media`
+ALTER TABLE `media`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Media_mascota` (`Mascota`),
   ADD KEY `FK_Media_tipo` (`Tipo`);
 
 --
--- Indices de la tabla `Notificaciones`
+-- Indices de la tabla `notificaciones`
 --
-ALTER TABLE `Notificaciones`
+ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Notificaciones_Receptor` (`IDReceptor`),
   ADD KEY `FK_Notificaciones_Emisor` (`IDEmisor`),
   ADD KEY `FK_Notificaciones_tipo` (`Tipo`);
 
 --
--- Indices de la tabla `Rol`
+-- Indices de la tabla `rol`
 --
-ALTER TABLE `Rol`
+ALTER TABLE `rol`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indices de la tabla `Tipo_Mascota`
+-- Indices de la tabla `tipo_mascota`
 --
-ALTER TABLE `Tipo_Mascota`
+ALTER TABLE `tipo_mascota`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indices de la tabla `Tipo_media`
+-- Indices de la tabla `tipo_media`
 --
-ALTER TABLE `Tipo_media`
+ALTER TABLE `tipo_media`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indices de la tabla `Tipo_Notificacion`
+-- Indices de la tabla `tipo_notificacion`
 --
-ALTER TABLE `Tipo_Notificacion`
+ALTER TABLE `tipo_notificacion`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indices de la tabla `Usuario`
+-- Indices de la tabla `usuario`
 --
-ALTER TABLE `Usuario`
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Usuarios_rol` (`Rol`);
 
 --
--- Indices de la tabla `Usuarios_comercio`
+-- Indices de la tabla `usuarios_comercio`
 --
-ALTER TABLE `Usuarios_comercio`
+ALTER TABLE `usuarios_comercio`
   ADD PRIMARY KEY (`IDUsuario`,`IDComercio`),
   ADD KEY `FK_UsuComercio_comercio` (`IDComercio`);
 
 --
--- Indices de la tabla `Woofs`
+-- Indices de la tabla `woofs`
 --
-ALTER TABLE `Woofs`
+ALTER TABLE `woofs`
   ADD PRIMARY KEY (`IDUsuario`,`IDMedia`),
   ADD KEY `FK_Woofs_media` (`IDMedia`);
 
@@ -342,75 +354,75 @@ ALTER TABLE `Woofs`
 --
 
 --
--- AUTO_INCREMENT de la tabla `Comentario`
+-- AUTO_INCREMENT de la tabla `comentario`
 --
-ALTER TABLE `Comentario`
+ALTER TABLE `comentario`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Comercio`
+-- AUTO_INCREMENT de la tabla `comercio`
 --
-ALTER TABLE `Comercio`
+ALTER TABLE `comercio`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Denuncia`
+-- AUTO_INCREMENT de la tabla `denuncia`
 --
-ALTER TABLE `Denuncia`
+ALTER TABLE `denuncia`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Hashtag`
+-- AUTO_INCREMENT de la tabla `hashtag`
 --
-ALTER TABLE `Hashtag`
+ALTER TABLE `hashtag`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Mascota`
+-- AUTO_INCREMENT de la tabla `mascota`
 --
-ALTER TABLE `Mascota`
+ALTER TABLE `mascota`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Media`
+-- AUTO_INCREMENT de la tabla `media`
 --
-ALTER TABLE `Media`
+ALTER TABLE `media`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Notificaciones`
+-- AUTO_INCREMENT de la tabla `notificaciones`
 --
-ALTER TABLE `Notificaciones`
+ALTER TABLE `notificaciones`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Rol`
+-- AUTO_INCREMENT de la tabla `rol`
 --
-ALTER TABLE `Rol`
+ALTER TABLE `rol`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `Tipo_Mascota`
+-- AUTO_INCREMENT de la tabla `tipo_mascota`
 --
-ALTER TABLE `Tipo_Mascota`
+ALTER TABLE `tipo_mascota`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_media`
+--
+ALTER TABLE `tipo_media`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Tipo_media`
+-- AUTO_INCREMENT de la tabla `tipo_notificacion`
 --
-ALTER TABLE `Tipo_media`
+ALTER TABLE `tipo_notificacion`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Tipo_Notificacion`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
-ALTER TABLE `Tipo_Notificacion`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `Usuario`
---
-ALTER TABLE `Usuario`
+ALTER TABLE `usuario`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
@@ -418,72 +430,72 @@ ALTER TABLE `Usuario`
 --
 
 --
--- Filtros para la tabla `Amigos`
+-- Filtros para la tabla `amigos`
 --
-ALTER TABLE `Amigos`
-  ADD CONSTRAINT `FK_Amigos_seguido` FOREIGN KEY (`IDSeguido`) REFERENCES `Usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Amigos_seguidor` FOREIGN KEY (`IDSeguidor`) REFERENCES `Mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `amigos`
+  ADD CONSTRAINT `FK_Amigos_seguido` FOREIGN KEY (`IDSeguido`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Amigos_seguidor` FOREIGN KEY (`IDSeguidor`) REFERENCES `mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Comentario`
+-- Filtros para la tabla `comentario`
 --
-ALTER TABLE `Comentario`
-  ADD CONSTRAINT `FK_Comentario_media` FOREIGN KEY (`IDMedia`) REFERENCES `Media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Comentario_usuario` FOREIGN KEY (`IDUsuario`) REFERENCES `Usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `FK_Comentario_media` FOREIGN KEY (`IDMedia`) REFERENCES `media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Comentario_usuario` FOREIGN KEY (`IDUsuario`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Denuncia`
+-- Filtros para la tabla `denuncia`
 --
-ALTER TABLE `Denuncia`
-  ADD CONSTRAINT `FK_Denundia_media` FOREIGN KEY (`IDMedia`) REFERENCES `Media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `denuncia`
+  ADD CONSTRAINT `FK_Denundia_media` FOREIGN KEY (`IDMedia`) REFERENCES `media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Hashtag`
+-- Filtros para la tabla `hashtag`
 --
-ALTER TABLE `Hashtag`
-  ADD CONSTRAINT `FK_Hashtag_comentario` FOREIGN KEY (`Comentario`) REFERENCES `Comentario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `hashtag`
+  ADD CONSTRAINT `FK_Hashtag_comentario` FOREIGN KEY (`Comentario`) REFERENCES `comentario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Mascota`
+-- Filtros para la tabla `mascota`
 --
-ALTER TABLE `Mascota`
-  ADD CONSTRAINT `FK_Mascota_amo` FOREIGN KEY (`Amo`) REFERENCES `Usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Mascota_tipo` FOREIGN KEY (`Tipo`) REFERENCES `Tipo_Mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `mascota`
+  ADD CONSTRAINT `FK_Mascota_amo` FOREIGN KEY (`Amo`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Mascota_tipo` FOREIGN KEY (`Tipo`) REFERENCES `tipo_mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Media`
+-- Filtros para la tabla `media`
 --
-ALTER TABLE `Media`
-  ADD CONSTRAINT `FK_Media_mascota` FOREIGN KEY (`Mascota`) REFERENCES `Mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Media_tipo` FOREIGN KEY (`Tipo`) REFERENCES `Tipo_media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `media`
+  ADD CONSTRAINT `FK_Media_mascota` FOREIGN KEY (`Mascota`) REFERENCES `mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Media_tipo` FOREIGN KEY (`Tipo`) REFERENCES `tipo_media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Notificaciones`
+-- Filtros para la tabla `notificaciones`
 --
-ALTER TABLE `Notificaciones`
-  ADD CONSTRAINT `FK_Notificaciones_Emisor` FOREIGN KEY (`IDEmisor`) REFERENCES `Usuario` (`ID`),
-  ADD CONSTRAINT `FK_Notificaciones_Receptor` FOREIGN KEY (`IDReceptor`) REFERENCES `Usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Notificaciones_tipo` FOREIGN KEY (`Tipo`) REFERENCES `Tipo_Notificacion` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `FK_Notificaciones_Emisor` FOREIGN KEY (`IDEmisor`) REFERENCES `usuario` (`ID`),
+  ADD CONSTRAINT `FK_Notificaciones_Receptor` FOREIGN KEY (`IDReceptor`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Notificaciones_tipo` FOREIGN KEY (`Tipo`) REFERENCES `tipo_notificacion` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Usuario`
+-- Filtros para la tabla `usuario`
 --
-ALTER TABLE `Usuario`
-  ADD CONSTRAINT `FK_Usuarios_rol` FOREIGN KEY (`Rol`) REFERENCES `Rol` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `FK_Usuarios_rol` FOREIGN KEY (`Rol`) REFERENCES `rol` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Usuarios_comercio`
+-- Filtros para la tabla `usuarios_comercio`
 --
-ALTER TABLE `Usuarios_comercio`
-  ADD CONSTRAINT `FK_UsuComercio_comercio` FOREIGN KEY (`IDComercio`) REFERENCES `Comercio` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_UsuComercio_usuario` FOREIGN KEY (`IDUsuario`) REFERENCES `Usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `usuarios_comercio`
+  ADD CONSTRAINT `FK_UsuComercio_comercio` FOREIGN KEY (`IDComercio`) REFERENCES `comercio` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_UsuComercio_usuario` FOREIGN KEY (`IDUsuario`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Woofs`
+-- Filtros para la tabla `woofs`
 --
-ALTER TABLE `Woofs`
-  ADD CONSTRAINT `FK_Woofs_media` FOREIGN KEY (`IDMedia`) REFERENCES `Media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Woofs_usuario` FOREIGN KEY (`IDUsuario`) REFERENCES `Usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `woofs`
+  ADD CONSTRAINT `FK_Woofs_media` FOREIGN KEY (`IDMedia`) REFERENCES `media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Woofs_usuario` FOREIGN KEY (`IDUsuario`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
