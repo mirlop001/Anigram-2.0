@@ -6,6 +6,6 @@ define('DB_NAME','Anigram');
 define('DB_USER','root');
 define('DB_PASS','');
 
-define('__ROOT__',  basename(dirname(__FILE__)));
+define('__ROOT__', basename(dirname(__FILE__)) );
 
 ?>

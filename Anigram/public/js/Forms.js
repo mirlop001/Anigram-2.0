@@ -5,7 +5,13 @@
    
     $(document).ready(function(){
         $("#fotoPerfilUsuario").on("change",function(event){
-            muestraImagen(event);
+            muestraImagenUsuario(event);
+        });
+    });
+
+    $(document).ready(function(){
+        $("#fotoPerfilMascota").on("change",function(event){
+            muestraImagenMascota(event);
         });
     });
     

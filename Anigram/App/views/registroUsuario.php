@@ -2,7 +2,7 @@
 <form action="../controllers/registroUsuario_controller.php" method="post" enctype="multipart/form-data">
     <div class="image-upload">
         <label for="fotoPerfilUsuario">
-            <div id="foto-usuario" class="foto-perfil perfil-gr subir-foto"></div>
+            <div id="foto-usuario" class="foto-perfil perfil-gr subir-foto-gr"></div>
         </label>
         <input id="fotoPerfilUsuario" class="input-perfil" name="fotoPerfilUsuario" type="file"/>
     </div>
