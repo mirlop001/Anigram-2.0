@@ -7,12 +7,14 @@
         $("#fotoPerfilUsuario").on("change",function(event){
             muestraImagenUsuario(event);
         });
-    });
-
-    $(document).ready(function(){
+    
         $("#fotoPerfilMascota").on("change",function(event){
             muestraImagenMascota(event);
         });
+
+        $(".tipo-mascota-drp").on("click", function(event){
+            $("#dropdownTipoMascota").html($(this).html());
+        });        
     });
-    
+
  })();

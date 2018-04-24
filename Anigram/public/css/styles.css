@@ -96,8 +96,8 @@ body{
 }
 .tab-content{
     border-left: 2px dashed #deb2b0;
-    height: 70%;
-    padding: 10px 40px;
+    height: 90%;
+    padding: 10px 0 40px 40px;
     display: none;
 }
 
@@ -218,6 +218,10 @@ form.centered {
     background-color: #91c8d4;;
 }
 
+.fotoPerfilMascota{
+    text-align: center;
+}
+
 .perfil-gr{
      
     width: 200px;
@@ -268,4 +272,55 @@ form.centered {
 
 #boton_enviar:hover{
     background-size:  320px;
+}
+
+#dropdownTipoMascota label {
+    font-size: 20px;
+    margin: 0;
+    color: #fbb480;
+    cursor: pointer;
+    
+}
+
+#dropdownTipoMascota {
+    background-color: #ffdfc730;
+    border: 2px solid #ffc8a0;
+    width: 100%;
+}
+
+.btn-secondary {
+    color: #d4a27e!important;
+}
+.dropdown-toggle::after {
+    display: none;
+}
+
+#tipos-mascota{
+    top: -3px;
+    width: 86%;
+    border: 2px solid #ffc8a0;
+    
+}
+
+.tipos-mascota img{
+    float: left;
+}
+
+#dropdownTipoMascota:hover, .show > #dropdownTipoMascota {
+    background-color: #f7b585;
+    border: 2px solid #ffc8a0;
+}
+
+#dropdownTipoMascota:hover label, .show > #dropdownTipoMascota label{
+    color: white;
+}
+
+.tipo-mascota-drp > img{
+    float: left;
+
+}
+
+.bio-mascota {
+    padding: 20px;
+    margin-bottom: 10%;
 }
