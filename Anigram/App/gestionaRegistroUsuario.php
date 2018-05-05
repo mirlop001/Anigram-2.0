@@ -22,6 +22,8 @@
     $raza = htmlspecialchars(trim(strip_tags($_REQUEST['raza'])));
     $tipo = htmlspecialchars(trim(strip_tags($_REQUEST['tipo'])));
     $bio = htmlspecialchars(trim(strip_tags($_REQUEST['bio'])));
+    $urlFotoMascota = basename($_FILES["fotoPerfilComercio"]["name"]);
+    
     //Obtener foto de la mascota
     if(isset($_FILES["fotoPerfilMascota"]["name"][0])&& $_FILES["fotoPerfilMascota"]["name"][0]!= "")
         $urlFotoMascota = __urlFotoGuardada__.basename($_FILES["fotoPerfilMascota"]["name"]);
@@ -33,6 +35,8 @@
     $telefono = htmlspecialchars(trim(strip_tags($_REQUEST['telefono'])));
     $correo = htmlspecialchars(trim(strip_tags($_REQUEST['email_comercio'])));
     $descripcion = htmlspecialchars(trim(strip_tags($_REQUEST['descripcion'])));
+    $urlFotoComercio = "";
+
     //Obtener foto del comercio
         if(isset($_FILES["fotoPerfilComercio"]["name"][0])&& $_FILES["fotoPerfilComercio"]["name"][0]!= "")
             $urlFotoComercio = basename($_FILES["fotoPerfilComercio"]["name"]);
@@ -70,7 +74,7 @@
                     $nombre_imagen = $_FILES['fotoPerfilMascota']['name'];
                     $imagen_tmp =$_FILES['fotoPerfilMascota']['tmp_name'];
                     
-                    move_uploaded_file($imagen_tmp, __urlFotoGuardada__.$nickname.'-'.$urlFotoMascotaurlFoto);
+                    move_uploaded_file($imagen_tmp, __urlFotoGuardada__.$nickname.'-'.$urlFotoMascota);
                 }
                 header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$urlFotoMascota);
             
