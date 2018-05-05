@@ -1,8 +1,7 @@
 <?php
 	include '../controllers/usuario_controller.php';
 	include '../controllers/mensajes_controller.php';
-	include 'Templates/cabecera.php';
-	session_start();
+	include 'Comun/cabecera.php';
 	
 ?>
 

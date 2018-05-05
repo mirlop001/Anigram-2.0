@@ -1,5 +1,4 @@
 <?php
-    session_start();
         
     require_once "../models/usuario_model.php";   
     require_once "../configuracion/mensajes.php";   

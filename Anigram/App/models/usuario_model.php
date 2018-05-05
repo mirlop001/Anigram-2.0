@@ -1,5 +1,4 @@
 <?php
-    require("../configuracion/conexion.php");
 
     class Usuario_Model{
         private $db;
@@ -13,10 +12,10 @@
         private $Bio;
         private $Bloqueado;
 
-        function __construct()
+        function __construct($app)
         {
             try {
-                $this->db=Conexion::conec();
+                $this->db= $app->conexionBd();
                 
             } catch (PDOException $e) {
                 exit('No se ha podido conectar con la base de datos.');
@@ -59,11 +58,7 @@
                 $result = mysqli_insert_id ($this->db);
 
             return $result;
-        }
-
-        function __destruct(){
-            mysqli_close($this->db);
-        }
+        }       
     }
 
 ?>

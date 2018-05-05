@@ -1,7 +1,5 @@
 <?php
 
-require("../configuracion/conexion.php");
-
 class Mascota_Model{
     private $db; 
     private $amo; //Se relaciona con el usuario que posee la mascota
@@ -12,9 +10,9 @@ class Mascota_Model{
     private $bio;
 
 
-    public function __Construct(){
+    public function __construct($app){
         try {
-            $this->db=Conexion::conec();
+            $this->db=$app->conexionBd();
             
         } catch (PDOException $e) {
             exit('No se ha podido conectar con la base de datos.');
@@ -30,17 +28,23 @@ class Mascota_Model{
         $this->bio = $bio;
     }
 
-    public function registraMascota($tipo, $nombre, $raza, $bio, $URLFoto){
-        $ok = false;
-
-        if (mysqli_query($this->db, "INSERT INTO mascota (`ID`, `Amo`, `Tipo`, `Nombre`, `Raza`, `URLFoto`, `Bio`) VALUES (NULL, '14', '$tipo', '$nombre', '$raza', '$URLFoto', '$bio')")) 
-            $ok = true;
-
-        return $ok;
+    function registraMascota($amo, $tipo, $nombre, $raza, $bio, $URLFoto){
+       return mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio) VALUES ($amo, $tipo, '$nombre', '$raza', '$URLFoto', '$bio')");
     }
 
-    function __destruct(){
-        mysqli_close($this->db);
+    function getTiposMascota(){
+        if ($result = mysqli_query($this->db, "SELECT Nombre, URLIcono from tipo_mascota ")) 
+            printf("La selección devolvió %d filas.\n", mysqli_num_rows($result));
+        else    
+            printf("No se ha devuelto nada con los valores %s %s", $email, $clave);
+        
+        if($result->num_rows > 0){
+            if($row = $result->fetch_assoc()){
+                $tiposMascota['URLIcono'] = $row['URLIcono'];
+                $tiposMascota['Nombre'] = $row['NombreCompleto'];
+            }
+        }
+        return $tiposMascota;
     }
 }
 ?>

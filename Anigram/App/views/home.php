@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php
-        include 'Templates/cabecera.php';
-        session_start();
+        include 'Comun/cabecera.php';
     ?>
     <title>Home</title>
 </head>
@@ -21,4 +20,3 @@
     </div>
 </body>
 </html>
-<?php session_destroy();?>

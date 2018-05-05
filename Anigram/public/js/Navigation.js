@@ -1,12 +1,19 @@
 'use strict';
 
-function selectTab(elem){
+function selectTab(elem) {
     console.log(elem);
     $(".menu-tabs").removeClass("active");
-    $("#"+elem).addClass( "active" );
+    $("#" + elem).addClass("active");
 
     $(".tab-content").removeClass("active");
-    $("#div-"+elem).addClass( "active" );
-    $("#rol").value=(elem == 'Mascota')?1:2;
+    $("#div-" + elem).addClass("active");
+    $("#rol").val((elem == 'Mascota') ? 1 : 2);
+
+    cambiaRequeridos(elem);
 }
 
+function cambiaRequeridos(elem) {
+    $("#div-Mascota input").prop('required', false);
+    $("#div-Comercio input").prop('required', false);
+    $("#div-" + elem + " input").prop('required', true);
+}

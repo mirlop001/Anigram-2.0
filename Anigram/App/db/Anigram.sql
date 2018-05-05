@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2018 a las 01:29:19
+-- Tiempo de generación: 05-05-2018 a las 17:41:22
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -54,12 +54,20 @@ CREATE TABLE `comentario` (
 
 CREATE TABLE `comercio` (
   `ID` int(11) NOT NULL,
+  `Poseedor` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `Correo` varchar(30) NOT NULL,
+  `Telefono` varchar(30) NOT NULL,
   `Descripcion` varchar(300) DEFAULT NULL,
-  `URLImagen` varchar(30) DEFAULT NULL,
-  `Tipo` int(11) NOT NULL
+  `URLImagen` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `comercio`
+--
+
+INSERT INTO `comercio` (`ID`, `Poseedor`, `Nombre`, `Correo`, `Telefono`, `Descripcion`, `URLImagen`) VALUES
+(1, 39, 'comercio', 'miriam@email.com33', '333313', '../public/img/saved/2.jpg', '3');
 
 -- --------------------------------------------------------
 
@@ -100,6 +108,14 @@ CREATE TABLE `mascota` (
   `URLFoto` varchar(30) DEFAULT NULL,
   `Bio` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mascota`
+--
+
+INSERT INTO `mascota` (`ID`, `Amo`, `Tipo`, `Nombre`, `Raza`, `URLFoto`, `Bio`) VALUES
+(22, 27, 1, 'rerr', 'rerr', '', ''),
+(23, 32, 2, 'eee', 'ee', 'ww.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -155,7 +171,7 @@ INSERT INTO `rol` (`ID`, `Nombre`) VALUES
 CREATE TABLE `tipo_mascota` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
-  `URLIcono` varchar(30) NOT NULL
+  `URLIcono` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -163,12 +179,10 @@ CREATE TABLE `tipo_mascota` (
 --
 
 INSERT INTO `tipo_mascota` (`ID`, `Nombre`, `URLIcono`) VALUES
-(1, 'Perro', ''),
-(2, 'gato', ''),
-(3, 'conejo', ''),
-(4, 'hamster', ''),
-(5, 'ave', ''),
-(6, 'cobaya', '');
+(1, 'Perro', '/Anigram/Anigram/perro-icon.png'),
+(2, 'gato', '/Anigram/Anigram/gato-icon.png'),
+(3, 'conejo', '/Anigram/Anigram/conejo-icon.png'),
+(6, 'cobaya', '/Anigram/Anigram/cobaya-icon.png');
 
 -- --------------------------------------------------------
 
@@ -216,7 +230,30 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`ID`, `Rol`, `Nickname`, `NombreCompleto`, `Email`, `Clave`, `URLFoto`, `Bio`, `Bloqueado`) VALUES
 (14, 1, 'a', 'aa', 'asd@ad.cas', '$2y$10$lX796irJn7xQbQED.uHsc.LSHMOW2.IFH1mr/2v6eGY', '', NULL, 0),
-(16, 1, 'Mirilopsi', 'Miriam LÃ³pez Sierra', 'mirilopsi@email.com', '$2y$10$6oAczs.Uz/rHPLo1fNkBuOFAKfjuui17.GoJQZFJe6R', 'doge-pixilart.png', NULL, 0);
+(16, 1, 'Mirilopsi', 'Miriam LÃ³pez Sierra', 'mirilopsi@email.com', '$2y$10$6oAczs.Uz/rHPLo1fNkBuOFAKfjuui17.GoJQZFJe6R', 'doge-pixilart.png', NULL, 0),
+(17, 1, 'asd', 'asd', 'miriam@email.com', '7dc9573dcf770d8b874770965cc481e0', '', NULL, 0),
+(18, 1, 'DDDD', 'DDDD', 'DDD@MM.C', 'b4b55409bcd604fb875cf992644663c1', '', NULL, 0),
+(19, 1, 'bbb', 'bb', 'bebe@asd.gg', '8efe1d40adb7045a95f11812062f3630', '', NULL, 0),
+(20, 1, 'eq', 'q', 'qwe@ased.kk', 'bb7aa7942b215a72dc2ddd5bf410c7c0', '', NULL, 0),
+(21, 1, 'rrr', 'rrrr', 'rr@rr.g', 'cfcd9148c16800b50d367085c580d3ab', '', NULL, 0),
+(22, 1, 'ff', 'ff', 'ff@ww', 'fe4913ff0014bc79b8ffd658daad109a', '', NULL, 0),
+(23, 1, 'mirinuevo', 'mirinuevi', 'miri@em.c', '6bcebdc59214cbaa622f5c835a54e352', '', NULL, 0),
+(24, 1, 'popo', 'popo', 'popo@popo.po', 'f054dc48d9cab56c7ae9ecf300b8b206', '', NULL, 0),
+(25, 1, 'miripopo', 'popopopopopo', 'popo@miri.es', 'ee8872f0aa45eedc3da66488bad81598', '', NULL, 0),
+(26, 1, 'asdddddddp', 'dddd', 'pp@popop.o', '052f7771edb89c5c4bbc3662078c7db4', '', NULL, 0),
+(27, 1, 'ddre', 're', 're@re.r', '358e9c0b075f660e0fe34942a4a5893a', '', NULL, 0),
+(28, 1, '--asd', 'ddddd', 'qwe@ee.g', 'ac086f9cb746f6583760418227fde47f', '', NULL, 0),
+(29, 1, 'e', 'e', 'e@e.c', '1b01701e2a48a4713caf301baf6fdf85', '', NULL, 0),
+(30, 1, 'asdasdasda', 'asdasdasdasd', 'asdasd@d.s', 'fb2bfce010df00a23fe05a476585ec4a', '', NULL, 0),
+(31, 2, 'ffdf', 'dfdf', 'dff@d', '860edd9d4137b6ec77cf334b8fa5522d', '', NULL, 0),
+(32, 1, 'ee', 'ee', 'eee@sssqq', 'aa8208c325970c9341cb81b0d19b3926', '', NULL, 0),
+(33, 2, 'erer', 'erer', 'err@de.e', 'a5cf8227725f520fc2d234f56650eecd', '', NULL, 0),
+(34, 2, 'eeqeqe', 'qe', 'qwe@asdee', 'b03c8bee444288d67c8cbf7dcf64a3a8', '', NULL, 0),
+(35, 2, '33', '3', 'miriam@email.com3', 'a258bbef258605d9046edd67d357b171', '', NULL, 0),
+(36, 2, 'EEEw', 'weeew', 'miriam@email.comw', '94a653c61d0185f2cc4a96a95d13258a', '', NULL, 0),
+(37, 2, 'qwee', 'qwe', 'ee@ddde', 'ffcfba603abb69fdc2c84f9984b34943', '', NULL, 0),
+(38, 2, '24', '324', 'miriam@email.com4', 'e8c071a29beaa681241ca80838698753', '', NULL, 0),
+(39, 2, '12333', '33333', 'miriam@email.com33', '57b0103a79d6c78c6e02fd1ea74650af', '', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -263,7 +300,8 @@ ALTER TABLE `comentario`
 -- Indices de la tabla `comercio`
 --
 ALTER TABLE `comercio`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_Poseedor_comercio` (`Poseedor`);
 
 --
 -- Indices de la tabla `denuncia`
@@ -348,6 +386,7 @@ ALTER TABLE `usuarios_comercio`
 ALTER TABLE `woofs`
   ADD PRIMARY KEY (`IDUsuario`,`IDMedia`),
   ADD KEY `FK_Woofs_media` (`IDMedia`);
+  
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -363,7 +402,7 @@ ALTER TABLE `comentario`
 -- AUTO_INCREMENT de la tabla `comercio`
 --
 ALTER TABLE `comercio`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `denuncia`
@@ -381,7 +420,7 @@ ALTER TABLE `hashtag`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `media`
@@ -423,7 +462,7 @@ ALTER TABLE `tipo_notificacion`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas
@@ -442,6 +481,12 @@ ALTER TABLE `amigos`
 ALTER TABLE `comentario`
   ADD CONSTRAINT `FK_Comentario_media` FOREIGN KEY (`IDMedia`) REFERENCES `media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Comentario_usuario` FOREIGN KEY (`IDUsuario`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `comercio`
+--
+ALTER TABLE `comercio`
+  ADD CONSTRAINT `FK_Poseedor_comercio` FOREIGN KEY (`Poseedor`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `denuncia`
