@@ -1,4 +1,6 @@
 <?php
+namespace es\ucm\fdi\aw;
+
     class Mensajes{
         const loginError = "Usuario o contraseña no válidos.";
         const nicknameExistente= "El nick que has introducido ya existe.";

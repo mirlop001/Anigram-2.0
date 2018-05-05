@@ -1,3 +1,4 @@
+
 		<div class="row">
 			<div class="col-md-5">
 				<label for="fotoPerfilMascota" class="fotoPerfilMascota">
@@ -17,14 +18,16 @@
 					<i class="material-icons">arrow_drop_down</i>
 				</button>
 				<div id="tipos-mascota" class="dropdown-menu" aria-labelledby="dropdownTipoMascota">
-					<li class="dropdown-item tipo-mascota-drp" href="#" value="1" > <img src="../../public/img/perro-icon.png" alt="perro-icon"><h2>Perro</h2></li>
-					<li class="dropdown-item tipo-mascota-drp" href="#" value="2"><img src="../../public/img/gato-icon.png" alt="gato-icon"><h2>Gato</h2></li>
-					<li class="dropdown-item tipo-mascota-drp" href="#" value="6"><img src="../../public/img/cobaya-icon.png" alt="Cobaya-icon"><h2>Cobaya</h2></li>
+					<?php 
+						$mascotas_controller = new es\ucm\fdi\aw\Mascota_Controller();
+						echo $mascotas_controller->getTiposMascota();
+					?>
 				</div>
 			</div>	
 		</div>
 		<div class="col-md-12 row">
 			<textarea name="bio" class="formulario-textbox bio-mascota" rows="6" placeholder="Descripción" cols="20"  ><?= (isset($_SESSION["Bio_Mascota"]))? $_SESSION["Bio_Mascota"]:"" ?></textarea>
 		</div>
+		
 
 

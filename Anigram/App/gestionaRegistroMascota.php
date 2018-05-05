@@ -2,7 +2,7 @@
     require_once './configuracion/config.php';
 	require_once "./models/mascota_model.php";  
 
-$modeloMascota = new Mascota_Model($app);
+$modeloMascota = new Mascota_Model();
 $urlFoto = NULL;
 
 //Obtener datos de la mascota

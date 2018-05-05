@@ -1,8 +1,8 @@
 <?php
-    include '../configuracion/mensajes.php';
-    
+namespace es\ucm\fdi\aw;
+
     class Mensajes_Controller{
-        function mostrarMensaje($tipoMensaje){
+        public static function mostrarMensaje($tipoMensaje){
             $mensaje = "";
             switch($tipoMensaje){
                 case 'loginError':

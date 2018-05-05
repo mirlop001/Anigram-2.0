@@ -1,4 +1,5 @@
 <?php
+namespace es\ucm\fdi\aw;
 
 class Mascota_Model{
     private $db; 
@@ -10,8 +11,9 @@ class Mascota_Model{
     private $bio;
 
 
-    public function __construct($app){
+    public function __construct(){
         try {
+            $app = Aplicacion::getSingleton();
             $this->db=$app->conexionBd();
             
         } catch (PDOException $e) {
@@ -32,19 +34,6 @@ class Mascota_Model{
        return mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio) VALUES ($amo, $tipo, '$nombre', '$raza', '$URLFoto', '$bio')");
     }
 
-    function getTiposMascota(){
-        if ($result = mysqli_query($this->db, "SELECT Nombre, URLIcono from tipo_mascota ")) 
-            printf("La selección devolvió %d filas.\n", mysqli_num_rows($result));
-        else    
-            printf("No se ha devuelto nada con los valores %s %s", $email, $clave);
-        
-        if($result->num_rows > 0){
-            if($row = $result->fetch_assoc()){
-                $tiposMascota['URLIcono'] = $row['URLIcono'];
-                $tiposMascota['Nombre'] = $row['NombreCompleto'];
-            }
-        }
-        return $tiposMascota;
-    }
+  
 }
 ?>

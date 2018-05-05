@@ -1,7 +1,6 @@
 <?php
         
-    require_once "../models/usuario_model.php";   
-    require_once "../configuracion/mensajes.php";   
+
     $modeloUsuario = new Usuario_Model();
         
         

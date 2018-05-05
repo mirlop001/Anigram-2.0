@@ -1,4 +1,5 @@
 <?php
+namespace es\ucm\fdi\aw;
 
     class Usuario_Model{
         private $db;
@@ -12,9 +13,10 @@
         private $Bio;
         private $Bloqueado;
 
-        function __construct($app)
+        function __construct()
         {
             try {
+                $app = Aplicacion::getSingleton();
                 $this->db= $app->conexionBd();
                 
             } catch (PDOException $e) {

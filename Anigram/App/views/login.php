@@ -1,4 +1,5 @@
 <?php
+	include '../configuracion/config.php';
 	include '../controllers/usuario_controller.php';
 	include '../controllers/mensajes_controller.php';
 	include 'Comun/cabecera.php';

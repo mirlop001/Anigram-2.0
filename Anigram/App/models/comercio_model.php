@@ -1,4 +1,5 @@
 <?php
+namespace es\ucm\fdi\aw;
 
 class Comercio_Model{
     private $db; 
@@ -10,8 +11,9 @@ class Comercio_Model{
     private $descripcion;
 
 
-    public function __construct($app){
+    public function __construct(){
         try {
+            $app = Aplicacion::getSingleton();
             $this->db=$app->conexionBd();
             
         } catch (PDOException $e) {

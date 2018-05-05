@@ -1,6 +1,8 @@
 <?php
+	include '../configuracion/config.php';
     include 'Comun/cabecera.php';
     include '../controllers/mensajes_controller.php';
+    include '../controllers/mascota_controller.php';
     
 ?>
 <!DOCTYPE html>
@@ -39,7 +41,8 @@
                         <?php include 'registroMascota.php' ?>
                     </div>
                     <div id="div-Comercio" class="tab-content">
-                        <?php include 'registroComercio.php' ?>
+                        <?php include 'registroComercio.php' ;
+                        ?>
                     </div>
                 </div>
             </div>
