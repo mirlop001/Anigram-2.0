@@ -384,6 +384,12 @@
         float: left;
     }
     
+    .tipo-mascota-drp,
+    .tipo-mascota-drp h2 {
+        cursor: pointer;
+        text-align: center;
+    }
+    
     .bio-mascota {
         padding: 20px;
         margin-bottom: 10%;

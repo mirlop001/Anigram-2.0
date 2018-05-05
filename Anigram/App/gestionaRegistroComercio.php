@@ -2,7 +2,7 @@
     require_once './configuracion/config.php';
     require_once "./models/comercio_model.php";  
 
-$modeloComercio = new Comercio_Model();
+$modeloComercio = new es\ucm\fdi\aw\Comercio_Model();
 
 $urlFoto = __urlFotoGuardada__.$_GET['urlFoto'];
 $amo = $_GET['id_amo'];

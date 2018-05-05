@@ -2,7 +2,7 @@
     require_once './configuracion/config.php';
     require_once "./models/usuario_model.php";   
 
-    $modeloUsuario = new Usuario_Model();
+    $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
 
     $urlFoto = null;
     //Obtener datos usuario

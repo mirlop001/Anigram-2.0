@@ -8,9 +8,9 @@
 			</div>
 
 			<div class="col-md-6">
-				<input type="text" class="formulario-textbox" name="nombre_comercio" placeholder = "Nombre comercio"  />
-				<input type="email" class="formulario-textbox" name="email_comercio" placeholder = "Dirección email comercio"   />
-				<input type="text" class="formulario-textbox" name="telefono"  placeholder = "Teléfono de contacto"  />
+				<input type="text" class="formulario-textbox required" name="nombre_comercio" placeholder = "Nombre comercio"  />
+				<input type="email" class="formulario-textbox required" name="email_comercio" placeholder = "Dirección email comercio"   />
+				<input type="text" class="formulario-textbox required" name="telefono"  placeholder = "Teléfono de contacto"  />
                 
 			</div>	
 		</div>
