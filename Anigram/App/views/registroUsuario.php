@@ -7,9 +7,9 @@
         <input id="fotoPerfilUsuario" class="input-perfil" name="fotoPerfilUsuario" type="file"/>
     </div>
     <?php 
-        // if(isset($_SESSION['MensajeError'])){
-        //         Mensajes_Controller::mostrarMensaje($_SESSION['MensajeError']);
-        //     }
+        if(isset($_SESSION['MensajeError'])){
+            Mensajes_Controller::mostrarMensaje($_SESSION['MensajeError']);
+        }
     ?>
     <!-- <input type="file" class="formulario-textbox" name="fotoPerfilUsuario" id="fotoPerfilUsuario"> -->
     <input type="text" class="formulario-textbox" id="nickname" name="nickname" placeholder="Nickname" required>

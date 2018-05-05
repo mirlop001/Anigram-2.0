@@ -12,13 +12,6 @@ function muestraImagenUsuario(evt) {
         image.src = img.target.result;
         $("#foto-usuario").css("background-image", "url(" + image.src + ")");
 
-        var height = $("#foto-usuario").height() * 1000;
-
-        image.onload = function() {
-            console.log(this.height);
-
-            $("#foto-usuario").css("background-size", (height / this.height) + 100 + "%");
-        }
     };
 
 }
@@ -37,11 +30,6 @@ function muestraImagenMascota(evt) {
 
         var height = $("#perfil-mascota").height();
 
-        image.onload = function() {
-            console.log(this.height);
-
-            $("#perfil-mascota").css("background-size", (height / this.height) * 1000 + 100 + "%");
-        }
     };
 }
 
@@ -57,13 +45,6 @@ function muestraImagenComercio(evt) {
         image.src = img.target.result;
         $("#perfil-Comercio").css("background-image", "url(" + image.src + ")");
 
-        var height = $("#perfil-Comercio").height();
-
-        image.onload = function() {
-            console.log(this.height);
-
-            $("#perfil-Comercio").css("background-size", (height / this.height) * 1000 + 100 + "%");
-        }
     };
 }
 
