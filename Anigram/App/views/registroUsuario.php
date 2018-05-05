@@ -2,6 +2,7 @@
     <div class="image-upload">
         <label for="fotoPerfilUsuario">
             <div id="foto-usuario" class="foto-perfil perfil-gr subir-foto-gr"></div>
+            Selecciona tu foto de perfil
         </label>
         <input id="fotoPerfilUsuario" class="input-perfil" name="fotoPerfilUsuario" type="file"/>
     </div>

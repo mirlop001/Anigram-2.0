@@ -16,7 +16,7 @@
 <body>
 <img id="logo-grande" src="../../public/img/Logo-Completo.png" alt="">
 	
-	<div class="container container-anigram">
+	<div class="container ">
 			<div class="col align-self-center col-lg-8 offset-lg-2">
 			<h1>Login</h1>
 				<?php if(isset($_SESSION['MensajeError']))
