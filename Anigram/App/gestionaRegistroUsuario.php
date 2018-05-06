@@ -1,6 +1,9 @@
 <?php
+
+use es\ucm\fdi\aw\SubidaImagen_Controller;
     require_once './configuracion/config.php';
     require_once "./models/usuario_model.php";   
+    require_once "./controllers/gestionaSubidaImagen.php";   
 
     $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
 
@@ -61,29 +64,33 @@
             $_SESSION['Nombre'] = $nombreCompleto;
             $_SESSION['RolUsuario'] = $rol;
             
-            if(isset($_FILES['fotoPerfilUsuario']) && $_FILES['fotoPerfilUsuario'] != ""){
+            if(isset($_FILES['fotoPerfilUsuario']) && $_FILES['fotoPerfilUsuario']['error'] == 0){
                 $nombre_imagen = $_FILES['fotoPerfilUsuario']['name'];
                 $imagen_tmp =$_FILES['fotoPerfilUsuario']['tmp_name'];
+                $_SESSION['fotoPerfilUsuario'] = $nickname.'-'.$nombre_imagen;
                 
-                move_uploaded_file($imagen_tmp, __urlFotoGuardada__.$nickname.'-'.$urlFoto);
+               $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $nickname, $urlFoto);
+               $imagen->guardaImagen();
             }
 
             if($rol == 1){
 
-                if(isset($_FILES['fotoPerfilMascota']) && $_FILES['fotoPerfilMascota'] != ""){
+                if(isset($_FILES['fotoPerfilMascota']) && $_FILES['fotoPerfilMascota']['error'] == 0){
                     $nombre_imagen = $_FILES['fotoPerfilMascota']['name'];
                     $imagen_tmp =$_FILES['fotoPerfilMascota']['tmp_name'];
                     
-                    move_uploaded_file($imagen_tmp, __urlFotoGuardada__.$nickname.'-'.$urlFotoMascota);
+                    $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $nickname, $urlFotoMascota);
+                    $imagen->guardaImagen();
                 }
                 header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$urlFotoMascota);
             
             }else if($rol == 2){
-                if(isset($_FILES['fotoPerfilComercio']) && $_FILES['fotoPerfilComercio'] != ""){
+                if(isset($_FILES['fotoPerfilComercio'])  && $_FILES['fotoPerfilComercio']['error'] == 0){
                     $nombre_imagen = $_FILES['fotoPerfilComercio']['name'];
                     $imagen_tmp =$_FILES['fotoPerfilComercio']['tmp_name'];
                     
-                    move_uploaded_file($imagen_tmp, __urlFotoGuardada__.$nickname.'-'.$urlFotoComercio);
+                    $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $nickname, $urlFotoComercio);
+                    $imagen->guardaImagen();
                 }
                 header('Location: ./gestionaRegistroComercio.php?id_amo='.$result.'&nombre='.$nombreComercio.'&telefono='.$telefono.'&correo='.$correo.'&descripcion='.$descripcion.'&urlFoto='.$urlFotoComercio);
                     

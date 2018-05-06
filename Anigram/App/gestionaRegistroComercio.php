@@ -1,10 +1,10 @@
 <?php
-    require_once './configuracion/config.php';
     require_once "./models/comercio_model.php";  
-
+    require_once './configuracion/config.php';
 $modeloComercio = new es\ucm\fdi\aw\Comercio_Model();
 
-$urlFoto = __urlFotoGuardada__.$_GET['urlFoto'];
+if($_GET['urlFoto']) $urlFoto = __urlFotoGuardada__.$_GET['urlFoto'];
+
 $amo = $_GET['id_amo'];
 $nombre = htmlspecialchars(trim(strip_tags($_GET['nombre'])));
 $correo = htmlspecialchars(trim(strip_tags($_GET['correo'])));

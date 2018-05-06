@@ -53,5 +53,4 @@ spl_autoload_register(function ($class) {
 // Inicializa la aplicación
 $app = es\ucm\fdi\aw\Aplicacion::getSingleton();
 $app->init(array('host'=>DB_SERVER, 'bd'=>DB_NAME, 'user'=>DB_USER, 'pass'=>DB_PASS));
-
 register_shutdown_function(array($app, 'shutdown'));

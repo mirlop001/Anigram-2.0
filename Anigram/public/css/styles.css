@@ -1,400 +1,426 @@
-    /*------------------------- Fuentes ------------------------- */
-    
-    h3,
-    h4,
-    h5,
-    h6,
-    a {
-        font-family: 'Playfair Display', serif;
-    }
-    
-    p,
-    label,
-    textarea,
-    input {
-        font-family: 'Cormorant Garamond', serif;
-    }
-    
-    textarea,
-    input {
-        color: #787979;
-        font-size: 20px;
-    }
-    
-    h1 {
-        font-size: 130px;
-        text-align: center;
-    }
-    
-    h1,
-    h2 {
-        color: #d8817e;
-        font-family: 'Dancing Script', cursive;
-    }
-    
-    label {
-        font-size: 30px;
-    }
-    
-    h2,
-    h3,
-    label {
-        color: #e07070;
-    }
-    
-    .bold {
-        font-weight: bold;
-    }
-    
-    .italic {
-        font-style: italic;
-    }
-    
-    .references a:hover {
-        text-decoration: none;
-        color: #d8af52;
-    }
-    
-    .references a {
-        margin: 5px;
-        color: #aaa;
-    }
-    /*------------------------- General ------------------------- */
-    
-    body {
-        background-image: url("../img/fondo-body.png");
-    }
-    
-    #vertical-separator {
-        color: #e8dab9;
-    }
-    
-    #logo-grande {
-        position: relative;
-        width: 200px;
-        margin: 10px 50px;
-    }
-    
-    .container-anigram {
-        min-width: 350px;
-        margin: 1% 5%;
-    }
-    
-    .row textarea {
-        margin: 10% 0;
-    }
-    
-    .alert {
-        width: 100%;
-        margin: 20px 0;
-    }
-    
-    .alert h6 {
-        text-align: center;
-    }
-    /* Tabs */
-    
-    .select-tabs {
-        border-bottom: 8px solid #ab6563;
-        box-shadow: -2px 4px 7px -3px #aaa;
-        text-align: center;
-        border-radius: 8px;
-        margin: auto;
-        width: 80%;
-    }
-    
-    .select-tabs .nav-item {
-        width: 40%;
-    }
-    
-    .select-tabs .nav-link {
-        border-radius: 10px 10px 0px 0px;
-    }
-    
-    .select-tabs .nav-item a {
-        color: white !important;
-        font-size: 25px;
-        background-color: #deb2b0 !important;
-        border: none;
-    }
-    
-    .select-tabs .nav-item a.active {
-        background-color: #ab6563 !important;
-    }
-    
+/*------------------------- Fuentes ------------------------- */
+
+h3,
+h4,
+h5,
+h6,
+a {
+    font-family: 'Playfair Display', serif;
+}
+
+p,
+label,
+textarea,
+input {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+textarea,
+input {
+    color: #787979;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 130px;
+    text-align: center;
+}
+
+h1,
+h2 {
+    color: #d8817e;
+    font-family: 'Dancing Script', cursive;
+}
+
+label {
+    font-size: 30px;
+}
+
+h2,
+h3,
+label {
+    color: #e07070;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.references a:hover {
+    text-decoration: none;
+    color: #d8af52;
+}
+
+.references a {
+    margin: 5px;
+    color: #aaa;
+}
+
+
+/*------------------------- General ------------------------- */
+
+body {
+    background-image: url("../img/fondo-body.png");
+}
+
+#vertical-separator {
+    color: #e8dab9;
+}
+
+#logo-grande {
+    position: relative;
+    width: 200px;
+    margin: 10px 50px;
+}
+
+.container-anigram {
+    min-width: 350px;
+    margin: 1% 5%;
+}
+
+.row textarea {
+    margin: 10% 0;
+}
+
+.alert {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.alert h6 {
+    text-align: center;
+}
+
+
+/* Tabs */
+
+.select-tabs {
+    border-bottom: 8px solid #ab6563;
+    box-shadow: -2px 4px 7px -3px #aaa;
+    text-align: center;
+    border-radius: 8px;
+    margin: auto;
+    width: 80%;
+}
+
+.select-tabs .nav-item {
+    width: 40%;
+}
+
+.select-tabs .nav-link {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.select-tabs .nav-item a {
+    color: white !important;
+    font-size: 25px;
+    background-color: #deb2b0 !important;
+    border: none;
+}
+
+.select-tabs .nav-item a.active {
+    background-color: #ab6563 !important;
+}
+
+.tab-content {
+    padding: 40px 0 40px 40px;
+    display: none;
+    height: 50%;
+}
+
+.tab-content.active {
+    display: inherit;
+    padding-left: 65px;
+}
+
+.row.references {
+    position: absolute;
+}
+
+.row.logo img {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+}
+
+.references h1 {
+    font-size: 80px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 70px;
+}
+
+
+/* subir foto */
+
+.subir-foto-gr:hover {
+    width: 310px;
+    height: 310px;
+}
+
+.subir-foto-md:hover {
+    width: 155px;
+    height: 155px;
+}
+
+.subir-foto-pe:hover {
+    width: 60px;
+    height: 60px;
+}
+
+.subir-foto-gr,
+.subir-foto-md,
+.subir-foto-pe {
+    cursor: pointer;
+    background-color: white;
+    transition: width 0.3s, height 0.3s;
+}
+
+@media (min-width: 994px) {
     .tab-content {
-        padding: 40px 0 40px 40px;
-        display: none;
-        height: 50%;
+        border-left: 2px dashed #deb2b0;
     }
-    
-    .tab-content.active {
-        display: inherit;
-        padding-left: 65px;
+    .contedor-derecho form {
+        padding-top: 30px;
     }
-    
-    .row.references {
-        position: absolute;
+    .contenedor.contedor-derecho.separador.col-md-12.col-lg-6.offset-lg-1 {
+        padding: 0;
     }
-    
-    .row.logo img {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 5%;
+}
+
+@media (max-width: 994px) {
+    .contenedor {
+        margin-bottom: 2em !important;
     }
-    
-    .references h1 {
-        font-size: 80px;
-        text-align: center;
-        margin: auto;
-        padding-bottom: 70px;
-    }
-    /* subir foto */
-    
-    .subir-foto-gr:hover {
-        width: 310px;
-        height: 310px;
-    }
-    
-    .subir-foto-md:hover {
-        width: 155px;
-        height: 155px;
-    }
-    
-    .subir-foto-pe:hover {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .subir-foto-gr,
-    .subir-foto-md,
-    .subir-foto-pe {
-        cursor: pointer;
-        background-color: white;
-        transition: width 0.3s, height 0.3s;
-    }
-    
-    @media (min-width: 994px) {
-        .tab-content {
-            border-left: 2px dashed #deb2b0;
-        }
-        .contedor-derecho form {
-            padding-top: 30px;
-        }
-        .contenedor.contedor-derecho.separador.col-md-12.col-lg-6.offset-lg-1 {
-            padding: 0;
-        }
-    }
-    
-    @media (max-width: 994px) {
-        .contenedor {
-            margin-bottom: 2em !important;
-        }
-    }
-    /*------------------------- Formularios ------------------------- */
-    
-    #perfil-usuario {
-        display: none;
-    }
-    
-    form.centered {
-        text-align: center;
-    }
-    
-    .fotomascota {
-        margin-top: 15px;
-        margin-left: -86px;
-        float: left;
-    }
-    
-    .formulario-textbox-mascota {
-        border-radius: 5px;
-        width: 50%;
-        border: solid 1px #fdb1ae;
-        margin: 10px 0px;
-        background-color: #ffffff;
-        padding: 5px;
-    }
-    
-    .mascota-nombre-raza {
-        width: 600px;
-        float: right;
-        margin-right: -345px;
-    }
-    
-    .tipomascota {
-        margin-top: 19px;
-        float: right;
-        margin-right: -47px;
-        margin-bottom: 16px;
-    }
-    
-    .biomascota {
-        margin-top: 100px;
-        width: 1000px;
-        float: initial;
-    }
-    
-    .col-md-2 {
-        width: 300px;
-        float: left;
-    }
-    
-    .formulario-textbox {
-        border-radius: 5px;
-        width: 100%;
-        border: solid 1px #fdb1ae;
-        margin: 10px 0px;
-        background-color: #ffffff;
-        padding: 5px;
-    }
-    
-    .image-upload {
-        text-align: center;
-    }
-    
-    .formulario-textbox:focus {
-        outline: none;
-        box-shadow: 0px 0px 4px 0px #d8817e;
-        background-color: #fffdfb;
-        background-position: center;
-    }
-    
-    .input-perfil {
-        display: none;
-    }
-    
-    .foto-perfil {
-        background-image: url(../img/Juan-Niebla.png);
-        border-radius: 50%;
-        border: 6px inset #d8817e;
-        ;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 120%;
-        margin: auto;
-        background-color: black;
-    }
-    
-    .foto-perfil-mascota {
-        background-image: url(../img/Espectro.png);
-    }
-    
-    .foto-perfil-comercio {
-        background-image: url(../img/Comercio.png);
-    }
-    
-    .fotoPerfilMascota {
-        text-align: center;
-    }
-    
-    .perfil-gr {
-        width: 300px;
-        height: 300px;
-        background-size: 510px;
-    }
-    
-    .perfil-md {
-        width: 150px;
-        height: 150px;
-        background-size: 250px;
-    }
-    
-    .perfil-pe {
-        width: 100px;
-        height: 100px;
-        background-size: 120px;
-    }
-    
-    .submitHueso {
-        position: relative;
-        background-color: transparent;
-        border: none;
-        top: 45px;
-        color: white;
-        cursor: pointer;
-        font-size: 30px;
-    }
-    
-    .submitHueso:focus {
-        outline: 0;
-    }
-    
-    #boton_enviar {
-        background-image: url('../img/botosico_sinfondo.png');
-        background-repeat: no-repeat;
-        height: 130px;
-        background-size: 300px;
-        background-position: center;
-        cursor: pointer;
-        transition: background-size 0.4s;
-        width: 170px;
-        margin: auto;
-        text-align: center;
-    }
-    
-    #boton_enviar:hover {
-        background-size: 320px;
-    }
-    
-    #dropdownTipoMascota label {
-        font-size: 20px;
-        margin: 0;
-        color: #d8817e;
-        cursor: pointer;
-    }
-    
-    #dropdownTipoMascota {
-        background-color: #fff6f6;
-        border: 2px solid #d8817e;
-        width: 100%;
-        margin-top: 20px;
-    }
-    
-    .btn-secondary {
-        color: #d8817e!important;
-    }
-    
-    .dropdown-toggle::after {
-        display: none;
-    }
-    
-    #tipos-mascota {
-        top: -3px;
-        width: 86%;
-        border: 2px solid #d8817e;
-    }
-    
-    .tipos-mascota img {
-        float: left;
-    }
-    
-    #dropdownTipoMascota:hover,
-    .show>#dropdownTipoMascota {
-        background-color: #d8817e;
-        border: 2px solid #d8817e;
-    }
-    
-    #dropdownTipoMascota:hover label,
-    .show>#dropdownTipoMascota label {
-        color: white;
-    }
-    
-    .tipo-mascota-drp>img {
-        float: left;
-    }
-    
-    .tipo-mascota-drp,
-    .tipo-mascota-drp h2 {
-        cursor: pointer;
-        text-align: center;
-    }
-    
-    .bio-mascota {
-        padding: 20px;
-        margin-bottom: 10%;
-    }
-    
-    #input-tipo-mascota {
-        display: none;
-    }
+}
+
+
+/*------------------------- Formularios ------------------------- */
+
+#perfil-usuario {
+    display: none;
+}
+
+form.centered {
+    text-align: center;
+}
+
+.fotomascota {
+    margin-top: 15px;
+    margin-left: -86px;
+    float: left;
+}
+
+.formulario-textbox-mascota {
+    border-radius: 5px;
+    width: 50%;
+    border: solid 1px #fdb1ae;
+    margin: 10px 0px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.mascota-nombre-raza {
+    width: 600px;
+    float: right;
+    margin-right: -345px;
+}
+
+.tipomascota {
+    margin-top: 19px;
+    float: right;
+    margin-right: -47px;
+    margin-bottom: 16px;
+}
+
+.biomascota {
+    margin-top: 100px;
+    width: 1000px;
+    float: initial;
+}
+
+.col-md-2 {
+    width: 300px;
+    float: left;
+}
+
+.formulario-textbox {
+    border-radius: 5px;
+    width: 100%;
+    border: solid 1px #fdb1ae;
+    margin: 10px 0px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.image-upload {
+    text-align: center;
+}
+
+.formulario-textbox:focus {
+    outline: none;
+    box-shadow: 0px 0px 4px 0px #d8817e;
+    background-color: #fffdfb;
+    background-position: center;
+}
+
+.input-perfil {
+    display: none;
+}
+
+.foto-perfil {
+    background-image: url(../img/Juan-Niebla.png);
+    border-radius: 50%;
+    border: 6px inset #d8817e;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120%;
+    margin: auto;
+    background-color: black;
+}
+
+.foto-perfil-mascota {
+    background-image: url(../img/Espectro.png);
+}
+
+.foto-perfil-comercio {
+    background-image: url(../img/Comercio.png);
+}
+
+.fotoPerfilMascota {
+    text-align: center;
+}
+
+.perfil-gr {
+    width: 300px;
+    height: 300px;
+    background-size: 510px;
+}
+
+.perfil-md {
+    width: 150px;
+    height: 150px;
+    background-size: 250px;
+}
+
+.perfil-pe {
+    width: 100px;
+    height: 100px;
+    background-size: 120px;
+}
+
+.submitHueso {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    top: 45px;
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.submitHueso:focus {
+    outline: 0;
+}
+
+#boton_enviar {
+    background-image: url('../img/botosico_sinfondo.png');
+    background-repeat: no-repeat;
+    height: 130px;
+    background-size: 300px;
+    background-position: center;
+    cursor: pointer;
+    transition: background-size 0.4s;
+    width: 170px;
+    margin: auto;
+    text-align: center;
+}
+
+#boton_enviar:hover {
+    background-size: 320px;
+}
+
+#dropdownTipoMascota label {
+    font-size: 20px;
+    margin: 0;
+    color: #d8817e;
+    cursor: pointer;
+}
+
+#dropdownTipoMascota {
+    background-color: #fff6f6;
+    border: 2px solid #d8817e;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    color: #d8817e!important;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+#tipos-mascota {
+    top: -3px;
+    width: 86%;
+    border: 2px solid #d8817e;
+}
+
+.tipos-mascota img {
+    float: left;
+}
+
+#dropdownTipoMascota:hover,
+.show>#dropdownTipoMascota {
+    background-color: #d8817e;
+    border: 2px solid #d8817e;
+}
+
+#dropdownTipoMascota:hover label,
+.show>#dropdownTipoMascota label {
+    color: white;
+}
+
+.tipo-mascota-drp>img {
+    float: left;
+}
+
+.tipo-mascota-drp,
+.tipo-mascota-drp h2 {
+    cursor: pointer;
+    text-align: center;
+}
+
+.bio-mascota {
+    padding: 20px;
+    margin-bottom: 10%;
+}
+
+#input-tipo-mascota {
+    display: none;
+}
+
+
+/*********************************************** MENU ***********************************************************/
+
+nav#menu-lateral {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: -12px;
+    height: 101%;
+    box-shadow: 0px 0px 7px 2px #aaa;
+}
+
+#menu-lateral .navbar-item {
+    text-decoration: none;
+    color: black;
+    padding: 20px 0;
+    border-bottom: 1px solid lightgray;
+}

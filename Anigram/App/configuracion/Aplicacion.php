@@ -7,7 +7,9 @@ namespace es\ucm\fdi\aw;
 class Aplicacion
 {
 	private static $instancia;
-	
+	private  $sessionState;
+	const SESSION_STARTED = TRUE;
+    const SESSION_NOT_STARTED = FALSE;
 	/**
 	 * Permite obtener una instancia de <code>Aplicacion</code>.
 	 * 
@@ -67,9 +69,9 @@ class Aplicacion
 	public function init($bdDatosConexion)
 	{
         if ( ! $this->inicializada ) {
-    	    $this->bdDatosConexion = $bdDatosConexion;
+			$this->bdDatosConexion = $bdDatosConexion;
 			$this->inicializada = true;
-			
+			session_start();
         }
 	}
 	

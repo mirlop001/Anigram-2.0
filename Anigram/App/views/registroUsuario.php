@@ -8,7 +8,7 @@
     </div>
     <?php 
         if(isset($_SESSION['MensajeError'])){
-            Mensajes_Controller::mostrarMensaje($_SESSION['MensajeError']);
+            // Mensajes_Controller::mostrarMensaje($_SESSION['MensajeError']);
         }
     ?>
     <!-- <input type="file" class="formulario-textbox" name="fotoPerfilUsuario" id="fotoPerfilUsuario"> -->

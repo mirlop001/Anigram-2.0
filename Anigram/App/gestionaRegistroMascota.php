@@ -6,7 +6,7 @@ $modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
 $urlFoto = NULL;
 
 //Obtener datos de la mascota
-$urlFoto = __urlFotoGuardada__.$_GET['urlFoto'];
+if($_GET['urlFoto']) $urlFoto = __urlFotoGuardada__.$_GET['urlFoto'];
 $amo = $_GET['id_amo'];
 $nombre = htmlspecialchars(trim(strip_tags($_GET['nombre'])));
 $raza = htmlspecialchars(trim(strip_tags($_GET['raza'])));
