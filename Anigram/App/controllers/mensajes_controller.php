@@ -9,10 +9,6 @@ namespace es\ucm\fdi\aw;
                     $mensaje = Mensajes::loginError;
                     break;
                     
-                case 'nicknameExistente':
-                    $mensaje = Mensajes::nicknameExistente;
-                    break;
-
                 case 'usuarioExistente':
                     $mensaje = Mensajes::usuarioExistente;
                     break;

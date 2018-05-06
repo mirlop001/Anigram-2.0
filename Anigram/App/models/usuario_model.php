@@ -5,7 +5,6 @@ namespace es\ucm\fdi\aw;
         private $db;
         private $ID;
         private $Rol;
-        private $Nickname;
         private $NombreCompleto;
         private $Email;
         private $Clave;
@@ -46,17 +45,11 @@ namespace es\ucm\fdi\aw;
             $result = mysqli_query($this->db, "SELECT * from Usuario where Email = '$email' ");
             return mysqli_num_rows($result);
         } 
-
-        function buscaUsuarioPorNickname($nickname){
-            $result = mysqli_query($this->db, "SELECT * from Usuario where Nickname = '$nickname' ");
-            return mysqli_num_rows($result);
-        }   
-        
-        function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol, $urlfoto){
+        function registraUsuario( $nombreCompleto, $email, $clave, $rol, $urlfoto){
             $result = false;
             $cifrada= md5($clave);
 
-            if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nickname', '$nombreCompleto', '$email', '$cifrada', '$rol', '$urlfoto')")) 
+            if (mysqli_query($this->db, "INSERT INTO Usuario (NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nombreCompleto', '$email', '$cifrada', '$rol', '$urlfoto')")) 
                 $result = mysqli_insert_id ($this->db);
 
             return $result;

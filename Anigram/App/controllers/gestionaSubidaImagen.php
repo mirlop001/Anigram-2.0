@@ -5,18 +5,18 @@ include 'ImageManipulator.php';
     class SubidaImagen_Controller{
         private $imagen_tmp;
         private $imagen_name;
-        private $nickname;
+        private $idUsuario;
         private $urlFoto;
 
-        function __Construct($tmp, $nombre, $nickname, $urlFoto){
+        function __Construct($tmp, $nombre, $idUsuario, $urlFoto){
             $this->imagen_tmp = $tmp;
-            $this->nickname = $nickname;
+            $this->idUsuario = $idUsuario;
             $this->urlFoto = $urlFoto;
             $this->imagen_name = $nombre;
         }
         
         public function guardaImagen(){
-            $img = '../public/img/saved/'.$this->nickname.'-'.$this->urlFoto;
+            $img = '../public/img/saved/'.$this->urlFoto;
 
             $manipulator = new ImageManipulator($this->imagen_tmp);
             $width  = $manipulator->getWidth();

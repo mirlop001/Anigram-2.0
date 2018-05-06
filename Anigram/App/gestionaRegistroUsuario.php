@@ -12,7 +12,6 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     if(isset($_FILES["fotoPerfilUsuario"]["name"][0]))
         $urlFoto = basename($_FILES["fotoPerfilUsuario"]["name"]);
 
-    $nickname = htmlspecialchars(trim(strip_tags($_REQUEST['nickname'])));
     $nombreCompleto = htmlspecialchars(trim(strip_tags($_REQUEST['nombreCompleto'])));
     $email = htmlspecialchars(trim(strip_tags($_REQUEST['email'])));
     $clave1 = htmlspecialchars(trim(strip_tags($_REQUEST['clave1'])));
@@ -49,16 +48,12 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
         $_SESSION['MensajeError'] = "clavesDistintas";
         header('Location: ./views/registro.php');   
     }
-    else if($modeloUsuario->buscaUsuarioPorNickname($nickname) > 0){
-        $_SESSION['MensajeError'] = "nicknameExistente";
-        header('Location: ./views/registro.php');
-
-    }else if(($modeloUsuario->buscaUsuarioPorEmail($email) > 0)){
+    else if(($modeloUsuario->buscaUsuarioPorEmail($email) > 0)){
         $_SESSION['MensajeError'] = "usuarioExistente";
         header('Location: ./views/registro.php');
 
     }else{
-        if($result = $modeloUsuario->registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol, $urlFoto)){
+        if($result = $modeloUsuario->registraUsuario($nombreCompleto, $email, $clave, $rol, $urlFoto)){
             $_SESSION['ErrorRegistro'] = false;
             $_SESSION['UserID'] = $result;
             $_SESSION['Nombre'] = $nombreCompleto;
@@ -67,9 +62,10 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
             if(isset($_FILES['fotoPerfilUsuario']) && $_FILES['fotoPerfilUsuario']['error'] == 0){
                 $nombre_imagen = $_FILES['fotoPerfilUsuario']['name'];
                 $imagen_tmp =$_FILES['fotoPerfilUsuario']['tmp_name'];
-                $_SESSION['fotoPerfilUsuario'] = $nickname.'-'.$nombre_imagen;
+                $foto = $result.'-'.$nombre_imagen;
+                $_SESSION['fotoPerfilUsuario'] = $result.'-'.$nombre_imagen;
                 
-               $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $nickname, $urlFoto);
+               $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFoto);
                $imagen->guardaImagen();
             }
 
@@ -79,7 +75,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
                     $nombre_imagen = $_FILES['fotoPerfilMascota']['name'];
                     $imagen_tmp =$_FILES['fotoPerfilMascota']['tmp_name'];
                     
-                    $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $nickname, $urlFotoMascota);
+                    $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFotoMascota);
                     $imagen->guardaImagen();
                 }
                 header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$urlFotoMascota);
@@ -89,7 +85,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
                     $nombre_imagen = $_FILES['fotoPerfilComercio']['name'];
                     $imagen_tmp =$_FILES['fotoPerfilComercio']['tmp_name'];
                     
-                    $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $nickname, $urlFotoComercio);
+                    $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFotoComercio);
                     $imagen->guardaImagen();
                 }
                 header('Location: ./gestionaRegistroComercio.php?id_amo='.$result.'&nombre='.$nombreComercio.'&telefono='.$telefono.'&correo='.$correo.'&descripcion='.$descripcion.'&urlFoto='.$urlFotoComercio);

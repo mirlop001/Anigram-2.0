@@ -12,7 +12,6 @@
         }
     ?>
     <!-- <input type="file" class="formulario-textbox" name="fotoPerfilUsuario" id="fotoPerfilUsuario"> -->
-    <input type="text" class="formulario-textbox" id="nickname" name="nickname" placeholder="Nickname" required>
     <input type="text" class="formulario-textbox" id="nombreCompleto" name="nombreCompleto" placeholder="Tu nombre completo" required>
     <input type="email" class="formulario-textbox" id="email" name="email" placeholder="Tu Email" required>
     <input type="password" class="formulario-textbox" id="clave1" name="clave1" placeholder="Tu contraseña" required>

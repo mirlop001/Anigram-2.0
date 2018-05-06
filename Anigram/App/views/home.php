@@ -1,5 +1,6 @@
 <?php
     include_once '../configuracion/config.php';
+    include_once '../controllers/publicacion_controller.php';
     include 'Comun/cabecera.php';
 ?>
 <!DOCTYPE html>
@@ -15,10 +16,13 @@
     <?php
         include 'Comun/menu.php';
     ?> 
-	<div class="container container-anigram">
-        
-        
-        <h2>Bienvenido al home <?php if (isset($_SESSION["Nombre_Mascota"])){ echo $_SESSION["Nombre_Mascota"]; }else echo 'invitado'; ?>!!</h2>
+	<div class="container-anigram ">
+        <div class="row">
+            <?php 
+                $media_controller = new es\ucm\fdi\aw\Publicacion_Controller();
+                echo $media_controller->getUltimasPublicaciones();
+            ?>
+        </div>
     </div>
 </body>
 </html>
