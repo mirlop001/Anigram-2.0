@@ -282,14 +282,17 @@ form.centered {
     background-size: 120%;
     margin: auto;
     background-color: black;
+    background-size: 150%;
 }
 
 .foto-perfil-mascota {
     background-image: url(../img/Espectro.png);
+    background-size: 150%;
 }
 
 .foto-perfil-comercio {
     background-image: url(../img/Comercio.png);
+    background-size: 150%;
 }
 
 .fotoPerfilMascota {
@@ -299,11 +302,13 @@ form.centered {
 .perfil-gr {
     width: 300px;
     height: 300px;
+    border-radius: 50%;
 }
 
 .perfil-md {
     width: 150px;
     height: 150px;
+    border-radius: 50%;
 }
 
 .perfil-pe {
@@ -405,23 +410,40 @@ form.centered {
     display: none;
 }
 
+label>input {
+    /* visibility: hidden; */
+    position: absolute;
+    cursor: pointer;
+}
+
+.row.select-mascota label {
+    cursor: pointer;
+}
+
 
 /*********************************************** MENU ***********************************************************/
 
+@media (min-width: 994px) {
+    nav#menu-lateral {
+        display: flex;
+        flex-direction: column;
+        height: 101%;
+        position: fixed;
+    }
+    #menu-lateral .navbar-item {
+        border-bottom: 1px solid lightgray;
+        padding: 20px 0;
+    }
+}
+
 nav#menu-lateral {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    top: -12px;
-    height: 101%;
     box-shadow: 0px 0px 7px 2px #aaa;
+    top: -10px;
 }
 
 #menu-lateral .navbar-item {
     text-decoration: none;
     color: black;
-    padding: 20px 0;
-    border-bottom: 1px solid lightgray;
 }
 
 .publicacion {
@@ -443,6 +465,11 @@ nav#menu-lateral {
     margin-bottom: 5%;
 }
 
+.menu-icon {
+    width: 40px;
+    height: 40px;
+}
+
 
 /***************************************** PUBLICACIONES ********************************************************/
 
@@ -455,8 +482,53 @@ nav#menu-lateral {
     display: none !important;
 }
 
-.woofs {
+.woofs,
+.comentarios-publicacion {
     height: 200px;
     overflow: auto;
     overflow-x: hidden;
+    margin-bottom: 30px;
+}
+
+.woofs .row {
+    margin-top: 10px;
+}
+
+input.btn-woof {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: transparent;
+    background-image: url(../img/woof-icon.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    transition: background-image 0.3s;
+}
+
+input.btn-woof:hover {
+    background-image: url(../img/woofed-icon.png);
+}
+
+.publicacion.comentarios h5 {
+    color: #ffc365;
+}
+
+.publicacion.comentarios label {
+    color: black;
+    font-size: 40px;
+}
+
+.comentario label {
+    color: #9ee4ce !important;
+    font-size: 24px !important;
+}
+
+.comentario {
+    color: #aaa;
+}
+
+.radio-mascota {
+    text-align: center;
 }

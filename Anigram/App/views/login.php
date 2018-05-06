@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<img id="logo-grande" src="../../public/img/Logo-Completo.png" alt="">
+<img id="logo-grande" src="../../public/img/Logo-Nombre.png" alt="">
 
 	<div class="container ">
 			<div class="col align-self-center col-lg-8 offset-lg-2">

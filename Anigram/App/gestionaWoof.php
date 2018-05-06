@@ -11,15 +11,18 @@ $UserID = htmlspecialchars(trim(strip_tags($_REQUEST['UserID'])));
 $MediaID = htmlspecialchars(trim(strip_tags($_REQUEST['MediaID'])));
 $Puntos = htmlspecialchars(trim(strip_tags($_REQUEST['Puntos'])));
 
-if($registrado = $modeloWoof->nuevoWoof($Puntos, $UserID, $MediaID) == true){
+$Modifica = $modeloWoof->compruebaWoof($UserID, $MediaID);
+if($Modifica > 0){
+	$modeloWoof->actualizaWoof($Puntos, $UserID, $MediaID);
+
+}else if($registrado = $modeloWoof->nuevoWoof($Puntos, $UserID, $MediaID) == true){
 
 	if($urlFoto) 
 		$_SESSION['fotoPerfilMascota'] = $urlFoto;
 	
 }
-else {
-	header('Location: ./views/home.php');
-}
+header('Location: ./views/home.php');
+exit;
 
 
 ?>

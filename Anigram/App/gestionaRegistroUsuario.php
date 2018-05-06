@@ -4,6 +4,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     require_once './configuracion/config.php';
     require_once "./models/usuario_model.php";   
     require_once "./controllers/gestionaSubidaImagen.php";   
+    require_once "./controllers/password_compat-master/lib/password.php";        
 
     $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
 
@@ -16,7 +17,6 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     $email = htmlspecialchars(trim(strip_tags($_REQUEST['email'])));
     $clave1 = htmlspecialchars(trim(strip_tags($_REQUEST['clave1'])));
     $clave2 = htmlspecialchars(trim(strip_tags($_REQUEST['clave2'])));
-    $clave = password_hash($clave1, PASSWORD_BCRYPT);
     $rol = htmlspecialchars(trim(strip_tags($_REQUEST['rol'])));
 
     //Mascota
@@ -28,7 +28,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     
     //Obtener foto de la mascota
     if(isset($_FILES["fotoPerfilMascota"]["name"][0])&& $_FILES["fotoPerfilMascota"]["name"][0]!= "")
-        $urlFotoMascota = __urlFotoGuardada__.basename($_FILES["fotoPerfilMascota"]["name"]);
+        $urlFotoMascota = basename($_FILES["fotoPerfilMascota"]["name"]);
 
 
 
@@ -53,7 +53,8 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
         header('Location: ./views/registro.php');
 
     }else{
-        if($result = $modeloUsuario->registraUsuario($nombreCompleto, $email, $clave, $rol, $urlFoto)){
+        $hash =  password_hash($clave1, PASSWORD_BCRYPT);
+        if($result = $modeloUsuario->registraUsuario($nombreCompleto, $email, $hash , $rol, $urlFoto)){
             $_SESSION['ErrorRegistro'] = false;
             $_SESSION['UserID'] = $result;
             $_SESSION['Nombre'] = $nombreCompleto;
@@ -65,7 +66,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
                 $foto = $result.'-'.$nombre_imagen;
                 $_SESSION['fotoPerfilUsuario'] = $result.'-'.$nombre_imagen;
                 
-               $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFoto);
+               $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $foto);
                $imagen->guardaImagen();
             }
 
@@ -78,8 +79,8 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
                     $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFotoMascota);
                     $imagen->guardaImagen();
                 }
-                header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$urlFotoMascota);
-            
+                header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$result.'-'.$urlFotoMascota);
+                exit;
             }else if($rol == 2){
                 if(isset($_FILES['fotoPerfilComercio'])  && $_FILES['fotoPerfilComercio']['error'] == 0){
                     $nombre_imagen = $_FILES['fotoPerfilComercio']['name'];
@@ -88,10 +89,12 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
                     $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFotoComercio);
                     $imagen->guardaImagen();
                 }
-                header('Location: ./gestionaRegistroComercio.php?id_amo='.$result.'&nombre='.$nombreComercio.'&telefono='.$telefono.'&correo='.$correo.'&descripcion='.$descripcion.'&urlFoto='.$urlFotoComercio);
+                header('Location: ./gestionaRegistroComercio.php?id_amo='.$result.'&nombre='.$nombreComercio.'&telefono='.$telefono.'&correo='.$correo.'&descripcion='.$descripcion.'&urlFoto='.$result.'-'.$urlFotoComercio);
+                exit;
                     
             }else
                 header('Location: ./views/registro.php');
+                exit;
         }
 
         else{

@@ -18,13 +18,13 @@ include '../models/woof_model.php';
             
             if($ultimasPublicaciones)
                 foreach( $ultimasPublicaciones as $publicacion ){
-                    $post = '<div class="publicacion offset-md-1 col-md-6">
+                    $post = '<div class="publicacion offset-md-1 col-md-6 col-sm-12">
                                 <label><img src="../../public/img/saved/'.$publicacion->getURLImagenMascota().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label>
                                 <div class="foto-publicada">
                                 <img  src="../../public/img/saved/'.$publicacion->getURLImagen().'" alt="foto-publicada"/>
                                 </div>
                             </div>
-                            <div class="publicacion comentarios  offset-md-1 col-md-4">
+                            <div class="publicacion comentarios  offset-md-1 col-md-4 col-sm-12">
                                 '.$this->displayWoofsForm($publicacion->getID()).'
                                 
                                 <label >Ultimos woofs</label>
@@ -40,13 +40,24 @@ include '../models/woof_model.php';
 
                     $post =  $post.'</div><label >Ultimos comentarios</label> <div class="comentarios-publicacion">
                                         
-                                            <div class="comentario">
-                                                <img src="../../public/img/Juan-Niebla.png" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
-                                                <label>Nombre apellido</label><p>Ble ble ble ble bla bli bleblobla</p>
+                                            <div class="comentario row">
+                                                <div class="col-2">
+                                                    <img src="../../public/img/Juan-Niebla.png" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="row"><label>Nombre apellido</label></div>
+                                                    <div class="row"><p>Ble ble ble ble bla bli bleblobla</p></div>
+                                                </div>
                                             </div>
-                                            <div class="comentario">
-                                                <img src="../../public/img/Juan-Niebla.png" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
-                                                <label>Nombre apellido</label><p>Ble ble ble ble bla bli bleblobla</p>
+
+                                            <div class="comentario row">
+                                                <div class="col-2">
+                                                    <img src="../../public/img/Juan-Niebla.png" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="row"><label>Nombre apellido</label></div>
+                                                    <div class="row"><p>Ble ble ble ble bla bli bleblobla</p></div>
+                                                </div>
                                             </div>
                                     ';
 
@@ -72,7 +83,9 @@ include '../models/woof_model.php';
         }
 
         private function displayWoofsForm($mediaID){
-            $btnWoofs = '<form action="../gestionaWoof.php" method="post" enctype="multipart/form-data">
+            $btnWoofs = "";
+            if(isset($_SESSION["UserID"])){
+                $btnWoofs = '<form action="../gestionaWoof.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="UserID" value="'.$_SESSION["UserID"].'">
                             <input type="hidden" name="MediaID" value="'.$mediaID.'">
                             <input type="submit" name="Puntos" class="btn-woof" value="1"/>
@@ -81,6 +94,7 @@ include '../models/woof_model.php';
                             <input type="submit" name="Puntos" class="btn-woof" value="4"/>
                             <input type="submit" name="Puntos" class="btn-woof" value="5"/>
                         </form>';
+            }
             return $btnWoofs;
             
         }

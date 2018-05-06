@@ -13,7 +13,7 @@ function selectTab(elem) {
 }
 
 function cambiaRequeridos(elem) {
-    $("#div-Mascota.required").prop('required', false);
-    $("#div-Comercio.required").prop('required', false);
+    $("#div-Mascota .required").prop('required', false);
+    $("#div-Comercio .required").prop('required', false);
     $("#div-" + elem + ".required").prop('required', true);
 }

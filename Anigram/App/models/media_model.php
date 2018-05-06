@@ -51,11 +51,19 @@ class Media_Model{
         return $this->woofs;
     }
     
+    function insertaNuevaImagen($IDMascota, $URLImagen, $tipo=1){
+        $result = null;
+        if (mysqli_query($this->db, "INSERT INTO media (Mascota, URLImagen, Tipo) VALUES ('".$IDMascota."', '".$URLImagen."', '".$tipo."')")) 
+            $result = mysqli_insert_id ($this->db);
+
+        return $result;
+    }
+
     function getUltimasNPublicaciones($page = 0, $top = 10){
         $result = mysqli_query($this->db, 
-                "SELECT med.ID as IDImagen, URLImagen, Nombre, URLFoto, (select count(*) from woofs where IDMedia = med.id) as woofs from media med inner join mascota mas on med.Mascota = mas.ID 
+                "SELECT med.ID as IDImagen, URLImagen, Nombre, URLFoto, (select count(*) from woofs where IDMedia = med.id) as woofs from media med inner join mascota mas on med.Mascota = mas.ID order by fecha desc
                 limit ".$top." offset ".$page );
-        
+        -
         $ultimasPublicaciones = null;
 
         if($result->num_rows > 0){
