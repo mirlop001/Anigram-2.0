@@ -20,8 +20,9 @@
 	<div class="container ">
 			<div class="col align-self-center col-lg-8 offset-lg-2">
 			<h1>Login</h1>
-				<?php if(isset($_SESSION['MensajeError']))
+				<?php /*if(isset($_SESSION['MensajeError']))
 						Mensajes_Controller::mostrarMensaje($_SESSION['MensajeError']);
+						*/
 				  ?>
 
 				<form id="form-login" class="centered" method="POST" action='../controllers/login_controller.php'>

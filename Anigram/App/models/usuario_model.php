@@ -54,13 +54,38 @@ namespace es\ucm\fdi\aw;
         
         function registraUsuario($nickname, $nombreCompleto, $email, $clave, $rol, $urlfoto){
             $result = false;
-            $cifrada= md5($clave);
+            $cifrada= md5($clave); 
 
             if (mysqli_query($this->db, "INSERT INTO Usuario (Nickname, NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nickname', '$nombreCompleto', '$email', '$cifrada', '$rol', '$urlfoto')")) 
                 $result = mysqli_insert_id ($this->db);
 
             return $result;
-        }       
-    }
+        }    
+        
+        public static function login($email, $password, $user)
+        {
+            $cifrada = md5($password);
+    
+            if (md5($password) == $user['Clave']) {
+                return true;
+            }
+            return true;
+        }
 
+        private static function hashPassword($password)
+        {
+            return hash('sha512', $password); 
+        }
+
+        public static function compruebaPassword($password, $clave)
+        {        
+            $cifrada = hash('sha512', $password) ; 
+           
+            if($cifrada == $clave){
+                return true; 
+            }
+            else return false; 
+    
+        }
+    }
 ?>
