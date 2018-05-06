@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-05-2018 a las 17:41:22
+-- Tiempo de generación: 06-05-2018 a las 23:37:12
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -67,7 +67,7 @@ CREATE TABLE `comercio` (
 --
 
 INSERT INTO `comercio` (`ID`, `Poseedor`, `Nombre`, `Correo`, `Telefono`, `Descripcion`, `URLImagen`) VALUES
-(1, 39, 'comercio', 'miriam@email.com33', '333313', '../public/img/saved/2.jpg', '3');
+(1, 93, 'bicis a go go', 'bicis@gogo.com', '787994653', 'bicicle.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -105,7 +105,7 @@ CREATE TABLE `mascota` (
   `Tipo` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `Raza` varchar(20) NOT NULL,
-  `URLFoto` varchar(30) DEFAULT NULL,
+  `URLFoto` varchar(200) DEFAULT NULL,
   `Bio` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -114,8 +114,12 @@ CREATE TABLE `mascota` (
 --
 
 INSERT INTO `mascota` (`ID`, `Amo`, `Tipo`, `Nombre`, `Raza`, `URLFoto`, `Bio`) VALUES
-(22, 27, 1, 'rerr', 'rerr', '', ''),
-(23, 32, 2, 'eee', 'ee', 'ww.jpg', '');
+(40, 88, 1, 'nina1', 'nina1', '88-white_walker___disney_got_collection_by_nandomendonssa-d7k15kz.jpg', ''),
+(41, 89, 2, 'Mico', 'Mapache', '89-the_wind____by_alicexz-d32dzjq.jpg', ''),
+(42, 90, 1, 'Pichula', 'Collie', '90-ww.jpg', ''),
+(43, 91, 2, 'Mico', 'Mapache', '91-madam_mim_transformation_by_mattesworks-d62v2i8.jpg', ''),
+(44, 92, 2, 'Cosi', 'Porco', '', ''),
+(53, 107, 1, 'Flounder', 'pez', '107-flounder-items-article-081417.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -127,8 +131,21 @@ CREATE TABLE `media` (
   `ID` int(11) NOT NULL,
   `Mascota` int(11) NOT NULL,
   `Tipo` int(11) NOT NULL,
-  `URLImagen` varchar(30) NOT NULL
+  `URLImagen` varchar(300) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `media`
+--
+
+INSERT INTO `media` (`ID`, `Mascota`, `Tipo`, `URLImagen`, `fecha`) VALUES
+(9, 40, 1, '88-white_walker___disney_got_collection_by_nandomendonssa-d7k15kz.jpg', '2018-05-06 21:00:04'),
+(10, 41, 1, '90-ww.jpg', '2018-05-06 21:00:04'),
+(11, 53, 1, '-flounder-items-article-081417.jpg', '2018-05-06 21:00:04'),
+(12, 53, 1, '107-someday_by_alicexz-d3jese3.jpg', '2018-05-06 21:00:04'),
+(13, 53, 1, '107-thumb-1920-736068.png', '2018-05-06 21:01:08'),
+(14, 53, 1, '107-the_wind____by_alicexz-d32dzjq.jpg', '2018-05-06 21:18:22');
 
 -- --------------------------------------------------------
 
@@ -179,10 +196,10 @@ CREATE TABLE `tipo_mascota` (
 --
 
 INSERT INTO `tipo_mascota` (`ID`, `Nombre`, `URLIcono`) VALUES
-(1, 'Perro', '/Anigram/Anigram/perro-icon.png'),
-(2, 'gato', '/Anigram/Anigram/gato-icon.png'),
-(3, 'conejo', '/Anigram/Anigram/conejo-icon.png'),
-(6, 'cobaya', '/Anigram/Anigram/cobaya-icon.png');
+(1, 'Perro', 'perro-icon.png'),
+(2, 'gato', 'gato-icon.png'),
+(3, 'conejo', 'conejo-icon.png'),
+(6, 'cobaya', 'cobaya-icon.png');
 
 -- --------------------------------------------------------
 
@@ -194,6 +211,13 @@ CREATE TABLE `tipo_media` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_media`
+--
+
+INSERT INTO `tipo_media` (`ID`, `Nombre`) VALUES
+(1, 'Foto');
 
 -- --------------------------------------------------------
 
@@ -215,11 +239,10 @@ CREATE TABLE `tipo_notificacion` (
 CREATE TABLE `usuario` (
   `ID` int(11) NOT NULL,
   `Rol` int(11) NOT NULL,
-  `Nickname` varchar(10) NOT NULL,
   `NombreCompleto` varchar(30) DEFAULT NULL,
   `Email` varchar(30) NOT NULL,
-  `Clave` varchar(50) NOT NULL,
-  `URLFoto` varchar(50) DEFAULT NULL,
+  `Clave` varchar(300) NOT NULL,
+  `URLFoto` varchar(300) DEFAULT NULL,
   `Bio` varchar(300) DEFAULT NULL,
   `Bloqueado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -228,32 +251,14 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`ID`, `Rol`, `Nickname`, `NombreCompleto`, `Email`, `Clave`, `URLFoto`, `Bio`, `Bloqueado`) VALUES
-(14, 1, 'a', 'aa', 'asd@ad.cas', '$2y$10$lX796irJn7xQbQED.uHsc.LSHMOW2.IFH1mr/2v6eGY', '', NULL, 0),
-(16, 1, 'Mirilopsi', 'Miriam LÃ³pez Sierra', 'mirilopsi@email.com', '$2y$10$6oAczs.Uz/rHPLo1fNkBuOFAKfjuui17.GoJQZFJe6R', 'doge-pixilart.png', NULL, 0),
-(17, 1, 'asd', 'asd', 'miriam@email.com', '7dc9573dcf770d8b874770965cc481e0', '', NULL, 0),
-(18, 1, 'DDDD', 'DDDD', 'DDD@MM.C', 'b4b55409bcd604fb875cf992644663c1', '', NULL, 0),
-(19, 1, 'bbb', 'bb', 'bebe@asd.gg', '8efe1d40adb7045a95f11812062f3630', '', NULL, 0),
-(20, 1, 'eq', 'q', 'qwe@ased.kk', 'bb7aa7942b215a72dc2ddd5bf410c7c0', '', NULL, 0),
-(21, 1, 'rrr', 'rrrr', 'rr@rr.g', 'cfcd9148c16800b50d367085c580d3ab', '', NULL, 0),
-(22, 1, 'ff', 'ff', 'ff@ww', 'fe4913ff0014bc79b8ffd658daad109a', '', NULL, 0),
-(23, 1, 'mirinuevo', 'mirinuevi', 'miri@em.c', '6bcebdc59214cbaa622f5c835a54e352', '', NULL, 0),
-(24, 1, 'popo', 'popo', 'popo@popo.po', 'f054dc48d9cab56c7ae9ecf300b8b206', '', NULL, 0),
-(25, 1, 'miripopo', 'popopopopopo', 'popo@miri.es', 'ee8872f0aa45eedc3da66488bad81598', '', NULL, 0),
-(26, 1, 'asdddddddp', 'dddd', 'pp@popop.o', '052f7771edb89c5c4bbc3662078c7db4', '', NULL, 0),
-(27, 1, 'ddre', 're', 're@re.r', '358e9c0b075f660e0fe34942a4a5893a', '', NULL, 0),
-(28, 1, '--asd', 'ddddd', 'qwe@ee.g', 'ac086f9cb746f6583760418227fde47f', '', NULL, 0),
-(29, 1, 'e', 'e', 'e@e.c', '1b01701e2a48a4713caf301baf6fdf85', '', NULL, 0),
-(30, 1, 'asdasdasda', 'asdasdasdasd', 'asdasd@d.s', 'fb2bfce010df00a23fe05a476585ec4a', '', NULL, 0),
-(31, 2, 'ffdf', 'dfdf', 'dff@d', '860edd9d4137b6ec77cf334b8fa5522d', '', NULL, 0),
-(32, 1, 'ee', 'ee', 'eee@sssqq', 'aa8208c325970c9341cb81b0d19b3926', '', NULL, 0),
-(33, 2, 'erer', 'erer', 'err@de.e', 'a5cf8227725f520fc2d234f56650eecd', '', NULL, 0),
-(34, 2, 'eeqeqe', 'qe', 'qwe@asdee', 'b03c8bee444288d67c8cbf7dcf64a3a8', '', NULL, 0),
-(35, 2, '33', '3', 'miriam@email.com3', 'a258bbef258605d9046edd67d357b171', '', NULL, 0),
-(36, 2, 'EEEw', 'weeew', 'miriam@email.comw', '94a653c61d0185f2cc4a96a95d13258a', '', NULL, 0),
-(37, 2, 'qwee', 'qwe', 'ee@ddde', 'ffcfba603abb69fdc2c84f9984b34943', '', NULL, 0),
-(38, 2, '24', '324', 'miriam@email.com4', 'e8c071a29beaa681241ca80838698753', '', NULL, 0),
-(39, 2, '12333', '33333', 'miriam@email.com33', '57b0103a79d6c78c6e02fd1ea74650af', '', NULL, 0);
+INSERT INTO `usuario` (`ID`, `Rol`, `NombreCompleto`, `Email`, `Clave`, `URLFoto`, `Bio`, `Bloqueado`) VALUES
+(88, 1, 'lord hielo', 'lordhielo@email.com', 'd75926bcf3c0e4f69bd6ce4a3fa08173', 'white_walker___disney_got_collection_by_nandomendo', NULL, 0),
+(89, 1, 'pocahontas', 'pocahontas@email.com', '7a38b8ed3d03b29058371ff1c1a2f1cf', 'the_wind____by_alicexz-d32dzjq.jpg', NULL, 0),
+(90, 1, 'Nina', 'nina@richi.com', 'e570a73f1d9e510f332a050d2db31df2', '', NULL, 0),
+(91, 1, 'Jane', 'jane@email.com', 'b7ec2a8f9f17584b2b98fb4cc3af2900', 'Jane-and-Tarzan-disney-couples-38425213-1600-900.jpg', NULL, 0),
+(92, 1, 'rapunzel', 'rapunzel@email.com', 'bfc7db7faced8215e77eba225930fabd', 'Rapunzel-disney-princess-29231501-1440-900.jpg', NULL, 0),
+(93, 2, 'aurora', 'aurora@ains.com', '863b18f162f6df2e16f1ea1efa9ed4fc', '-Thomas-Kinkade-Disney-Dreams-disney-princess-31528031-1280-720.jpg', NULL, 0),
+(107, 1, 'Ariel de los 7 Mares', 'ariel@mar.es', '$2y$10$dPRVkj7jmi6K/aqQptE/8eZpEra0O2MYYt0hJzRbfUMg1.YG62gdW', 'someday_by_alicexz-d3jese3.jpg', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -274,8 +279,22 @@ CREATE TABLE `usuarios_comercio` (
 
 CREATE TABLE `woofs` (
   `IDUsuario` int(11) NOT NULL,
-  `IDMedia` int(11) NOT NULL
+  `IDMedia` int(11) NOT NULL,
+  `Puntos` int(11) NOT NULL,
+  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `woofs`
+--
+
+INSERT INTO `woofs` (`IDUsuario`, `IDMedia`, `Puntos`, `Fecha`) VALUES
+(90, 9, 3, '2018-05-06 19:28:16'),
+(91, 9, 5, '2018-05-06 19:28:16'),
+(92, 9, 3, '2018-05-06 19:28:16'),
+(92, 10, 5, '2018-05-06 19:28:16'),
+(107, 9, 4, '2018-05-06 19:50:28'),
+(107, 10, 5, '2018-05-06 19:49:44');
 
 --
 -- Índices para tablas volcadas
@@ -386,7 +405,6 @@ ALTER TABLE `usuarios_comercio`
 ALTER TABLE `woofs`
   ADD PRIMARY KEY (`IDUsuario`,`IDMedia`),
   ADD KEY `FK_Woofs_media` (`IDMedia`);
-  
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -402,7 +420,7 @@ ALTER TABLE `comentario`
 -- AUTO_INCREMENT de la tabla `comercio`
 --
 ALTER TABLE `comercio`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `denuncia`
@@ -420,13 +438,13 @@ ALTER TABLE `hashtag`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `media`
 --
 ALTER TABLE `media`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
@@ -450,7 +468,7 @@ ALTER TABLE `tipo_mascota`
 -- AUTO_INCREMENT de la tabla `tipo_media`
 --
 ALTER TABLE `tipo_media`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_notificacion`
@@ -462,7 +480,7 @@ ALTER TABLE `tipo_notificacion`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- Restricciones para tablas volcadas
