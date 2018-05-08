@@ -463,6 +463,8 @@ nav#menu-lateral {
 
 .row .publicacion {
     margin-bottom: 5%;
+    max-height: 55 vw;
+    overflow: hidden;
 }
 
 .menu-icon {
@@ -532,3 +534,25 @@ input.btn-woof:hover {
 .radio-mascota {
     text-align: center;
 }
+
+.publicacion.comentarios form {
+    text-align: center;
+}
+@media (max-width: 994px) {
+    .woofs,
+    .comentarios-publicacion {
+        height: 70px;
+    }
+
+    .publicacion.comentarios label {
+        font-size: 20px;
+    }
+    .woofs{
+        margin: 0;
+    }
+
+    .comentarios {
+        margin-bottom: 20% !important;
+    }
+}
+
