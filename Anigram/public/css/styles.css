@@ -293,6 +293,8 @@ button.btn.btn-primary img{
 /*------------------------- Formularios ------------------------- */
 .invalidInput {
     box-shadow: 0px 0px 6px 0px red;
+    background-color: #e030308a !important;
+    color: white;
 }
 label.error-form {
     display: none;
@@ -561,6 +563,11 @@ label>input {
     #div-comercio .row .col-md-5{
         text-align: center;
     } 
+
+    .error-form{
+        font-size: 30px !important;
+        margin-top: 0 !important;
+    }
 }
 
 /*********************************************** MENU ***********************************************************/

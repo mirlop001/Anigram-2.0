@@ -29,26 +29,30 @@
             });
         });
 
-        $('#Clave-login').on('change', function(){
+        $('#form-login').on('submit', function(e){
+            e.preventDefault();
+            
             if($('#email-login').val() != ""){
                 var parametros = {
                     "UserMail" : $('#email-login').val(),
+                    "Password" : $('#Clave-login').val(),
                     "comprobacion": 'login'
                 };
                 $.ajax({
                     data:  parametros,
-                    url:   '../../App/controllers/compruebaExisteMail.php',
+                    url:   '../../App/controllers/login_controller.php',
                     type:  'post',
                     success:  function (response) {
                         console.log(response);
                         if(response){
-                            $('#email').removeClass("invalidInput");
+                            $('#email-login').removeClass("invalidInput");
+                            $('#Clave-login').removeClass("invalidInput");
                             $('.usuarioNoExiste').hide();
-                            $('div#boton_enviar #submit').show();
+                            window.location.href = '../views/home.php';
                         }else {
-                            $('#email').addClass("invalidInput");
+                            $('#email-login').addClass("invalidInput");
+                            $('#Clave-login').addClass("invalidInput");
                             $('.usuarioNoExiste').show();
-                            $('div#boton_enviar #submit').hide();
                         }
                     },
                     error: function(err){

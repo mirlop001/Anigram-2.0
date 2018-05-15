@@ -19,8 +19,9 @@
 		<!-- <div class="col align-self-center col-lg-8 offset-lg-2"> -->
 		<h1>Login</h1>
 		<form id="form-login" class="centered" method="POST" action='../controllers/login_controller.php'>
-			<label  >Email</label>
 			<label class='error-form usuarioNoExiste'>Usuario o contraseña erróneos</label>
+			
+			<label  >Email</label>
 			<input id="email-login" type="email" name="user" class="formulario-textbox"/>
 			<label for="Clave">Contraseña</label>
 			<input id="Clave-login" type="password" name="password" class="formulario-textbox"/>

@@ -1,30 +1,26 @@
-<?php
-    require_once '../configuracion/config.php';
-    require_once "../models/usuario_model.php";        
-    require_once "./password_compat-master/lib/password.php";        
+<?php 
+    require_once "usuario_controller.php";  
+	require_once "../models/usuario_model.php";  
 
-    $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
-        
-        
-    $usuario = htmlspecialchars(trim(strip_tags($_REQUEST['user'])));
-    $pass = htmlspecialchars(trim(strip_tags($_REQUEST['password'])));
-    
-    $result = $modeloUsuario->getDatosLogin($usuario);
-    // $log =  $modeloUsuario->login($usuario, $pass, $result);
-    if(password_verify($pass,  $result['Clave'])){
+    $usuario_controller = new es\ucm\fdi\aw\Usuario_Controller();
+    $result = false;
 
-        $_SESSION['LoginSuccess'] = true;
-        $_SESSION['UserID'] = $result['ID'];
-        $_SESSION['Nombre'] = $result['Nombre'];
-        $_SESSION['RolUsuario'] = $result['Rol'];
-        header('Location: ../views/home.php');
-        exit;
-    }
-    else {
-        //$_SESSION['MensajeError'] = 'loginError';
-        header('Location: ../views/login.php');
-        exit;
-        
-    }
+    $email = htmlspecialchars(trim(strip_tags($_POST['UserMail'])));
+    $clave = htmlspecialchars(trim(strip_tags($_POST['Password'])));
     
+    if($_POST['comprobacion'] == 'registro')
+        $result = ($usuario_controller->getUserByEmail($_POST['UserMail']) == 0);
+    else{
+        $usuario = $usuario_controller->getDatosLogin( $email);
+        if($usuario){
+            if($result = password_verify($clave, $usuario['Clave'])){
+                $_SESSION['LoginSuccess'] = true;
+                $_SESSION['UserID'] = $usuario['ID'];
+                $_SESSION['Nombre'] = $usuario['Nombre'];
+                $_SESSION['RolUsuario'] = $usuario['Rol'];
+                  
+            }
+        }
+    }   
+    echo $result;
 ?>
