@@ -8,11 +8,16 @@ a {
     font-family: 'Playfair Display', serif;
 }
 
+label{
+    width: 100%;
+}
+
 p,
 label,
 textarea,
 input {
     font-family: 'Cormorant Garamond', serif;
+
 }
 
 textarea,
@@ -189,6 +194,8 @@ button.btn.btn-primary img{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5%;
+    max-width: 100vw;
+    max-height: 25vw;
 }
 
 .references h1 {
@@ -240,9 +247,37 @@ button.btn.btn-primary img{
     .contenedor {
         margin-bottom: 2em !important;
     }
+    .registro {
+        position: absolute;
+        margin: auto;
+        width: calc(100vw + 100px);
+    }
+    .select-tabs{
+        margin: 0;
+        width: 100%;
+    }
+    .tab-content, .tab-content.active{
+        padding: 0;
+        padding-top: 20px;
+    }
 }
 
+.row{
+    max-width: 100vw;
+}
 
+.container-login form, 
+.container-login h1,
+{
+    position: relative;
+    margin: auto;
+}
+.container-login {
+    height: 100%;
+    width: 80%;
+    position: absolute;
+    margin: 0 10%;
+}
 /*------------------------- Formularios ------------------------- */
 .invalidInput {
     box-shadow: 0px 0px 6px 0px red;
@@ -472,7 +507,49 @@ label>input {
 .row.select-mascota label {
     cursor: pointer;
 }
+ 
+.container-login .references{
+    text-align: center;
+}
 
+@media only screen and (max-device-width: 480px) {
+    .container-login{
+        height: 70%;
+    }
+    .container-login h1{
+        font-size: 200px;
+    }
+
+    .container-login label{
+        font-size: 60px;
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .container-login input{
+        font-size: 50px;
+        width:80%;
+    }
+
+    .container-login #boton_enviar {
+        height: 230px;
+        background-size: 500px;
+        width: 300px;
+    }
+
+    .container-login .submitHueso{
+        top: 75px;
+    }
+    .container-login span{
+        font-size: 40px;
+    }
+
+  
+    #div-mascota .row .col-md-5,
+    #div-comercio .row .col-md-5{
+        text-align: center;
+    } 
+}
 
 /*********************************************** MENU ***********************************************************/
 
