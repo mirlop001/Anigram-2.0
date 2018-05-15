@@ -1,6 +1,6 @@
 <?php
-    require_once './configuracion/config.php';
-	require_once "./models/mascota_model.php";  
+    require_once '../configuracion/config.php';
+	require_once "../models/mascota_model.php";  
 
 $modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
 $urlFoto = NULL;
@@ -18,10 +18,10 @@ if($registrado = $modeloMascota->registraMascota($amo, $tipo, $nombre, $raza, $b
 	if($urlFoto) 
 		$_SESSION['fotoPerfilMascota'] = $urlFoto;
 	
-	header('Location: ./views/home.php');
+	header('Location: ../views/home.php');
 }
 else {
-	header('Location: ./views/registro.php');
+	header('Location: ../views/registro.php');
 }
 
 

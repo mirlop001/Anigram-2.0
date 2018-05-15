@@ -1,7 +1,6 @@
 <?php
 	include '../configuracion/config.php';
 	include '../controllers/usuario_controller.php';
-	include '../controllers/mensajes_controller.php';
 	include 'Comun/cabecera.php';
 
 ?>
@@ -20,16 +19,13 @@
 	<div class="container ">
 			<div class="col align-self-center col-lg-8 offset-lg-2">
 			<h1>Login</h1>
-				<?php /*if(isset($_SESSION['MensajeError']))
-						Mensajes_Controller::mostrarMensaje($_SESSION['MensajeError']);
-						*/
-				  ?>
 
 				<form id="form-login" class="centered" method="POST" action='../controllers/login_controller.php'>
-					<label for="Email" >Email</label>
-					<input id="Email" type="email" name="user" class="formulario-textbox"/>
+					<label  >Email</label>
+    				<label class='error-form usuarioNoExiste'>Usuario o contraseña erróneos</label>
+					<input id="email-login" type="email" name="user" class="formulario-textbox"/>
 					<label for="Clave">Contraseña</label>
-					<input id="Clave" type="password" name="password" class="formulario-textbox"/>
+					<input id="Clave-login" type="password" name="password" class="formulario-textbox"/>
 					<div id="boton_enviar">
 						<input id="submit" type="submit" name="submit" class="submitHueso" value="Entrar"/>
 					</div>
@@ -41,6 +37,5 @@
 				</div>
 			</div>
 		</div>
-	<!-- </div> -->
 </body>
 </html>

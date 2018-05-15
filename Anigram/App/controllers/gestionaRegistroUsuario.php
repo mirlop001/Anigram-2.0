@@ -1,10 +1,10 @@
 <?php
 
 use es\ucm\fdi\aw\SubidaImagen_Controller;
-    require_once './configuracion/config.php';
-    require_once "./models/usuario_model.php";   
-    require_once "./controllers/gestionaSubidaImagen.php";   
-    require_once "./controllers/password_compat-master/lib/password.php";        
+    require_once '../configuracion/config.php';
+    require_once "../models/usuario_model.php";   
+    require_once "../controllers/gestionaSubidaImagen.php";   
+    require_once "../controllers/password_compat-master/lib/password.php";        
 
     $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
 
@@ -46,11 +46,11 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
             
     if(strcmp($clave1 ,$clave2)){
         $_SESSION['MensajeError'] = "clavesDistintas";
-        header('Location: ./views/registro.php');   
+        header('Location: ../views/registro.php');   
     }
     else if(($modeloUsuario->buscaUsuarioPorEmail($email) > 0)){
         $_SESSION['MensajeError'] = "usuarioExistente";
-        header('Location: ./views/registro.php');
+        header('Location: ../views/registro.php');
 
     }else{
         $hash =  password_hash($clave1, PASSWORD_BCRYPT);
@@ -93,13 +93,13 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
                 exit;
                     
             }else
-                header('Location: ./views/registro.php');
+                header('Location: ../views/registro.php');
                 exit;
         }
 
         else{
             $_SESSION['MensajeError'] = "otro";
-            header('Location: ./views/registro.php');
+            header('Location: ../views/registro.php');
         }
     }
 

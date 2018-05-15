@@ -85,14 +85,14 @@ include '../models/woof_model.php';
         private function displayWoofsForm($mediaID){
             $btnWoofs = "";
             if(isset($_SESSION["UserID"])){
-                $btnWoofs = '<form action="../gestionaWoof.php" method="post" enctype="multipart/form-data">
+                $btnWoofs = '<form class="form-woof">
                             <input type="hidden" name="UserID" value="'.$_SESSION["UserID"].'">
-                            <input type="hidden" name="MediaID" value="'.$mediaID.'">
-                            <input type="submit" name="Puntos" class="btn-woof" value="1"/>
-                            <input type="submit" name="Puntos" class="btn-woof" value="2"/>
-                            <input type="submit" name="Puntos" class="btn-woof" value="3"/>
-                            <input type="submit" name="Puntos" class="btn-woof" value="4"/>
-                            <input type="submit" name="Puntos" class="btn-woof" value="5"/>
+                            <input type="hidden" class ="mediaID" name="MediaID" value="'.$mediaID.'">
+                            <input type="submit" name="Puntos" class="btn-woof 1 '.$mediaID.'" value="1"/>
+                            <input type="submit" name="Puntos" class="btn-woof 2 '.$mediaID.'" value="2"/>
+                            <input type="submit" name="Puntos" class="btn-woof 3 '.$mediaID.'" value="3"/>
+                            <input type="submit" name="Puntos" class="btn-woof 4 '.$mediaID.'" value="4"/>
+                            <input type="submit" name="Puntos" class="btn-woof 5 '.$mediaID.'" value="5"/>
                         </form>';
             }
             return $btnWoofs;

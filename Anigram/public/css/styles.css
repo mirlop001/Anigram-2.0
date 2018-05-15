@@ -97,6 +97,49 @@ body {
 }
 
 
+button.btn.btn-primary img{
+    cursor: pointer;
+    width:100px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active{
+    background-color: transparent;
+    border: transparent;
+}
+
+@media (min-width: 994px) {
+    button.btn.btn-primary {
+        border-radius: 51%;
+        z-index: 3;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        background-color: #ffffff;
+        box-shadow: 6px 0px 8px 0px #aaa;
+        height: 130px;
+        width: 140px;
+    }
+
+    button.btn.btn-primary img {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 994px) {
+    button.btn.btn-primary {
+        border-radius: 51%;
+        position: fixed;
+        bottom: 0;
+        z-index: 3;
+        background-color: transparent;
+        border: 2px solid whitesmoke;
+        left: calc(80% / 2 );
+    }
+    
+}
+
 /* Tabs */
 
 .select-tabs {
@@ -201,6 +244,16 @@ body {
 
 
 /*------------------------- Formularios ------------------------- */
+.invalidInput {
+    box-shadow: 0px 0px 6px 0px red;
+}
+label.error-form {
+    display: none;
+    color: red;
+    font-size: 15px;
+    margin-top: -11px;
+    width: 100%;
+}
 
 #perfil-usuario {
     display: none;
@@ -429,6 +482,7 @@ label>input {
         flex-direction: column;
         height: 101%;
         position: fixed;
+        width: 70px;
     }
     #menu-lateral .navbar-item {
         border-bottom: 1px solid lightgray;

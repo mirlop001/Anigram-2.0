@@ -1,6 +1,6 @@
 <?php
-    require_once "./models/comercio_model.php";  
-    require_once './configuracion/config.php';
+    require_once "../models/comercio_model.php";  
+    require_once '../configuracion/config.php';
 $modeloComercio = new es\ucm\fdi\aw\Comercio_Model();
 
 $urlFoto = "";
@@ -13,10 +13,10 @@ $telefono = htmlspecialchars(trim(strip_tags($_GET['telefono'])));
 $descripcion = htmlspecialchars(trim(strip_tags($_GET['descripcion'])));
 
 if($registrado = $modeloComercio->registraComercio($amo, $nombre, $correo, $telefono, $descripcion, $urlFoto) == true){
-	header('Location: ./views/home.php');
+	header('Location: ../views/home.php');
 }
 else {
-	header('Location: ./views/registro.php');
+	header('Location: ../views/registro.php');
 }
 
 

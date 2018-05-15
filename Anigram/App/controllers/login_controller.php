@@ -10,7 +10,6 @@
     $pass = htmlspecialchars(trim(strip_tags($_REQUEST['password'])));
     
     $result = $modeloUsuario->getDatosLogin($usuario);
-    $c = password_hash($pass, PASSWORD_BCRYPT);
     // $log =  $modeloUsuario->login($usuario, $pass, $result);
     if(password_verify($pass,  $result['Clave'])){
 

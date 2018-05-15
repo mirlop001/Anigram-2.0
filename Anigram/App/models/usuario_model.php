@@ -26,10 +26,7 @@ namespace es\ucm\fdi\aw;
         function getDatosLogin($email){
             $usuario = null;
             if ($result = mysqli_query($this->db, "SELECT * from usuario where Email = '$email' ")) 
-            //     printf("La selección devolvió %d filas.\n", mysqli_num_rows($result));
-            // else    
-            //     printf("No se ha devuelto nada con los valores %s %s", $email, $clave);
-            
+           
             if($result->num_rows > 0){
                 if($row = $result->fetch_assoc()){
                     $usuario['ID'] = $row['ID'];

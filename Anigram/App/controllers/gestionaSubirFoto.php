@@ -1,9 +1,9 @@
 <?php
 
 use es\ucm\fdi\aw\SubidaImagen_Controller;
-    require_once './configuracion/config.php';
-    require_once "./controllers/gestionaSubidaImagen.php";   
-	require_once "./models/media_model.php";  
+    require_once '../configuracion/config.php';
+    require_once "gestionaSubidaImagen.php";   
+	require_once "../models/media_model.php";  
 
 $modeloMascota = new es\ucm\fdi\aw\Media_Model();
 
@@ -22,10 +22,10 @@ if(isset($_FILES['fotoMascota']) && $_FILES['fotoMascota']['error'] == 0){
 
 if($registrado = $modeloMascota->insertaNuevaImagen($IDmascota, $foto) == true){
 
-	header('Location: ./views/home.php');
+	header('Location: ../views/home.php');
 }
 else {
-	header('Location: ./views/registro.php');
+	header('Location: ../views/registro.php');
 }
 
 
