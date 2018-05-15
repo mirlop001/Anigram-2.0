@@ -8,12 +8,13 @@
 </head>
 <body>
     <?php include 'App/views/Comun/cabecera.php'; ?>
-    <h1>Bienvenido a Anigram</h1>
+    <div class="container">
+        <img src="public/img/Logo-Nombre.png" alt="Anigram">
 
-    <div id="boton_enviar">
-        <button class="submitHueso" onclick="location='App/views/login.php'">Acceder</button>
+        <div id="boton_enviar">
+            <button class="submitHueso" onclick="location='App/views/login.php'">Acceder</button>
+        </div>
+
     </div>
-
-
 </body>
 </html>
