@@ -18,7 +18,7 @@
 	<div class="container-login">
 		<!-- <div class="col align-self-center col-lg-8 offset-lg-2"> -->
 		<h1>Login</h1>
-		<form id="form-login" class="centered" method="POST" action='../controllers/login_controller.php'>
+		<form id="form-login" class="centered" method="POST" action='../controllers/comprobacionForm.php'>
 			<label class='error-form usuarioNoExiste'>Usuario o contraseña erróneos</label>
 			
 			<label  >Email</label>

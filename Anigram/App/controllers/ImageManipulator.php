@@ -224,9 +224,12 @@ class ImageManipulator
     {
         $dir = dirname($fileName);
         if (!is_dir($dir)) {
-            if (!mkdir($dir, 0755, true)) {
-                throw new RuntimeException('Error creating directory ' . $dir);
-            }
+            $old = umask(0000);
+            mkdir($dir, 6640, true);
+            umask($old);
+            // if (!mkdir($dir, 0700, true)) {
+            //     throw new RuntimeException('Error creating directory ' . $dir);
+            // }
         }
         
         try {

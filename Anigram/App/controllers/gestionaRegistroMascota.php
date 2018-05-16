@@ -6,22 +6,21 @@ $modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
 $urlFoto = NULL;
 
 //Obtener datos de la mascota
-if($_GET['urlFoto']) $urlFoto = $_GET['urlFoto'];
 $amo = $_GET['id_amo'];
 $nombre = htmlspecialchars(trim(strip_tags($_GET['nombre'])));
 $raza = htmlspecialchars(trim(strip_tags($_GET['raza'])));
 $tipo = htmlspecialchars(trim(strip_tags($_GET['tipo'])));
 $bio = htmlspecialchars(trim(strip_tags($_GET['bio'])));
+if($_GET['urlFoto'] != $amo.'-') $urlFoto = $_GET['urlFoto'];
 
-if($registrado = $modeloMascota->registraMascota($amo, $tipo, $nombre, $raza, $bio, $urlFoto) == true){
+if($modeloMascota->registraMascota($amo, $tipo, $nombre, $raza, $bio, $urlFoto) ){
 
-	if($urlFoto) 
+	if($urlFoto ) 
 		$_SESSION['fotoPerfilMascota'] = $urlFoto;
-	
-	header('Location: ../views/home.php');
-}
+	return new Exception('Error en el registro');
+}	
 else {
-	header('Location: ../views/registro.php');
+	return new Exception('Error en el registro');
 }
 
 

@@ -9,7 +9,7 @@
             };
             $.ajax({
                 data:  parametros,
-                url:   '../../App/controllers/compruebaExisteMail.php',
+                url:   '../../App/controllers/comprobacionForm.php',
                 type:  'post',
                 success:  function (response) {
                     console.log(response);
@@ -40,7 +40,7 @@
                 };
                 $.ajax({
                     data:  parametros,
-                    url:   '../../App/controllers/login_controller.php',
+                    url:   '../../App/controllers/comprobacionForm.php',
                     type:  'post',
                     success:  function (response) {
                         console.log(response);
@@ -139,6 +139,20 @@
             });
         });
 
+        $('#form-registro').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                url : '../../App/controllers/gestionaRegistroUsuario.php',
+                type: "POST",
+                data: $(this).serialize(),
+                success: function (data) {
+                    window.location.href = '../views/home.php';
+                },
+                error: function (jXHR, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
        
     });
 })();

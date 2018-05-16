@@ -20,7 +20,7 @@
         </div>
         <div class="row logo"><img src="../../public/img/Logo-Nombre.png" alt="" /></div>
         <div class="row registro">
-            <form action="../controllers/gestionaRegistroUsuario.php" method="post" enctype="multipart/form-data">
+            <form id="form-registro"  method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="contenedor contedor-izquierdo col-md-12 col-lg-5">
                         <?php include 'registroUsuario.php' ?>

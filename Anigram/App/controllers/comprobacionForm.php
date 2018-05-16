@@ -6,11 +6,12 @@
     $result = false;
 
     $email = htmlspecialchars(trim(strip_tags($_POST['UserMail'])));
-    $clave = htmlspecialchars(trim(strip_tags($_POST['Password'])));
     
     if($_POST['comprobacion'] == 'registro')
         $result = ($usuario_controller->getUserByEmail($_POST['UserMail']) == 0);
+        
     else{
+        $clave = htmlspecialchars(trim(strip_tags($_POST['Password'])));
         $usuario = $usuario_controller->getDatosLogin( $email);
         if($usuario){
             if($result = password_verify($clave, $usuario['Clave'])){
