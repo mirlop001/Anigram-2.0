@@ -12,4 +12,4 @@
 <script src="/Anigram/Anigram/public/js/CompruebaForm.js"></script>
 
 
-<link rel="icon" href="../../public/img/PataFondo.ico" type="image/x-icon">
+<link rel="icon" href="../../public/img/Anigram-favicon.ico" type="image/x-icon">

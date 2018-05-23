@@ -24,13 +24,11 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     $raza = htmlspecialchars(trim(strip_tags($_POST['raza'])));
     $tipo = htmlspecialchars(trim(strip_tags($_POST['tipo'])));
     $bio = htmlspecialchars(trim(strip_tags($_POST['bio'])));
-    $urlFotoMascota = basename($_FILES["fotoPerfilComercio"]["name"]);
+    $urlFotoMascota = "";
 
     //Obtener foto de la mascota
     if(isset($_FILES["fotoPerfilMascota"]["name"][0])&& $_FILES["fotoPerfilMascota"]["name"][0]!= "")
         $urlFotoMascota = basename($_FILES["fotoPerfilMascota"]["name"]);
-
-
 
     //Comercio
     $nombreComercio = htmlspecialchars(trim(strip_tags($_POST['nombre_comercio'])));
@@ -67,27 +65,26 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
             if(isset($_FILES['fotoPerfilMascota']) && $_FILES['fotoPerfilMascota']['error'] == 0){
                 $nombre_imagen = $_FILES['fotoPerfilMascota']['name'];
                 $imagen_tmp =$_FILES['fotoPerfilMascota']['tmp_name'];
+                $urlFotoMascota = $result.'-'.$nombre_imagen;
 
                 $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFotoMascota);
                 $imagen->guardaImagen();
             }
-            echo 'va al registro mascota';
-            header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$result.'-'.$urlFotoMascota);
+            header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$urlFotoMascota);
             exit;
         }else if($rol == 2){
             if(isset($_FILES['fotoPerfilComercio'])  && $_FILES['fotoPerfilComercio']['error'] == 0){
                 $nombre_imagen = $_FILES['fotoPerfilComercio']['name'];
                 $imagen_tmp =$_FILES['fotoPerfilComercio']['tmp_name'];
+                $urlFotoMascota = $result.'-'.$nombre_imagen;
 
                 $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFotoComercio);
                 $imagen->guardaImagen();
             }
-            echo 'va al registro comercio';
-            header('Location: ./gestionaRegistroComercio.php?id_amo='.$result.'&nombre='.$nombreComercio.'&telefono='.$telefono.'&correo='.$correo.'&descripcion='.$descripcion.'&urlFoto='.$result.'-'.$urlFotoComercio);
+            header('Location: ./gestionaRegistroComercio.php?id_amo='.$result.'&nombre='.$nombreComercio.'&telefono='.$telefono.'&correo='.$correo.'&descripcion='.$descripcion.'&urlFoto='.$urlFotoComercio);
             exit;
 
         }else{
-            echo 'ERROR';
             header('Location: ../views/registro.php');
             exit;
         }

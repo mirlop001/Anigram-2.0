@@ -12,7 +12,14 @@ include '../models/mascota_model.php';
             $tipos_mascota = $modelo_tipoMascota->getTiposMascota();
             
             foreach( $tipos_mascota as $tipo ){
-                $drpTipos = $drpTipos." <li class='dropdown-item tipo-mascota-drp' href='#' value='".$tipo->getID()."' > <img src='../../public/img/".$tipo->getURLIcono()."' alt='perro-icon'><h2>".$tipo->getNombre()."</h2></li>";
+                $drpTipos = $drpTipos." <li class='dropdown-item tipo-mascota-drp' href='#' value='".$tipo->getID()."' > <img ";
+                
+                if($tipo->getURLIcono() && $tipo->getURLIcono()!= "")
+                    $drpTipos = $drpTipos."src='../../public/img/".$tipo->getURLIcono()."' ";
+                else   
+                    $drpTipos = $drpTipos."src='../../".__urlFotoMascota__."'";
+                    
+                $drpTipos = $drpTipos."alt='perro-icon'><h2>".$tipo->getNombre()."</h2></li>";
             }
             return $drpTipos;
         }
@@ -21,9 +28,18 @@ include '../models/mascota_model.php';
             $modelo_mascota = new Mascota_Model();
             $selectMascota = "";
             $mascotas = $modelo_mascota->getMascotasByIDUsuario($usuario);
-            
-            foreach( $mascotas as $mascota ){
-                $selectMascota = $selectMascota."<div class='row'><div class='radio-mascota'><label><input type='radio' class='radio-mascotas' name='mascota' value='".$mascota->getID()."'><img class='perfil-md' src='../../public/img/saved/".$mascota->getURLfoto()."' alt='imagen-".$mascota->getNombre()."'></label><h5>".$mascota->getNombre()."</h5></div></div>";
+
+            if($mascotas){
+                foreach( $mascotas as $mascota ){
+                    $selectMascota = $selectMascota."<div class='row'><div class='radio-mascota'><label><input type='radio' class='radio-mascotas' name='mascota' value='".$mascota->getID()."'><img class='perfil-md' ";
+                    
+                    if($mascota->getURLfoto() && $mascota->getURLfoto()!= "")
+                        $selectMascota = $selectMascota."src='../../public/img/saved/".$mascota->getURLfoto()."' ";
+                    else
+                        $selectMascota = $selectMascota."src='../../".__urlFotoMascota__."'";
+                    
+                    $selectMascota = $selectMascota."alt='imagen-".$mascota->getNombre()."'></label><h5>".$mascota->getNombre()."</h5></div></div>";
+                }
             }
             return $selectMascota;
         }

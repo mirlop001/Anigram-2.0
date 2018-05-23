@@ -5,7 +5,7 @@
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu-lateral">
-    <a class="navbar-item" href="./home.php"><img class="perfil-pe " src=<?php  if(isset($_SESSION['fotoPerfilUsuario'])) { echo '../../public/img/saved/'.$_SESSION['fotoPerfilUsuario']; }else{echo '../../public/img/Juan-Niebla.png';} ?> /></a>
+    <a class="navbar-item" href="./home.php"><img class="perfil-pe " src=<?php  if(isset($_SESSION['fotoPerfilUsuario'])) { echo '../../public/img/saved/'.$_SESSION['fotoPerfilUsuario']; }else{echo '../../'.__urlFotoUsuario__;} ?> /></a>
     <a class="navbar-item" href="./notificaciones.php"><img  class="menu-icon " src="../../public/img/notificaciones-icon.png" alt="Ir a notificaciones"></a>
     <a class="navbar-item" href="./busqueda.php"><img  class="menu-icon " src="../../public/img/search-icon.png" alt="Ir a búsqueda"></a>
     <?php 

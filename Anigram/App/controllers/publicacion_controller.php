@@ -19,7 +19,14 @@ include '../models/woof_model.php';
             if($ultimasPublicaciones)
                 foreach( $ultimasPublicaciones as $publicacion ){
                     $post = '<div class="publicacion offset-md-1 col-md-6 col-sm-12">
-                                <label><img src="../../public/img/saved/'.$publicacion->getURLImagenMascota().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label>
+                                <label><img ';
+                    if($publicacion->getURLImagenMascota() != ""){
+                        $post = $post.' src="../../public/img/saved/'.$publicacion->getURLImagenMascota().'"';
+                    } 
+                    else   
+                        $post = $post."src='../../".__urlFotoMascota__."'";
+
+                    $post = $post.' class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label>
                                 <div class="foto-publicada">
                                 <img  src="../../public/img/saved/'.$publicacion->getURLImagen().'" alt="foto-publicada"/>
                                 </div>
@@ -34,7 +41,7 @@ include '../models/woof_model.php';
                     $woofsPublicacion = $publicacion->getWoofs();
                     if($woofsPublicacion)
                         foreach($woofsPublicacion as $woof){            
-                            $post = $post.'<div class="row"> <div class="col-2"><img src="../../public/img/'.(($woof->getImagenUsuario()!="")? "saved/".$woof->getImagenUsuario(): "Juan-Niebla.png" ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div><div class="col-3"><h5 class="nombre-usuario-post">'.$woof->getNombreUsuario().'</h5></div><div class="woof-icons col-6">'.$this->getWoofsUsuario($woof->getPuntos()).'</div></div>';
+                            $post = $post.'<div class="row"> <div class="col-2"><img src="../../'.(($woof->getImagenUsuario()!="")? __urlFotoGuardada__.$woof->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div><div class="col-3"><h5 class="nombre-usuario-post">'.$woof->getNombreUsuario().'</h5></div><div class="woof-icons col-6">'.$this->getWoofsUsuario($woof->getPuntos()).'</div></div>';
                             
                         }
 
@@ -42,7 +49,7 @@ include '../models/woof_model.php';
                                         
                                             <div class="comentario row">
                                                 <div class="col-2">
-                                                    <img src="../../public/img/Juan-Niebla.png" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
+                                                    <img src="'.'../../'.__urlFotoUsuario__.'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
                                                 </div>
                                                 <div class="col-10">
                                                     <div class="row"><label>Nombre apellido</label></div>
@@ -52,7 +59,7 @@ include '../models/woof_model.php';
 
                                             <div class="comentario row">
                                                 <div class="col-2">
-                                                    <img src="../../public/img/Juan-Niebla.png" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
+                                                    <img src="'.'../../'.__urlFotoUsuario__.'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
                                                 </div>
                                                 <div class="col-10">
                                                     <div class="row"><label>Nombre apellido</label></div>

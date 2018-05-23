@@ -11,7 +11,7 @@ $nombre = htmlspecialchars(trim(strip_tags($_GET['nombre'])));
 $raza = htmlspecialchars(trim(strip_tags($_GET['raza'])));
 $tipo = htmlspecialchars(trim(strip_tags($_GET['tipo'])));
 $bio = htmlspecialchars(trim(strip_tags($_GET['bio'])));
-if($_GET['urlFoto'] != $amo.'-') $urlFoto = $_GET['urlFoto'];
+if($_GET['urlFoto']) $urlFoto = $_GET['urlFoto'];
 
 if($modeloMascota->registraMascota($amo, $tipo, $nombre, $raza, $bio, $urlFoto) ){
 

@@ -8,7 +8,7 @@ a {
     font-family: 'Playfair Display', serif;
 }
 
-label{
+label {
     width: 100%;
 }
 
@@ -17,7 +17,6 @@ label,
 textarea,
 input {
     font-family: 'Cormorant Garamond', serif;
-
 }
 
 textarea,
@@ -101,15 +100,14 @@ body {
     text-align: center;
 }
 
-
-button.btn.btn-primary img{
+button.btn.btn-primary img {
     cursor: pointer;
-    width:100px;
+    width: 100px;
     background-color: transparent;
     border: transparent;
 }
 
-.btn-primary:not(:disabled):not(.disabled):active{
+.btn-primary:not(:disabled):not(.disabled):active {
     background-color: transparent;
     border: transparent;
 }
@@ -126,7 +124,6 @@ button.btn.btn-primary img{
         height: 130px;
         width: 140px;
     }
-
     button.btn.btn-primary img {
         margin-left: 20px;
     }
@@ -140,10 +137,10 @@ button.btn.btn-primary img{
         z-index: 3;
         background-color: transparent;
         border: 2px solid whitesmoke;
-        left: calc(80% / 2 );
+        left: calc(80% / 2);
     }
-    
 }
+
 
 /* Tabs */
 
@@ -252,26 +249,28 @@ button.btn.btn-primary img{
         margin: auto;
         width: calc(100vw + 100px);
     }
-    .select-tabs{
+    .select-tabs {
         margin: 0;
         width: 100%;
     }
-    .tab-content, .tab-content.active{
+    .tab-content,
+    .tab-content.active {
         padding: 0;
         padding-top: 20px;
     }
 }
 
-.row{
+.row {
     max-width: 100vw;
 }
 
-.container-login form, 
+.container-login form,
 .container-login h1,
 {
     position: relative;
     margin: auto;
 }
+
 .container-login {
     height: 100%;
     width: 80%;
@@ -279,23 +278,27 @@ button.btn.btn-primary img{
     margin: 0 10%;
 }
 
-.container img{
+.container img {
     width: 100%;
     margin-top: 20vh;
     margin-bottom: 10vh;
 }
 
-.container{
+.container {
     background-image: url('../img/fondo-body.png');
     height: 100vh;
     background-size: 100%;
 }
+
+
 /*------------------------- Formularios ------------------------- */
+
 .invalidInput {
     box-shadow: 0px 0px 6px 0px red;
     background-color: #e030308a !important;
     color: white;
 }
+
 label.error-form {
     display: none;
     color: red;
@@ -376,7 +379,7 @@ form.centered {
 }
 
 .foto-perfil {
-    background-image: url(../img/Juan-Niebla.png);
+    background-image: url('../../img/Juan-Niebla.png');
     border-radius: 50%;
     border: 6px inset #d8817e;
     background-repeat: no-repeat;
@@ -388,12 +391,12 @@ form.centered {
 }
 
 .foto-perfil-mascota {
-    background-image: url(../img/Espectro.png);
+    background-image: url('../img/Espectro.png');
     background-size: 150%;
 }
 
 .foto-perfil-comercio {
-    background-image: url(../img/Comercio.png);
+    background-image: url('../img/Comercio.png');
     background-size: 150%;
 }
 
@@ -521,54 +524,48 @@ label>input {
 .row.select-mascota label {
     cursor: pointer;
 }
- 
-.container-login .references{
+
+.container-login .references {
     text-align: center;
 }
 
 @media only screen and (max-device-width: 480px) {
-    .container-login{
+    .container-login {
         height: 70%;
     }
-    .container-login h1{
+    .container-login h1 {
         font-size: 200px;
     }
-
-    .container-login label{
+    .container-login label {
         font-size: 60px;
         width: 100%;
         margin-top: 100px;
     }
-
-    .container-login input{
+    .container-login input {
         font-size: 50px;
-        width:80%;
+        width: 80%;
     }
-
     .container-login #boton_enviar {
         height: 230px;
         background-size: 500px;
         width: 300px;
     }
-
-    .container-login .submitHueso{
+    .container-login .submitHueso {
         top: 75px;
     }
-    .container-login span{
+    .container-login span {
         font-size: 40px;
     }
-
-  
     #div-mascota .row .col-md-5,
-    #div-comercio .row .col-md-5{
+    #div-comercio .row .col-md-5 {
         text-align: center;
-    } 
-
-    .error-form{
+    }
+    .error-form {
         font-size: 30px !important;
         margin-top: 0 !important;
     }
 }
+
 
 /*********************************************** MENU ***********************************************************/
 
@@ -688,21 +685,19 @@ input.btn-woof:hover {
 .publicacion.comentarios form {
     text-align: center;
 }
+
 @media (max-width: 994px) {
     .woofs,
     .comentarios-publicacion {
         height: 70px;
     }
-
     .publicacion.comentarios label {
         font-size: 20px;
     }
-    .woofs{
+    .woofs {
         margin: 0;
     }
-
     .comentarios {
         margin-bottom: 20% !important;
     }
 }
-
