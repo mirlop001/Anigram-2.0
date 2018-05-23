@@ -379,7 +379,7 @@ form.centered {
 }
 
 .foto-perfil {
-    background-image: url('../../img/Juan-Niebla.png');
+    background-image: url('../img/Juan-Niebla.png');
     border-radius: 50%;
     border: 6px inset #d8817e;
     background-repeat: no-repeat;
