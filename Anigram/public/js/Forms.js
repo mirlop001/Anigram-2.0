@@ -24,6 +24,14 @@
             $("#input-tipo-mascota").val($(this).val());
         });
 
+        $(".btn-nuevoComentario").on("click", function(event) {
+            $(".nuevoComentario").show();
+            $(".btn-guardarComentario").show();
+            $(".btn-nuevoComentario").hide();
+            
+        });
+
+        
 
     });
 

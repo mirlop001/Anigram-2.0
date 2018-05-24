@@ -2,6 +2,7 @@
 namespace es\ucm\fdi\aw;
 include '../models/media_model.php';
 include '../models/woof_model.php';
+include '../models/comentarios_model.php';
 
     class Publicacion_Controller{
         private $actualPage;
@@ -13,6 +14,7 @@ include '../models/woof_model.php';
         public function getUltimasPublicaciones(){
             $modelo_media = new Media_Model();
             $modelo_woofs = new Woof_Model();
+            $modelo_comentario = new Comentario_Model();
             $posts  = "";
             $ultimasPublicaciones = $modelo_media->getUltimasNPublicaciones($this->actualPage);
             
@@ -45,29 +47,28 @@ include '../models/woof_model.php';
                             
                         }
 
-                    $post =  $post.'</div><label >Ultimos comentarios</label> <div class="comentarios-publicacion">
-                                        
-                                            <div class="comentario row">
-                                                <div class="col-2">
-                                                    <img src="'.'../../'.__urlFotoUsuario__.'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
-                                                </div>
+                    $post =  $post.'</div><label >Ultimos comentarios</label>';
+                    if(isset($_SESSION["UserID"])){
+                    $post =  $post. '<button class="btn btn-nuevoComentario "> + </button>
+                                        <div class="comentarios-publicacion">
+                                            <form method="POST" action="../controllers/gestionaNuevoComentario.php">
+                                                <input type="hidden" name="UserID" value="'.$_SESSION["UserID"].'">
+                                                <input type="hidden" class ="mediaID" name="MediaID" value="'.$publicacion->getID().'">
+                                                <textarea name="Comentario" class="formulario-textbox nuevoComentario" rows="3" placeholder="Tu comentario" cols="20"  ></textarea>
+                                                <input type="submit" class="nuevoComentario btn-guardarComentario">Guardar</button>
+                                            </form>';
+                    }
+                    $comentariosPublicacion = $modelo_comentario->getComentariosPublicacion($publicacion->getID());
+                    if($comentariosPublicacion)
+                        foreach($comentariosPublicacion as $comentario){            
+                            $post = $post.' <div class="comentario row"> <div class="col-2"><img src="../../'.(($comentario->getImagenUsuario()!="")? __urlFotoGuardada__.$comentario->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>
                                                 <div class="col-10">
-                                                    <div class="row"><label>Nombre apellido</label></div>
-                                                    <div class="row"><p>Ble ble ble ble bla bli bleblobla</p></div>
+                                                    <div class="row"><label>'.$comentario->getNombreUsuario().'</label></div>
+                                                    <div class="row"><p>'.$comentario->getComentario().'</p></div>
                                                 </div>
-                                            </div>
-
-                                            <div class="comentario row">
-                                                <div class="col-2">
-                                                    <img src="'.'../../'.__urlFotoUsuario__.'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">
-                                                </div>
-                                                <div class="col-10">
-                                                    <div class="row"><label>Nombre apellido</label></div>
-                                                    <div class="row"><p>Ble ble ble ble bla bli bleblobla</p></div>
-                                                </div>
-                                            </div>
-                                    ';
-
+                                            </div>';
+                        }                  
+                        
                     $posts = $posts.$post.'</div></div>';
                 }
             return $posts;

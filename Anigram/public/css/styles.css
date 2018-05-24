@@ -529,6 +529,10 @@ label>input {
     text-align: center;
 }
 
+.nuevoComentario{
+    display: none;
+}
+
 @media only screen and (max-device-width: 480px) {
     .container-login {
         height: 70%;
