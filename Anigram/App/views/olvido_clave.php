@@ -8,24 +8,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<meta charset="utf-8">
-	<title>Login</title>
+	<title>Olvido contraseña</title>
 </head>
 
 <body>
 	<img id="logo-grande" src="../../public/img/Logo-Nombre.png" alt="">
 	<div class="container-login">
-		<!-- <div class="col align-self-center col-lg-8 offset-lg-2"> -->
-		<h1>Login</h1>
-		<form id="form-login" class="centered" method="POST" action='../controllers/comprobacionForm.php'>
+		<h1>Olvido contraseña</h1>
+		<form id="form-olvido" class="centered" method="POST" action='../controllers/comprobacionForm.php'>
 			<div class="alert alert-danger usuarioNoExiste" role="alert">
-				Usuario o contraseña erróneos
-			</div>
-			<label  >Email</label>
-			<input id="email-login" type="email" name="user" class="formulario-textbox" required/>
-			<label for="Clave">Contraseña</label>
-			<input id="Clave-login" type="password" name="password" class="formulario-textbox" required/>
+                <i class="fas fa-paw"></i> No existe ningún usuario con ese email
+            </div>
+            <div class="alert alert-info enviadoCorreoOlvidado" role="alert">
+                <i class="fas fa-paw"></i>Se ha enviado un email a tu cuenta de correo.
+            </div>
+			<label>Email</label>
+			<input id="email-olvido" type="email" name="email-olvido" class="formulario-textbox" required/>
+			<a id="emailLnk" href="#">Hola</a>
 			<div id="boton_enviar">
 				<input id="submit" type="submit" name="submit" class="submitHueso" value="Entrar"/>
 			</div>
@@ -36,9 +36,8 @@
 			<span ><a href="home.php">Entrar como invitado</a></span>
 		</div>
 		<div class="references">
-			<span ><a href="olvido_clave.php">He olvidado mi contraseña</a></span>
+			<span ><a href="login.php">Volver al login</a></span>
 		</div>
-		<!-- </div> -->
 	</div>
 </body>
 </html>

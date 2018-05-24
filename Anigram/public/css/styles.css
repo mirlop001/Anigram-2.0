@@ -32,7 +32,7 @@ h1 {
 
 h1,
 h2 {
-    color: #d8817e;
+    color: #7ebed8;
     font-family: 'Dancing Script', cursive;
 }
 
@@ -94,6 +94,7 @@ body {
 .alert {
     width: 100%;
     margin: 20px 0;
+    display: none;
 }
 
 .alert h6 {

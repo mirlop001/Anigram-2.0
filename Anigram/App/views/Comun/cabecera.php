@@ -4,8 +4,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/Anigram/Anigram/public/css/styles.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Cormorant+Garamond|Dancing+Script" rel="stylesheet">
+
 <script src="/Anigram/Anigram/public/js/Navigation.js"></script>
 <script src="/Anigram/Anigram/public/js/Files.js"></script>
 <script src="/Anigram/Anigram/public/js/Forms.js"></script>

@@ -4,7 +4,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     require_once '../configuracion/config.php';
     require_once "../models/usuario_model.php";
     require_once "../controllers/gestionaSubidaImagen.php";
-    require_once "../controllers/password_compat-master/lib/password.php";
+    require_once "../controllers/includes/password_compat-master/lib/password.php";
 
     $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
 

@@ -2,163 +2,192 @@
 
 (function() {
     $(document).ready(function() {
-        $('#email-registro').on('change', function(){
+        $('#email-registro').on('change', function() {
             var parametros = {
-                "UserMail" : $('#email-registro').val(),
+                "UserMail": $('#email-registro').val(),
                 "comprobacion": 'registro'
             };
             $.ajax({
-                data:  parametros,
-                url:   '../../App/controllers/comprobacionForm.php',
-                type:  'post',
-                success:  function (response) {
+                data: parametros,
+                url: '../../App/controllers/comprobacionForm.php',
+                type: 'post',
+                success: function(response) {
                     console.log(response);
-                    if(response){
+                    if (response) {
                         $('#email-registro').removeClass("invalidInput");
                         $('.usuarioExiste').hide();
                         $('div#boton_enviar #submit').show()
-                    }else {
+                    } else {
                         $('#email-registro').addClass("invalidInput");
                         $('.usuarioExiste').show();
                         $('div#boton_enviar #submit').hide();
                     }
                 },
-                error: function(err){
+                error: function(err) {
                     console.log(response);
                 }
             });
         });
 
-        $('#form-login').on('submit', function(e){
+        $('#form-login').on('submit', function(e) {
             e.preventDefault();
-            
-            if($('#email-login').val() != ""){
+
+            if ($('#email-login').val() != "") {
                 var parametros = {
-                    "UserMail" : $('#email-login').val(),
-                    "Password" : $('#Clave-login').val(),
+                    "UserMail": $('#email-login').val(),
+                    "Password": $('#Clave-login').val(),
                     "comprobacion": 'login'
                 };
                 $.ajax({
-                    data:  parametros,
-                    url:   '../../App/controllers/comprobacionForm.php',
-                    type:  'post',
-                    success:  function (response) {
+                    data: parametros,
+                    url: '../../App/controllers/comprobacionForm.php',
+                    type: 'post',
+                    success: function(response) {
                         console.log(response);
-                        if(response){
+                        if (response) {
                             $('#email-login').removeClass("invalidInput");
                             $('#Clave-login').removeClass("invalidInput");
                             $('.usuarioNoExiste').hide();
                             window.location.href = '../views/home.php';
-                        }else {
+                        } else {
                             $('#email-login').addClass("invalidInput");
                             $('#Clave-login').addClass("invalidInput");
                             $('.usuarioNoExiste').show();
                         }
                     },
-                    error: function(err){
+                    error: function(err) {
                         console.log(response);
                     }
                 });
             }
         });
 
-        $('#clave1').on('change', function(){
+
+
+        $('#clave1').on('change', function() {
             var pass1 = $('#clave1').val();
             var pass2 = $('#clave2').val();
             var regexClave = /^(?=\w*[a-zA-Z])(?=\w*[0-9])\S{3,}$/g;
             var error = false;
-            
-            if(pass2 != "" && pass1 != pass2){
+
+            if (pass2 != "" && pass1 != pass2) {
                 $('#clave1').addClass("invalidInput");
                 $('#clave2').addClass("invalidInput");
                 $('.error-form.clavesNoCoinciden').show();
                 error = true;
 
-            }else if(!regexClave.test(pass1)){
+            } else if (!regexClave.test(pass1)) {
                 $('#clave1').addClass("invalidInput");
                 $('.error-form.tipoClave1').show();
                 error = true;
-            }else{
+            } else {
                 $('.error-form.clavesNoCoinciden').hide();
                 $('.error-form.tipoClave1').hide();
                 $('#clave1').removeClass("invalidInput");
                 $('#clave2').removeClass("invalidInput");
             }
 
-           
-            if(error) $('div#boton_enviar #submit').hide();
+
+            if (error) $('div#boton_enviar #submit').hide();
             else $('div#boton_enviar #submit').show();
-            
+
         });
 
-        $('#clave2').on('change', function(){
+        $('#clave2').on('change', function() {
             var regexClave = /^(?=\w*[a-zA-Z])(?=\w*[0-9])\S{3,}$/g;
             var pass1 = $('#clave1').val();
             var pass2 = $('#clave2').val();
             var error = false;
-            
-            if(pass1 != pass2){
+
+            if (pass1 != pass2) {
                 $('#clave1').addClass("invalidInput");
                 $('#clave2').addClass("invalidInput");
                 $('.error-form.clavesNoCoinciden').show();
                 error = true;
-            }else{
+            } else {
                 $('#clave1').removeClass("invalidInput");
                 $('#clave2').removeClass("invalidInput");
                 $('.error-form.clavesNoCoinciden').hide();
             }
 
-            if(error) $('div#boton_enviar #submit').hide();
+            if (error) $('div#boton_enviar #submit').hide();
             else $('div#boton_enviar #submit').show();
         });
 
-        $('.form-woof').on('submit', function(e){
+        $('#form-olvido').on('submit', function(e) {
+            e.preventDefault();
+            var parametros = {
+                "UserMail": $('#email-olvido').val(),
+                "comprobacion": 'email_olvido'
+            };
+            $.ajax({
+                data: parametros,
+                url: '../../App/controllers/comprobacionForm.php',
+                type: 'post',
+                success: function(response) {
+                    if (!response) {
+                        $('#email-olvido').removeClass("invalidInput");
+                        $('.enviadoCorreoOlvidado').show();
+                        $('.usuarioNoExiste').hide();
+                        $("#emailLnk").attr('href', "mailto:miriambleble@gmail.com");
+                    } else {
+                        $('#email-olvido').addClass("invalidInput");
+                        $('.usuarioNoExiste').show();
+                        $('.enviadoCorreoOlvidado').hide();
+                    }
+                },
+                error: function(err) {
+                    console.log(response);
+                }
+            });
+        });
+
+        $('.form-woof').on('submit', function(e) {
             e.preventDefault();
             var puntos = $(e.target).find("input[type=submit]:focus")[0].value;
             var media = $(e.target).find(".mediaID")[0].value;
-            var datos = $(this).serialize()+'&Puntos='+puntos;
+            var datos = $(this).serialize() + '&Puntos=' + puntos;
             $.ajax({
-                url : '../../App/controllers/gestionaWoof.php',
+                url: '../../App/controllers/gestionaWoof.php',
                 type: "POST",
                 data: datos,
-                success: function (data) {
+                success: function(data) {
                     console.log(data);
 
-                    (function(p){
-                        for(var i = 1; i <= p; i++){
-                            $('.btn-woof.'+i+'.'+media).css('background-image', 'url(../../public/img/woofed-icon.png)');
+                    (function(p) {
+                        for (var i = 1; i <= p; i++) {
+                            $('.btn-woof.' + i + '.' + media).css('background-image', 'url(../../public/img/woofed-icon.png)');
                         }
-                        for(var i = +p+1; i <= 5; i++){
-                            $('.btn-woof.'+i+'.'+media).css('background-image', 'url(../../public/img/woof-icon.png)');                            
+                        for (var i = +p + 1; i <= 5; i++) {
+                            $('.btn-woof.' + i + '.' + media).css('background-image', 'url(../../public/img/woof-icon.png)');
                         }
                     })(puntos);
                 },
-                error: function (jXHR, textStatus, errorThrown) {
+                error: function(jXHR, textStatus, errorThrown) {
                     alert(errorThrown);
                 }
             });
         });
 
-        $('#form-registro').on('submit', function(e){
+        $('#form-registro').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-                url : '../../App/controllers/gestionaRegistroUsuario.php',
+                url: '../../App/controllers/gestionaRegistroUsuario.php',
                 type: "POST",
                 data: $(this).serialize(),
-                success: function (data) {
+                success: function(data) {
                     window.location.href = '../views/home.php';
                 },
-                error: function (jXHR, textStatus, errorThrown) {
+                error: function(jXHR, textStatus, errorThrown) {
                     alert(errorThrown);
                 }
             });
         });
-       
+
     });
 })();
 
 
-function getError(mensaje, clase){
-   return "<label class='error-form "+clase+"'>"+mensaje+"</label>";
+function getError(mensaje, clase) {
+    return "<label class='error-form " + clase + "'>" + mensaje + "</label>";
 }
-
