@@ -9,7 +9,6 @@
 <script src="/Anigram/Anigram/public/js/Navigation.js"></script>
 <script src="/Anigram/Anigram/public/js/Files.js"></script>
 <script src="/Anigram/Anigram/public/js/Forms.js"></script>
-<script src="/Anigram/Anigram/public/js/CompruebaForm.js"></script>
 
 
 <link rel="icon" href="../../public/img/Anigram-favicon.ico" type="image/x-icon">

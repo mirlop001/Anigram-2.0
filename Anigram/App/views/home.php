@@ -17,12 +17,11 @@
         include 'Comun/menu.php';
     ?> 
 	<div class="container-anigram ">
-        <div class="row">
-            <?php 
-                $media_controller = new es\ucm\fdi\aw\Publicacion_Controller();
-                echo $media_controller->getUltimasPublicaciones();
-            ?>
-        </div>
+        
+        <?php 
+            $media_controller = new es\ucm\fdi\aw\Publicacion_Controller();
+            echo $media_controller->getUltimasPublicaciones();
+        ?>
     </div>
 </body>
 </html>

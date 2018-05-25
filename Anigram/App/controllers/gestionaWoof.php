@@ -23,8 +23,5 @@ if($Modifica > 0){
 }else{
 	echo 'MAL';
 }
-// header('Location: ../views/home.php');
-// exit;
-
 
 ?>

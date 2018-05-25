@@ -20,7 +20,7 @@ include '../models/comentarios_model.php';
             
             if($ultimasPublicaciones)
                 foreach( $ultimasPublicaciones as $publicacion ){
-                    $post = '<div class="publicacion offset-md-1 col-md-6 col-sm-12">
+                    $post = '<div class="row"><div class="publicacion offset-md-1 col-md-6 col-sm-12">
                                 <label><img ';
                     if($publicacion->getURLImagenMascota() != ""){
                         $post = $post.' src="../../public/img/saved/'.$publicacion->getURLImagenMascota().'"';
@@ -35,10 +35,8 @@ include '../models/comentarios_model.php';
                             </div>
                             <div class="publicacion comentarios  offset-md-1 col-md-4 col-sm-12">
                                 '.$this->displayWoofsForm($publicacion->getID()).'
-                                
                                 <label >Ultimos woofs</label>
-                                <div class="woofs">';
-                    
+                                <div class="div-comentarios woofs">';
                     
                     $woofsPublicacion = $publicacion->getWoofs();
                     if($woofsPublicacion)
@@ -47,16 +45,15 @@ include '../models/comentarios_model.php';
                             
                         }
 
-                    $post =  $post.'</div><label >Ultimos comentarios</label>';
+                    $post =  $post.'</div><div class="div-comentarios"><label >Ultimos comentarios</label>';
                     if(isset($_SESSION["UserID"])){
-                    $post =  $post. '<button class="btn btn-nuevoComentario "> + </button>
-                                        <div class="comentarios-publicacion">
-                                            <form method="POST" action="../controllers/gestionaNuevoComentario.php">
-                                                <input type="hidden" name="UserID" value="'.$_SESSION["UserID"].'">
-                                                <input type="hidden" class ="mediaID" name="MediaID" value="'.$publicacion->getID().'">
-                                                <textarea name="Comentario" class="formulario-textbox nuevoComentario" rows="3" placeholder="Tu comentario" cols="20"  ></textarea>
-                                                <input type="submit" class="nuevoComentario btn-guardarComentario">Guardar</button>
-                                            </form>';
+                    $post =  $post. '<form method="POST"  class="form-comentario publica-comentario">
+                                        <input type="hidden" name="UserID" value="'.$_SESSION["UserID"].'">
+                                        <input type="hidden" class ="mediaID" name="MediaID" value="'.$publicacion->getID().'">
+                                        <textarea name="Comentario" class="formulario-textbox nuevoComentario" rows="3" placeholder="Tu comentario" cols="20"  ></textarea>
+                                        <input type="submit" class="nuevoComentario btn-guardarComentario" value="Enviar">
+                                    </form>
+                                    <div id="nuevos-comentarios-post'.$publicacion->getID().'" class="comentarios-publicacion">';
                     }
                     $comentariosPublicacion = $modelo_comentario->getComentariosPublicacion($publicacion->getID());
                     if($comentariosPublicacion)
@@ -69,7 +66,7 @@ include '../models/comentarios_model.php';
                                             </div>';
                         }                  
                         
-                    $posts = $posts.$post.'</div></div>';
+                    $posts = $posts.$post.'</div></div></div></div>';
                 }
             return $posts;
         }

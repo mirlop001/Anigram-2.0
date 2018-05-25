@@ -64,6 +64,10 @@ label {
     color: #aaa;
 }
 
+.hashtag {
+    color: #83ccf1;
+}
+
 
 /*------------------------- General ------------------------- */
 
@@ -529,9 +533,37 @@ label>input {
     text-align: center;
 }
 
-.nuevoComentario{
-    display: none;
+form.publica-comentario {
+    display: flex;
 }
+
+input.nuevoComentario.btn-guardarComentario {
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    /* color: #cc9795; */
+    /* display: none; */
+    width: 0px;
+    color: transparent;
+}
+
+textarea.formulario-textbox.nuevoComentario {
+    margin: 0;
+    height: 30px;
+    padding: 0;
+}
+
+.form-comentario .nuevoComentario.btn-guardarComentario {
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+}
+
+
+/* .form-comentario:hover .nuevoComentario.btn-guardarComentario {
+    width: 90px;
+    color: #cc9795;
+} */
 
 @media only screen and (max-device-width: 480px) {
     .container-login {
@@ -614,7 +646,6 @@ nav#menu-lateral {
 
 .row .publicacion {
     margin-bottom: 5%;
-    max-height: 55 vw;
     overflow: hidden;
 }
 
@@ -631,13 +662,15 @@ nav#menu-lateral {
     padding: 1px;
 }
 
-.woofs::-webkit-scrollbar {
+.woofs::-webkit-scrollbar,
+.formulario-textbox::-webkit-scrollbar,
+.comentarios-publicacion::-webkit-scrollbar {
     display: none !important;
 }
 
 .woofs,
 .comentarios-publicacion {
-    height: 200px;
+    height: 100%;
     overflow: auto;
     overflow-x: hidden;
     margin-bottom: 30px;
@@ -678,10 +711,6 @@ input.btn-woof:hover {
     font-size: 24px !important;
 }
 
-.comentario {
-    color: #aaa;
-}
-
 .radio-mascota {
     text-align: center;
 }
@@ -703,5 +732,14 @@ input.btn-woof:hover {
     }
     .comentarios {
         margin-bottom: 20% !important;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .row .publicacion {
+        max-height: 52vw;
+    }
+    .publicacion.comentarios.offset-md-1.col-md-4.col-sm-12 .div-comentarios {
+        height: 13vw;
     }
 }

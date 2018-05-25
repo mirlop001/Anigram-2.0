@@ -50,11 +50,26 @@ class Comentario_Model{
     function getComentariosPublicacion($IDPublicacion){
         $result = mysqli_query($this->db,  "SELECT u.ID as UserID, URLFoto, NombreCompleto, Comentario FROM comentario c inner join usuario u on c.IDUsuario = u.ID where IDMedia = ".$IDPublicacion." order by fecha desc");
         $comentariosPublicacion = null;
-        if($result->num_rows > 0){
+        if($result && $result->num_rows > 0){
             for($i=0; $i < $result->num_rows ; $i++){
                 if($row = $result->fetch_assoc()){
                     $comentarioObject = new self();
                     $comentarioObject->nuevoComentarioObject($IDPublicacion, $row['UserID'], $row['Comentario'], $row['URLFoto'], $row['NombreCompleto']);
+                    $comentariosPublicacion[$i] = $comentarioObject;
+                }
+            }
+        }
+        return $comentariosPublicacion;
+    }
+
+    function getComentarioByID($IDComentario){
+        $result = mysqli_query($this->db,  "SELECT u.ID as UserID, URLFoto, NombreCompleto, Comentario FROM comentario c inner join usuario u on c.IDUsuario = u.ID where c.ID = ".$IDComentario." order by fecha desc");
+        $comentariosPublicacion = null;
+        if($result && $result->num_rows > 0){
+            for($i=0; $i < $result->num_rows ; $i++){
+                if($row = $result->fetch_assoc()){
+                    $comentarioObject = new self();
+                    $comentarioObject->nuevoComentarioObject($IDComentario, $row['UserID'], $row['Comentario'], $row['URLFoto'], $row['NombreCompleto']);
                     $comentariosPublicacion[$i] = $comentarioObject;
                 }
             }
@@ -69,7 +84,6 @@ class Comentario_Model{
 
         return $result;
     }
-
 
 }
 ?>
