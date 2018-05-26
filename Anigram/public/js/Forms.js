@@ -219,9 +219,13 @@ function getError(mensaje, clase) {
 }
 
 function muestraNuevoComentario(data) {
-    var imagen = (data.ImagenUsuario) ? ('saved' + data.ImagenUsuario) : 'Juan-Niebla.png';
-
-    return '<div class="comentario row"> <div class="col-2"><img src="../../public/img/' + imagen + '" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>' +
+    var imagen = "";
+    if(data.ImagenUsuario!= "") {
+        imagen = '../../public/img/saved/' + data.ImagenUsuario;
+    }else{ 
+        imagen = '../../public/img/Juan-Niebla.png';
+    }
+    return '<div class="comentario row"> <div class="col-2"><img src="' + imagen + '" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>' +
         '<div class="col-10">' +
         '<div class="row"><label>' + data.NombreUsuario + '</label></div>' +
         '<div class="row"><p>' + data.Comentario + '</p></div>' +

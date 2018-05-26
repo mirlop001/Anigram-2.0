@@ -19,7 +19,7 @@
                 $_SESSION['UserID'] = $usuario['ID'];
                 $_SESSION['Nombre'] = $usuario['Nombre'];
                 $_SESSION['RolUsuario'] = $usuario['Rol'];
-                  
+                $_SESSION['fotoPerfilUsuario'] = $usuario['URLFoto'];
             }
         }
     }   

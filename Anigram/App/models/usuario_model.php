@@ -33,6 +33,7 @@ namespace es\ucm\fdi\aw;
                     $usuario['Nombre'] = $row['NombreCompleto'];
                     $usuario['Rol'] = $row['Rol'];
                     $usuario['Clave'] = $row['Clave'];
+                    $usuario['URLFoto'] = $row['URLFoto'];
                 }
             }
             return $usuario;

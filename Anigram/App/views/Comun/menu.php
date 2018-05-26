@@ -19,6 +19,15 @@
 
 </nav>
 
+<?php if(isset($_SESSION['LoginSuccess'] ) && $_SESSION['LoginSuccess'] ) { ?>
+  <div id="menu-secundario">
+      <a class="navbar-item" href="./home.php"><img class="perfil-pe " src=<?php  if(isset($_SESSION['fotoPerfilUsuario'])) { echo '../../public/img/saved/'.$_SESSION['fotoPerfilUsuario']; }else{echo '../../'.__urlFotoUsuario__;} ?> /></a>
+      <a class="navbar-item" href="./home.php"><img class="perfil-pe " src=<?php  if(isset($_SESSION['fotoPerfilUsuario'])) { echo '../../public/img/saved/'.$_SESSION['fotoPerfilUsuario']; }else{echo '../../'.__urlFotoUsuario__;} ?> /></a>
+      <a class="navbar-item" href="./home.php"><img class="perfil-pe " src=<?php  if(isset($_SESSION['fotoPerfilUsuario'])) { echo '../../public/img/saved/'.$_SESSION['fotoPerfilUsuario']; }else{echo '../../'.__urlFotoUsuario__;} ?> /></a>
+      <a class="navbar-item" href="./home.php"><img class="perfil-pe " src=<?php  if(isset($_SESSION['fotoPerfilUsuario'])) { echo '../../public/img/saved/'.$_SESSION['fotoPerfilUsuario']; }else{echo '../../'.__urlFotoUsuario__;} ?> /></a>
+  </div>
+<?php  } ?>
+
 <div id="subirFotoMascota" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

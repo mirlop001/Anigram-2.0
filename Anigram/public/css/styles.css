@@ -606,11 +606,11 @@ textarea.formulario-textbox.nuevoComentario {
 /*********************************************** MENU ***********************************************************/
 
 @media (min-width: 994px) {
-    nav#menu-lateral {
+    nav#menu-lateral, div#menu-secundario {
         display: flex;
         flex-direction: column;
-        height: 101%;
         position: fixed;
+        height: 101%;
         width: 70px;
     }
     #menu-lateral .navbar-item {
@@ -619,9 +619,21 @@ textarea.formulario-textbox.nuevoComentario {
     }
 }
 
-nav#menu-lateral {
-    box-shadow: 0px 0px 7px 2px #aaa;
+nav#menu-lateral{
+    z-index: 2;
     top: -10px;
+}
+
+div#menu-secundario {
+    background-color: #595353;
+    position: absolute;
+    top: 55px;
+    z-index: 1;
+    width: 100%;
+}
+
+nav#menu-lateral, div#menu-secundario{
+    box-shadow: 0px 0px 7px 2px #aaa;
 }
 
 #menu-lateral .navbar-item {
@@ -735,7 +747,7 @@ input.btn-woof:hover {
     }
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 768px) {
     .row .publicacion {
         max-height: 52vw;
     }
