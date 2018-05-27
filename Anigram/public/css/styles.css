@@ -283,8 +283,10 @@ button.btn.btn-primary img {
 }
 
 .container img {
-    width: 100%;
-    margin-top: 20vh;
+    display: block;
+    margin: auto; 
+    width: auto;
+    margin-top: 10vh;
     margin-bottom: 10vh;
 }
 

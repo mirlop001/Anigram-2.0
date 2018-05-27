@@ -21,5 +21,6 @@
          <h1>CONFIGURACIÓN</h1>
         </div>
     </div>
+    
 </body>
 </html>
