@@ -59,8 +59,14 @@ class Mascota_Model{
         return $this->Bio;
     }
 
+    function existeMascotaPrincipal($Amo){
+        $result = mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio) VALUES ($Amo, $Tipo, '$Nombre', '$Raza', '$URLFoto', '$Bio')");
+        return $result->num_rows == 0;
+    }
+
     function registraMascota($Amo, $Tipo, $Nombre, $Raza, $Bio, $URLFoto){
-       return mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio) VALUES ($Amo, $Tipo, '$Nombre', '$Raza', '$URLFoto', '$Bio')");
+        $esPrincipal = $this->existeMascotaPrincipal($Amo);
+        return mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio, Principal) VALUES ($Amo, $Tipo, '$Nombre', '$Raza', '$URLFoto', '$Bio','$esPrincipal')");
     }
 
     function getMascotasByIDUsuario($IDUsuario){
@@ -80,6 +86,18 @@ class Mascota_Model{
 
         return $mascotasUsuario;
     }
+    
+    function getMascotasByID($IDMascota){
+        $result = mysqli_query($this->db, "SELECT * from mascota where ID = ".$IDMascota );
+        if($result->num_rows > 0){
+            if($row = $result->fetch_assoc()){
+                $mascotaObject = new self();
+                $mascotaObject->nuevoMediaObject($IDMascota, $row['Amo'], $row['Tipo'],$row['Nombre'], $row['Raza'], $row['URLFoto'], $row['Bio']);
+                return $mascotaObject;
+            }
+        }
+    }
+
   
 }
 ?>

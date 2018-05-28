@@ -4,7 +4,7 @@
             <div id="foto-usuario" class="foto-perfil perfil-gr subir-foto-gr"></div>
             Selecciona tu foto de perfil
         </label>
-        <input id="fotoPerfilUsuario" class="input-perfil" name="fotoPerfilUsuario" type="file"/>
+        <input id="fotoPerfilUsuario" class="input-perfil" name="perfilUsuario" type="file"/>
     </div>
    
     <input type="text" class="formulario-textbox" id="nombreCompleto" name="nombreCompleto" placeholder="Tu nombre completo" required>

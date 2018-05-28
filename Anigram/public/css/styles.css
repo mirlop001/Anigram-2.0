@@ -65,15 +65,28 @@ label {
 }
 
 .hashtag {
-    color: #83ccf1;
+    color: #ffc37e;
 }
 
 
 /*------------------------- General ------------------------- */
 
+button {
+    outline: none !important;
+}
+
 body {
     background-image: url("../img/fondo-body.png");
     background-attachment: fixed;
+}
+
+i#home-icon {
+    color: #ff9e9b;
+    font-size: 42px;
+}
+
+#selector-mascota-icon {
+    cursor: pointer;
 }
 
 #vertical-separator {
@@ -284,7 +297,7 @@ button.btn.btn-primary img {
 
 .container img {
     display: block;
-    margin: auto; 
+    margin: auto;
     width: auto;
     margin-top: 10vh;
     margin-bottom: 10vh;
@@ -607,50 +620,28 @@ textarea.formulario-textbox.nuevoComentario {
 
 /*********************************************** MENU ***********************************************************/
 
-@media (min-width: 994px) {
-    nav#menu-lateral, div#menu-secundario {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        height: 101%;
-        width: 70px;
-    }
-    #menu-lateral .navbar-item {
-        border-bottom: 1px solid lightgray;
-        padding: 20px 0;
-    }
-    div#menu-secundario{
-        top: 0;
-        z-index: 1;
-        width: 100px;
-    }
-    div#menu-secundario.bounceInLeft{
-        left:70px;
-    }
-}
-@media (max-width: 994px) {
-    div#menu-secundario {
-        position: absolute;
-        top: 55px;
-        z-index: 1;
-        width: 100%;
-    }
-}
-
 div#menu-secundario {
-    background-color: #595353;
-}
-div#menu-secundario a.navbar-item {
-    margin: 10px;
+    background-color: #8a2f41;
+    box-shadow: 0px 0px 7px 2px #565656;
 }
 
-nav#menu-lateral{
+div#menu-secundario .selector-mascota {
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid #5f0000;
+    width: 70px;
+    height: 70px;
+}
+
+#menu-secundario button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+nav#menu-lateral {
     z-index: 2;
     top: -10px;
-}
-
-
-nav#menu-lateral, div#menu-secundario{
     box-shadow: 0px 0px 7px 2px #aaa;
 }
 
@@ -679,17 +670,35 @@ nav#menu-lateral, div#menu-secundario{
     overflow: hidden;
 }
 
-.menu-icon {
-    width: 40px;
-    height: 40px;
-}
-
 
 /***************************************** PUBLICACIONES ********************************************************/
 
-.woof-icons img {
-    width: 20%;
-    padding: 1px;
+.fa-paw.woofed {
+    color: darkred;
+}
+
+.fa-paw {
+    font-size: 27px;
+    margin: 3px;
+}
+
+button.btn-woof {
+    background-color: transparent;
+    border: none;
+}
+
+button.btn-woof .fa-paw {
+    font-size: 45px;
+    color: antiquewhite;
+    cursor: pointer;
+}
+
+button.btn-woof:hover .fa-paw {
+    color: darkred;
+}
+
+button.btn-woof .fa-paw.woofed {
+    color: darkred;
 }
 
 .woofs::-webkit-scrollbar,
@@ -773,37 +782,166 @@ input.btn-woof:hover {
         height: 13vw;
     }
 }
-/********************************** Animation ****************************************/
 
-@keyframes bounceInLeft {
-  
 
-    0% {
-        left: 55px;
-    }
-    25% {
-        left:65px
-    }
-    35% {
-        left:75px;
-    }
-    50% {
-        left:80px;
-    }
-    65% {
-        left: 70px;
-    }
-    85%{
-        left: 75px;
-    }
-    100% {
-        left:70px;
-    }
-   
-  }
-  
-  .bounceInLeft {
-    animation: bounceInLeft 0.8s;
-  }
+/********************************** @Media ****************************************/
 
-  /* $('#menu-secundario').addClass('animated bounceInLeft'); */
+@media (min-width: 994px) {
+    .menu-icon {
+        width: 40px;
+        height: 40px;
+    }
+    nav#menu-lateral,
+    div#menu-secundario {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        height: 101%;
+        width: 70px;
+    }
+    #menu-lateral .navbar-item {
+        border-bottom: 1px solid lightgray;
+        padding: 20px 0;
+    }
+    div#menu-secundario {
+        top: 0;
+        z-index: 1;
+        width: 110px;
+        padding-left: 20px;
+        left: -40px;
+    }
+    div#menu-secundario.bounceIn {
+        left: 50px;
+    }
+    @keyframes bounceIn {
+        0% {
+            left: -40px;
+        }
+        20% {
+            left: 0px;
+        }
+        40% {
+            left: 25px;
+        }
+        60% {
+            left: 50px;
+        }
+        70% {
+            left: 55px;
+        }
+        80% {
+            left: 50px;
+        }
+        90% {
+            left: 55px;
+        }
+        100% {
+            left: 50px;
+        }
+    }
+    .bounceIn {
+        animation: bounceIn 0.6s;
+    }
+    @keyframes bounceOut {
+        0% {
+            left: 50px;
+        }
+        20% {
+            left: 55px;
+        }
+        40% {
+            left: 50px;
+        }
+        60% {
+            left: 45px;
+        }
+        70% {
+            left: 35px;
+        }
+        80% {
+            left: 25px;
+        }
+        90% {
+            left: 0px;
+        }
+        100% {
+            left: -40px;
+        }
+    }
+    .bounceOut {
+        animation: bounceOut 0.6s;
+    }
+}
+
+@media (max-width: 994px) {
+    .menu-icon {
+        width: 30px;
+        height: 30px;
+    }
+    div#menu-secundario {
+        position: absolute;
+        top: -35px;
+        z-index: 1;
+        width: 100%;
+    }
+    div#menu-secundario.bounceIn {
+        top: 33px;
+        padding-top: 30px;
+        height: 110px;
+    }
+    @keyframes bounceIn {
+        0% {
+            top: -35px;
+        }
+        20% {
+            top: 0px;
+        }
+        50% {
+            top: 35px;
+        }
+        70% {
+            top: 40px;
+        }
+        80% {
+            top: 42px;
+        }
+        100% {
+            top: 40px;
+        }
+    }
+    .bounceIn {
+        animation: bounceIn 0.6s;
+    }
+    @keyframes bounceOut {
+        0% {
+            top: 40px;
+        }
+        20% {
+            top: 45px;
+        }
+        40% {
+            top: 40px;
+        }
+        60% {
+            top: 35px;
+        }
+        70% {
+            top: 25px;
+        }
+        80% {
+            top: 15px;
+        }
+        90% {
+            top: 0px;
+        }
+        100% {
+            top: -35px;
+        }
+    }
+    .bounceOut {
+        animation: bounceOut 0.6s;
+    }
+}
+
+
+/* $('#menu-secundario').addClass('animated bounceIn'); */

@@ -45,14 +45,14 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     if($result = $modeloUsuario->registraUsuario($nombreCompleto, $email, $hash , $rol, $urlFoto)){
         $_SESSION['ErrorRegistro'] = false;
         $_SESSION['UserID'] = $result;
-        $_SESSION['Nombre'] = $nombreCompleto;
+        $_SESSION['NombrePerfilActivo'] = $nombreCompleto;
         $_SESSION['RolUsuario'] = $rol;
 
-        if(isset($_FILES['fotoPerfilUsuario']) && $_FILES['fotoPerfilUsuario']['error'] == 0){
-            $nombre_imagen = $_FILES['fotoPerfilUsuario']['name'];
-            $imagen_tmp =$_FILES['fotoPerfilUsuario']['tmp_name'];
+        if(isset($_FILES['perfilUsuario']) && $_FILES['perfilUsuario']['error'] == 0){
+            $nombre_imagen = $_FILES['perfilUsuario']['name'];
+            $imagen_tmp =$_FILES['perfilUsuario']['tmp_name'];
             $foto = $result.'-'.$nombre_imagen;
-            $_SESSION['fotoPerfilUsuario'] = $result.'-'.$nombre_imagen;
+            $_SESSION['fotoPerfilActivo'] = $foto;
 
             $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $foto);
             $imagen->guardaImagen();

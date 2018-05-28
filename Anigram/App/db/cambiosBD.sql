@@ -13,5 +13,9 @@ ALTER TABLE `usuario` CHANGE `Clave` `Clave` VARCHAR(255) NOT NULL;
 ALTER TABLE `woofs` ADD `Fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `Puntos`;
 ALTER TABLE `media` ADD `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `URLImagen`;
 
-/*****************************************/
+/********************** SEMI NUEVO *******************/
 ALTER TABLE `comentario` ADD `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `Comentario`;
+
+/******************** NUEVO ********************/ 
+ALTER TABLE `usuario` ADD `IDMascotaPrincipal` INT NULL AFTER `Bio`;
+ALTER TABLE `usuario` ADD CONSTRAINT `FK_MascotaPrincipal` FOREIGN KEY (`IDMascotaPrincipal`) REFERENCES `mascota`(`ID`) ON DELETE SET NULL ON UPDATE CASCADE;

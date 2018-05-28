@@ -10,6 +10,7 @@ namespace es\ucm\fdi\aw;
         private $Clave;
         private $URLFoto;
         private $Bio;
+        private $MascotaPrincipal;
         private $Bloqueado;
 
         function __construct()
@@ -23,20 +24,62 @@ namespace es\ucm\fdi\aw;
             }
         }
 
+        function nuevoUsuarioObject($ID, $Rol, $Email, $NombreCompleto, $Clave, $URLFoto, $MascotaPrincipal){
+            $this->ID = $ID;
+            $this->Rol = $Rol;
+            $this->Email = $Email;
+            $this->NombreCompleto = $NombreCompleto;
+            $this->Clave = $Clave;
+            $this->URLFoto = $URLFoto;
+            $this->MascotaPrincipal = $MascotaPrincipal;
+        }
+    
+        public function getID(){
+            return $this->ID;
+        }
+    
+        public function getRol(){
+            return $this->Rol;
+        }
+        public function getEmail(){
+            return $this->Email;
+        }
+    
+        public function getNombreCompleto(){
+            return $this->NombreCompleto;
+        }
+    
+        public function getClave(){
+            return $this->Clave;
+        }
+    
+        public function getURLFoto(){
+            return $this->URLFoto;
+        }
+    
+        public function getMascotaPrincipal(){
+            return $this->MascotaPrincipal;
+        }
+    
+
         function getDatosLogin($email){
             $usuario = null;
             if ($result = mysqli_query($this->db, "SELECT * from usuario where Email = '$email' ")) 
            
             if($result->num_rows > 0){
                 if($row = $result->fetch_assoc()){
-                    $usuario['ID'] = $row['ID'];
-                    $usuario['Nombre'] = $row['NombreCompleto'];
-                    $usuario['Rol'] = $row['Rol'];
-                    $usuario['Clave'] = $row['Clave'];
-                    $usuario['URLFoto'] = $row['URLFoto'];
+                    $ID = $row['ID'];
+                    $NombreCompleto = $row['NombreCompleto'];
+                    $Rol = $row['Rol'];
+                    $Email = $row['Email'];
+                    $Clave = $row['Clave'];
+                    $URLFoto = $row['URLFoto'];
+                    $MascotaPrincipal = $row['IDMascotaPrincipal'];
+                    $usuarioObject = new self();
+                    $usuarioObject->nuevoUsuarioObject($ID, $Rol, $Email, $NombreCompleto, $Clave, $URLFoto, $MascotaPrincipal);
                 }
             }
-            return $usuario;
+            return $usuarioObject;
         }
 
         function buscaUsuarioPorEmail($email){

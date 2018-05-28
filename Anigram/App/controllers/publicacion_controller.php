@@ -23,14 +23,14 @@ include '../models/comentarios_model.php';
                     $post = '<div class="row"><div class="publicacion offset-md-1 col-md-6 col-sm-12">
                                 <label><img ';
                     if($publicacion->getURLImagenMascota() != ""){
-                        $post = $post.' src="../../public/img/saved/'.$publicacion->getURLImagenMascota().'"';
+                        $post = $post.' src="'.__urlFotoGuardada__.$publicacion->getURLImagenMascota().'"';
                     } 
                     else   
-                        $post = $post."src='../../".__urlFotoMascota__."'";
+                        $post = $post."src='".__urlFotoMascota__."'";
 
                     $post = $post.' class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label>
                                 <div class="foto-publicada">
-                                <img  src="../../public/img/saved/'.$publicacion->getURLImagen().'" alt="foto-publicada"/>
+                                <img  src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="foto-publicada"/>
                                 </div>
                             </div>
                             <div class="publicacion comentarios  offset-md-1 col-md-4 col-sm-12">
@@ -41,7 +41,7 @@ include '../models/comentarios_model.php';
                     $woofsPublicacion = $publicacion->getWoofs();
                     if($woofsPublicacion)
                         foreach($woofsPublicacion as $woof){            
-                            $post = $post.'<div class="row"> <div class="col-2"><img src="../../'.(($woof->getImagenUsuario()!="")? __urlFotoGuardada__.$woof->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div><div class="col-3"><h5 class="nombre-usuario-post">'.$woof->getNombreUsuario().'</h5></div><div class="woof-icons col-6">'.$this->getWoofsUsuario($woof->getPuntos()).'</div></div>';
+                            $post = $post.'<div class="row"> <div class="col-2"><img src="'.(($woof->getImagenUsuario()!="")? __urlFotoGuardada__.$woof->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div><div class="col-3"><h5 class="nombre-usuario-post">'.$woof->getNombreUsuario().'</h5></div><div class="woof-icons col-6">'.$this->getWoofsUsuario($woof->getPuntos()).'</div></div>';
                             
                         }
 
@@ -58,7 +58,7 @@ include '../models/comentarios_model.php';
                     $comentariosPublicacion = $modelo_comentario->getComentariosPublicacion($publicacion->getID());
                     if($comentariosPublicacion)
                         foreach($comentariosPublicacion as $comentario){            
-                            $post = $post.' <div class="comentario row"> <div class="col-2"><img src="../../'.(($comentario->getImagenUsuario()!="")? __urlFotoGuardada__.$comentario->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>
+                            $post = $post.' <div class="comentario row"> <div class="col-2"><img src="'.(($comentario->getImagenUsuario()!="")? __urlFotoGuardada__.$comentario->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>
                                                 <div class="col-10">
                                                     <div class="row"><label>'.$comentario->getNombreUsuario().'</label></div>
                                                     <div class="row"><p>'.$comentario->getComentario().'</p></div>
@@ -74,11 +74,9 @@ include '../models/comentarios_model.php';
         private function getWoofsUsuario($numWoofs){
             $woofsIcons = "<div class='woof-icons'>";
             for($i=0; $i<$numWoofs;$i++){
-                $woofsIcons = $woofsIcons ."<img src='../../public/img/woofed-icon.png' />";
+                $woofsIcons = $woofsIcons ."<i class='fas fa-paw woofed'></i>";
             }
-            for($i=$numWoofs; $i<5;$i++){
-                $woofsIcons = $woofsIcons ."<img src='../../public/img/woof-icon.png' />";
-            }
+            
             return $woofsIcons.'</div>';
         }
 
@@ -93,11 +91,11 @@ include '../models/comentarios_model.php';
                 $btnWoofs = '<form class="form-woof">
                             <input type="hidden" name="UserID" value="'.$_SESSION["UserID"].'">
                             <input type="hidden" class ="mediaID" name="MediaID" value="'.$mediaID.'">
-                            <input type="submit" name="Puntos" class="btn-woof 1 '.$mediaID.'" value="1"/>
-                            <input type="submit" name="Puntos" class="btn-woof 2 '.$mediaID.'" value="2"/>
-                            <input type="submit" name="Puntos" class="btn-woof 3 '.$mediaID.'" value="3"/>
-                            <input type="submit" name="Puntos" class="btn-woof 4 '.$mediaID.'" value="4"/>
-                            <input type="submit" name="Puntos" class="btn-woof 5 '.$mediaID.'" value="5"/>
+                            <button type="submit" name="Puntos" class="btn-woof 1 '.$mediaID.'" value="1"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof 2 '.$mediaID.'" value="2"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof 3 '.$mediaID.'" value="3"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof 4 '.$mediaID.'" value="4"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof 5 '.$mediaID.'" value="5"><i class="fas fa-paw"></i></button>
                         </form>';
             }
             return $btnWoofs;
