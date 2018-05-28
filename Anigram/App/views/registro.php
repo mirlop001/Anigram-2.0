@@ -16,11 +16,11 @@
 <body>
     <div class="container-anigram ">
         <div class="row references">
-            <h3><img src="../../public/img/ic_keyboard_arrow_left_black_24px.svg" alt="" /><a href="login.php">Volver</a></h3>
+            <h3><img src="__urlFotoIcono__ic_keyboard_arrow_left_black_24px.svg" alt="" /><a href="login.php">Volver</a></h3>
         </div>
-        <div class="row logo"><img src="../../public/img/Logo-Nombre.png" alt="" /></div>
+        <div class="row logo"><img src="__urlFotoIcono__Logo-Nombre.png" alt="" /></div>
         <div class="row registro">
-            <form id="form-registro"  method="post" enctype="multipart/form-data">
+            <form id="form-registro"  method="post" enctype="multipart/form-data" data-ajax="false">
                 <div class="row">
                     <div class="contenedor contedor-izquierdo col-md-12 col-lg-5">
                         <?php include 'registroUsuario.php' ?>

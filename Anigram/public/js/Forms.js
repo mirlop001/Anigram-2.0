@@ -32,7 +32,7 @@
             };
             $.ajax({
                 data: parametros,
-                url: '../../App/controllers/comprobacionForm.php',
+                url: '../../App/controllers/gestionaUsuario.php',
                 type: 'post',
                 success: function(response) {
                     console.log(response);
@@ -63,7 +63,7 @@
                 };
                 $.ajax({
                     data: parametros,
-                    url: '../../App/controllers/comprobacionForm.php',
+                    url: '../../App/controllers/gestionaUsuario.php',
                     type: 'post',
                     success: function(response) {
                         console.log(response);
@@ -137,7 +137,7 @@
 
         $('.form-woof').on('submit', function(e) {
             e.preventDefault();
-            var puntos = $(e.target).find("input[type=submit]:focus")[0].value;
+            var puntos = $(e.target).find("button[type=submit]:focus")[0].value;
             var media = $(e.target).find(".mediaID")[0].value;
             var datos = $(this).serialize() + '&Puntos=' + puntos;
             $.ajax({
@@ -147,12 +147,12 @@
                 success: function(data) {
 
                     (function(p) {
+                        $('.btn-woof .fa-paw').removeClass('woofed');
                         for (var i = 1; i <= p; i++) {
-                            $('.btn-woof.' + i + '.' + media).css('background-image', 'url(../../public/img/woofed-icon.png)');
+                            $('.btn-woof.' + i + '.' + media + ' .fa-paw').addClass('woofed');
                         }
-                        for (var i = +p + 1; i <= 5; i++) {
-                            $('.btn-woof.' + i + '.' + media).css('background-image', 'url(../../public/img/woof-icon.png)');
-                        }
+
+
                     })(puntos);
                 },
                 error: function(jXHR, textStatus, errorThrown) {
@@ -220,9 +220,9 @@ function getError(mensaje, clase) {
 
 function muestraNuevoComentario(data) {
     var imagen = "";
-    if(data.ImagenUsuario!= "") {
-        imagen = '../../public/img/saved/' + data.ImagenUsuario;
-    }else{ 
+    if (data.ImagenUsuario != "") {
+        imagen = '__urlFotoIcono__saved/' + data.ImagenUsuario;
+    } else {
         imagen = '../../public/img/Juan-Niebla.png';
     }
     return '<div class="comentario row"> <div class="col-2"><img src="' + imagen + '" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>' +

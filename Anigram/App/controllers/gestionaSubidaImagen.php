@@ -16,7 +16,7 @@ include 'ImageManipulator.php';
         }
 
         public function guardaImagen(){
-            $img = '../../public/img/saved/'.$this->urlFoto;
+            $img = __urlFotoGuardada__.$this->urlFoto;
 
             $manipulator = new ImageManipulator($this->imagen_tmp);
             $width  = $manipulator->getWidth();

@@ -14,11 +14,11 @@
 </head>
 
 <body>
-	<img id="logo-grande" src="../../public/img/Logo-Nombre.png" alt="">
+	<img id="logo-grande" src="<?= __urlFotoIcono__?>Logo-Nombre.png" alt="">
 	<div class="container-login">
 		<!-- <div class="col align-self-center col-lg-8 offset-lg-2"> -->
 		<h1>Login</h1>
-		<form id="form-login" class="centered" method="POST" action='../controllers/comprobacionForm.php'>
+		<form id="form-login" class="centered" method="POST" action='../controllers/gestionaUsuario.php'>
 			<label class='error-form usuarioNoExiste'>Usuario o contraseña erróneos</label>
 			
 			<label  >Email</label>
