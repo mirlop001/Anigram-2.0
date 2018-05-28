@@ -176,6 +176,21 @@
             });
         });
 
+        $('#form-update').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '../../App/controllers/gestionaUpdateUsuario.php',
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(data) {
+                    window.location.href = '../views/home.php';
+                },
+                error: function(jXHR, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+
         $('.form-comentario').on('submit', function(e) {
             e.preventDefault();
             $.ajax({

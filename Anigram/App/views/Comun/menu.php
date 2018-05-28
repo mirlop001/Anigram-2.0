@@ -14,7 +14,7 @@
         </button> ';
     ?>
     <a class="navbar-item" href="./amigos.php"><img  class="menu-icon " src="../../public/img/friends-icon.png" alt="Ir a amigos"></a>
-    <a class="navbar-item" href="./config.php"><img  class="menu-icon " src="../../public/img/config-icon.png" alt="Ir a configuración"></a>
+    <a class="navbar-item" href="./configuracion.php"><img  class="menu-icon " src="../../public/img/config-icon.png" alt="Ir a configuración"></a>
     <a class="navbar-item" href="../controllers/logout_controller.php"><img  class="menu-icon " src="../../public/img/logout-icon.png" alt="Ir a Login"></a>
 
 </nav>
