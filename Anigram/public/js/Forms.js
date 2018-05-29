@@ -67,7 +67,7 @@
                     type: 'post',
                     success: function(response) {
                         console.log(response);
-                        if (response) {
+                        if (response.match(/\w+/g)) {
                             $('#email-login').removeClass("invalidInput");
                             $('#Clave-login').removeClass("invalidInput");
                             $('.usuarioNoExiste').hide();

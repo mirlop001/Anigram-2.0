@@ -19,7 +19,7 @@
 		<!-- <div class="col align-self-center col-lg-8 offset-lg-2"> -->
 		<h1>Login</h1>
 		<form id="form-login" class="centered" method="POST" action='../controllers/gestionaUsuario.php'>
-			<label class='error-form usuarioNoExiste'>Usuario o contraseña erróneos</label>
+			<div class="alert alert-danger error-form usuarioNoExiste" role="alert">Usuario o contraseña erróneos</div>
 			
 			<label  >Email</label>
 			<input id="email-login" type="email" name="user" class="formulario-textbox"/>

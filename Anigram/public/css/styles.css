@@ -406,11 +406,8 @@
             color: white;
         }
         
-        label.error-form {
+        .error-form {
             display: none;
-            color: red;
-            font-size: 15px;
-            margin-top: -11px;
             width: 100%;
         }
         

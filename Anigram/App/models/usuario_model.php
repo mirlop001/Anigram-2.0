@@ -75,11 +75,11 @@ namespace es\ucm\fdi\aw;
                     $Clave = $row['Clave'];
                     $URLFoto = $row['URLFoto'];
                     $MascotaPrincipal = $row['IDMascotaPrincipal'];
-                    $usuarioObject = new self();
-                    $usuarioObject->nuevoUsuarioObject($ID, $Rol, $Email, $NombreCompleto, $Clave, $URLFoto, $MascotaPrincipal);
+                    $usuario = new self();
+                    $usuario->nuevoUsuarioObject($ID, $Rol, $Email, $NombreCompleto, $Clave, $URLFoto, $MascotaPrincipal);
                 }
             }
-            return $usuarioObject;
+            return $usuario;
         }
 
         function buscaUsuarioPorEmail($email){
