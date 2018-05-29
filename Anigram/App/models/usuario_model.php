@@ -120,5 +120,26 @@ namespace es\ucm\fdi\aw;
             else return false; 
     
         }
+
+        function actualizaNombreUsuario($nombreCompleto){
+            $result = false; 
+            $id = $_SESSION['UserID']; 
+
+            if (mysqli_query($this->db, "UPDATE usuario SET NombreCompleto = '$nombreCompleto' WHERE usuario.ID = '$id';")) $result = true; 
+
+            return $result; 
+        }
+
+        function actualizaPass($hash){
+            $id = $_SESSION['UserID']; 
+
+            mysqli_query($this->db, "UPDATE usuario SET Clave = '$hash' WHERE usuario.ID = '$id';");
+        }
+
+        function actualizaEmail($email){
+            $id = $_SESSION['UserID']; 
+
+            mysqli_query($this->db, "UPDATE usuario SET Email = '$email' WHERE usuario.ID = '$id';");
+        }
     }
 ?>

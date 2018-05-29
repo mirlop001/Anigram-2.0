@@ -19,6 +19,7 @@
                 <a class="navbar-item" href="./amigos.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'friends-icon.png" alt="Ir a amigos"></a>
                 <a class="navbar-item" href="./config.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'config-icon.png" alt="Ir a configuración"></a>';
     ?>
+
     <a class="navbar-item" href="../controllers/logout_controller.php"><img  class="menu-icon " src="<?= __urlFotoIcono__?>logout-icon.png" alt="Ir a Login"></a>
 
 </nav>
