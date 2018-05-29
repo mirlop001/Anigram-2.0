@@ -16,4 +16,4 @@
 <script src="/Anigram/Anigram/public/js/Forms.js"></script>
 <script src="/Anigram/Anigram/public/js/General.js"></script>
 
-<link rel="icon" href="<?=__urlFotoIcono__?>Anigram-favicon.ico" type="image/x-icon">
+<link rel="icon" href="/Anigram/Anigram/public/img/Anigram-favicon.ico" type="image/x-icon">

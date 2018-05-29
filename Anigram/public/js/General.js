@@ -62,6 +62,27 @@ var page;
             });
         });
 
+        $('#sonido-index-video').on('click', function() {
+            $('#sonido-index-video svg').toggleClass('on');
+            $('#sonido-index-video svg').toggleClass('off');
+            $('#background-video').prop('muted', !$('#background-video').prop('muted'));
+        });
+
+        $('#ver-index-video').on('click', function() {
+            if ($('#container-index').hasClass("desaparece")) {
+                $('#container-index').addClass("aparece");
+                $('#container-index-video::after').addClass("aparece");
+                $('#container-index-video::after').removeClass("desaparece");
+                $('#container-index').removeClass("desaparece");
+                console.log($('#container-index-video::after'));
+            } else {
+                $('#container-index').addClass("desaparece");
+                $('#container-index-video::after').addClass("desaparece");
+                $('#container-index-video::after').removeClass("aparece");
+                $('#container-index').removeClass("aparece");
+            }
+        });
+
 
     });
 })(page);

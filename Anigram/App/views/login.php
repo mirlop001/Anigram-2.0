@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<img id="logo-grande" src="<?= __urlFotoIcono__?>Logo-Nombre.png" alt="">
+	<a href="../../index.php"><img id="logo-grande" src="<?= __urlFotoIcono__?>Logo-Nombre.png" alt=""></a>
 	<div class="container-login">
 		<!-- <div class="col align-self-center col-lg-8 offset-lg-2"> -->
 		<h1>Login</h1>
