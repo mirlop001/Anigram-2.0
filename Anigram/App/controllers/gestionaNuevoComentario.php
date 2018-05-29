@@ -7,7 +7,7 @@ $modeloComentario = new es\ucm\fdi\aw\Comentario_Model();
 
 $result = false;
 
-$UserID = $_POST['UserID'];
+$IDPerfilActivo = $_SESSION['IDPerfilActivo'];
 $MediaID = $_POST['MediaID'];
 $Comentario = $_POST['Comentario'];
 
@@ -21,7 +21,7 @@ if(preg_match('/\S+/',$Comentario)){
     };
 
 	
-	$idNuevoComentario = $modeloComentario->nuevoComentario($Comentario, $UserID, $MediaID);
+	$idNuevoComentario = $modeloComentario->nuevoComentario($Comentario, $IDPerfilActivo, $MediaID);
 	$datosComentario = $modeloComentario->getComentarioByID($idNuevoComentario);
 
 	$result['IDMedia'] = $MediaID;

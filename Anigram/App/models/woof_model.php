@@ -4,9 +4,9 @@ namespace es\ucm\fdi\aw;
 class Woof_Model{
     private $db; 
     private $IDPublicacion; 
-    private $UserID; 
-    private $ImagenUsuario; 
-    private $NombreUsuario; 
+    private $IDMascota; 
+    private $ImagenMascota; 
+    private $NombreMascota; 
     private $Puntos; 
 
 
@@ -20,11 +20,11 @@ class Woof_Model{
         }
     }
 
-    function nuevoWoofObject($IDPublicacion, $UserID, $ImagenUsuario, $NombreUsuario, $Puntos){
-        $this->UserID = $UserID;
+    function nuevoWoofObject($IDPublicacion, $IDMascota, $ImagenMascota, $NombreMascota, $Puntos){
+        $this->IDMascota = $IDMascota;
         $this->IDPublicacion = $IDPublicacion;
-        $this->ImagenUsuario = ($ImagenUsuario != "")? $UserID.'-'.$ImagenUsuario: "";
-        $this->NombreUsuario = $NombreUsuario;
+        $this->ImagenMascota = $ImagenMascota;
+        $this->NombreMascota = $NombreMascota;
         $this->Puntos = $Puntos;
     }
     
@@ -32,12 +32,12 @@ class Woof_Model{
         return $this->IDPublicacion;
     }
 
-    public function getImagenUsuario(){
-        return $this->ImagenUsuario;
+    public function getImagenMascota(){
+        return $this->ImagenMascota;
     }
 
-    public function getNombreUsuario(){
-        return $this->NombreUsuario;
+    public function getNombreMascota(){
+        return $this->NombreMascota;
     }
 
     public function getPuntos(){
@@ -45,37 +45,39 @@ class Woof_Model{
     }
     
     function getWoofsPublicacion($IDPublicacion){
-        $result = mysqli_query($this->db,  "SELECT u.ID as UserID, URLFoto, NombreCompleto, Puntos FROM woofs w inner join usuario u on w.IDUsuario = u.ID where IDMedia = ".$IDPublicacion." order by fecha desc");
+        $result = mysqli_query($this->db,  "SELECT u.ID as IDMascota, URLFoto, Nombre, Puntos FROM woofs w inner join mascota u on w.IDMascota = u.ID where IDMedia = ".$IDPublicacion." order by fecha desc");
         $woofsPublicacion = null;
-        if($result->num_rows > 0){
-            for($i=0; $i < $result->num_rows ; $i++){
-                if($row = $result->fetch_assoc()){
-                    $woofObject = new self();
-                    $woofObject->nuevoWoofObject($IDPublicacion, $row['UserID'],  $row['URLFoto'], $row['NombreCompleto'], $row['Puntos']);
-                    $woofsPublicacion[$i] = $woofObject;
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                    if($row = $result->fetch_assoc()){
+                        $woofObject = new self();
+                        $woofObject->nuevoWoofObject($IDPublicacion, $row['IDMascota'],  $row['URLFoto'], $row['Nombre'], $row['Puntos']);
+                        $woofsPublicacion[$i] = $woofObject;
+                    }
                 }
             }
         }
         return $woofsPublicacion;
     }
 
-    function compruebaWoof($userID, $mediaID){
-        $result = mysqli_query($this->db,  "SELECT * FROM woofs w where IDMedia = ".$mediaID." and IDUsuario =".$userID);
+    function compruebaWoof($IDMascota, $mediaID){
+        $result = mysqli_query($this->db,  "SELECT * FROM woofs w where IDMedia = ".$mediaID." and IDMascota =".$IDMascota);
 
         return $result->num_rows;
         
     }
 
-    function nuevoWoof($puntos, $userID, $mediaID ){
+    function nuevoWoof($puntos, $IDMascota, $mediaID ){
         $result = null;
-        if (mysqli_query($this->db, "INSERT INTO Woofs (IDMedia, IDUsuario, Puntos) VALUES ('".$mediaID."', '".$userID."', '".$puntos."')")) 
+        if (mysqli_query($this->db, "INSERT INTO Woofs (IDMedia, IDMascota, Puntos) VALUES ('".$mediaID."', '".$IDMascota."', '".$puntos."')")) 
             $result = mysqli_insert_id ($this->db);
 
         return $result;
     }
 
-    function actualizaWoof($puntos, $userID, $mediaID ){
-        return mysqli_query($this->db, "UPDATE Woofs SET Puntos = ".$puntos.", fecha = CURRENT_TIMESTAMP WHERE IDMedia =".$mediaID." and IDUsuario = ".$userID);
+    function actualizaWoof($puntos, $IDMascota, $mediaID ){
+        return mysqli_query($this->db, "UPDATE Woofs SET Puntos = ".$puntos.", fecha = CURRENT_TIMESTAMP WHERE IDMedia =".$mediaID." and IDMascota = ".$IDMascota);
     }
 
 }

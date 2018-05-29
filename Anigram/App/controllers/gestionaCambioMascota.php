@@ -13,6 +13,7 @@ $_SESSION['IDPerfilActivo'] = $idMascota;
 $_SESSION['fotoPerfilActivo'] =$urlImagenPerfil;
 $_SESSION['NombrePerfilActivo'] = $datosMascota->getNombre();
 
-echo $urlImagenPerfil;
+header('Location: ../views/home.php');
+exit;
 
 ?>

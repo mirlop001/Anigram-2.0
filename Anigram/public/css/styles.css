@@ -71,6 +71,15 @@ label {
 
 /*------------------------- General ------------------------- */
 
+div#masContenido {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+#masContenido button {
+    width: 25%;
+}
+
 button {
     outline: none !important;
 }

@@ -7,18 +7,17 @@ $modeloWoof = new es\ucm\fdi\aw\Woof_Model();
 
 //Obtener datos de la publicacion
 
-$UserID = $_POST['UserID'];
+$IDMascota = $_SESSION['IDPerfilActivo'];
 $MediaID = $_POST['MediaID'];
 $Puntos = $_POST['Puntos'];
 
-$Modifica = $modeloWoof->compruebaWoof($UserID, $MediaID);
+$Modifica = $modeloWoof->compruebaWoof($IDMascota, $MediaID);
 if($Modifica > 0){
-	echo 'Se actualiza woof '.$modeloWoof->actualizaWoof($Puntos, $UserID, $MediaID);
+	echo 'Se actualiza woof '.$modeloWoof->actualizaWoof($Puntos, $IDMascota, $MediaID);
 	
-}else if($modeloWoof->nuevoWoof($Puntos, $UserID, $MediaID) != NULL){
+}else if($modeloWoof->nuevoWoof($Puntos, $IDMascota, $MediaID) != NULL){
 	echo 'Nuevo woof ';
-	if($urlFoto) 
-		$_SESSION['fotoPerfilMascota'] = $urlFoto;
+	
 	
 }else{
 	echo 'MAL';

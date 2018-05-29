@@ -33,7 +33,7 @@ include '../models/mascota_model.php';
                 foreach( $mascotas as $mascota ){
                     
                     // $selectMascota = $selectMascota."<div class='row'><div class='radio-mascota'><label><input type='radio' class='radio-mascotas' name='mascota' value='".$mascota->getID()."'><img class='perfil-md' ";
-                    $selectMascota = $selectMascota.'<div class="div-seleccion-mascota"><button  name="img-mascota" value="'.$mascota->getID().'" ><span class="d-inline-block" data-toggle="popover" data-content="Disabled popover"><img class="perfil-pe selector-mascota navbar-item" ';
+                    $selectMascota = $selectMascota.'<div class="div-seleccion-mascota"><button type="submit" name="idMascota" value="'.$mascota->getID().'" ><span class="d-inline-block" data-toggle="popover" data-content="Disabled popover"><img class="perfil-pe selector-mascota navbar-item" ';
                     
                     if($mascota->getURLfoto() && $mascota->getURLfoto()!= "")
                         $selectMascota = $selectMascota."src='".__urlFotoGuardada__.$mascota->getURLfoto()."' ";

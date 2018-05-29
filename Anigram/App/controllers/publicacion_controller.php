@@ -7,8 +7,8 @@ include '../models/comentarios_model.php';
     class Publicacion_Controller{
         private $actualPage;
 
-        function __Construct(){
-            $this->actualPage = 0;
+        function __Construct($page = 0){
+            $this->actualPage = $page;
         }
         
         public function getUltimasPublicaciones(){
@@ -16,9 +16,12 @@ include '../models/comentarios_model.php';
             $modelo_woofs = new Woof_Model();
             $modelo_comentario = new Comentario_Model();
             $posts  = "";
-            $ultimasPublicaciones = $modelo_media->getUltimasNPublicaciones($this->actualPage);
-            
-            if($ultimasPublicaciones)
+            if(isset($_SESSION['IDPerfilActivo']))
+                $ultimasPublicaciones = $modelo_media->getUltimasNPublicaciones($this->actualPage);
+            else
+                $ultimasPublicaciones = $modelo_media->obtenerTodasPublicaciones($this->actualPage);
+
+            if($ultimasPublicaciones){
                 foreach( $ultimasPublicaciones as $publicacion ){
                     $post = '<div class="row"><div class="publicacion offset-md-1 col-md-6 col-sm-12">
                                 <label><img ';
@@ -30,7 +33,7 @@ include '../models/comentarios_model.php';
 
                     $post = $post.' class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label>
                                 <div class="foto-publicada">
-                                <img  src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="foto-publicada"/>
+                                    <img  src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="foto-publicada"/>
                                 </div>
                             </div>
                             <div class="publicacion comentarios  offset-md-1 col-md-4 col-sm-12">
@@ -41,7 +44,7 @@ include '../models/comentarios_model.php';
                     $woofsPublicacion = $publicacion->getWoofs();
                     if($woofsPublicacion)
                         foreach($woofsPublicacion as $woof){            
-                            $post = $post.'<div class="row"> <div class="col-2"><img src="'.(($woof->getImagenUsuario()!="")? __urlFotoGuardada__.$woof->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div><div class="col-3"><h5 class="nombre-usuario-post">'.$woof->getNombreUsuario().'</h5></div><div class="woof-icons col-6">'.$this->getWoofsUsuario($woof->getPuntos()).'</div></div>';
+                            $post = $post.'<div class="row"> <div class="col-2"><img src="'.(($woof->getImagenMascota()!="")? __urlFotoGuardada__.$woof->getImagenMascota(): __urlFotoMascota__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div><div class="col-3"><h5 class="nombre-Mascota-post">'.$woof->getNombreMascota().'</h5></div><div class="woof-icons col-6">'.$this->getWoofsMascota($woof->getPuntos()).'</div></div>';
                             
                         }
 
@@ -52,15 +55,15 @@ include '../models/comentarios_model.php';
                                         <input type="hidden" class ="mediaID" name="MediaID" value="'.$publicacion->getID().'">
                                         <textarea name="Comentario" class="formulario-textbox nuevoComentario" rows="3" placeholder="Tu comentario" cols="20"  ></textarea>
                                         <input type="submit" class="nuevoComentario btn-guardarComentario" value="Enviar">
-                                    </form>
-                                    <div id="nuevos-comentarios-post'.$publicacion->getID().'" class="comentarios-publicacion">';
+                                    </form>';
                     }
+                    $post = $post.' <div id="nuevos-comentarios-post'.$publicacion->getID().'" class="comentarios-publicacion">';
                     $comentariosPublicacion = $modelo_comentario->getComentariosPublicacion($publicacion->getID());
                     if($comentariosPublicacion)
                         foreach($comentariosPublicacion as $comentario){            
-                            $post = $post.' <div class="comentario row"> <div class="col-2"><img src="'.(($comentario->getImagenUsuario()!="")? __urlFotoGuardada__.$comentario->getImagenUsuario(): __urlFotoUsuario__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>
+                            $post = $post.' <div class="comentario row"> <div class="col-2"><img src="'.(($comentario->getImagenMascota()!="")? __urlFotoGuardada__.$comentario->getImagenMascota(): __urlFotoMascota__ ).'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>
                                                 <div class="col-10">
-                                                    <div class="row"><label>'.$comentario->getNombreUsuario().'</label></div>
+                                                    <div class="row"><label>'.$comentario->getNombreMascota().'</label></div>
                                                     <div class="row"><p>'.$comentario->getComentario().'</p></div>
                                                 </div>
                                             </div>';
@@ -68,10 +71,11 @@ include '../models/comentarios_model.php';
                         
                     $posts = $posts.$post.'</div></div></div></div>';
                 }
+            }
             return $posts;
         }
 
-        private function getWoofsUsuario($numWoofs){
+        private function getWoofsMascota($numWoofs){
             $woofsIcons = "<div class='woof-icons'>";
             for($i=0; $i<$numWoofs;$i++){
                 $woofsIcons = $woofsIcons ."<i class='fas fa-paw woofed'></i>";
@@ -91,11 +95,11 @@ include '../models/comentarios_model.php';
                 $btnWoofs = '<form class="form-woof">
                             <input type="hidden" name="UserID" value="'.$_SESSION["UserID"].'">
                             <input type="hidden" class ="mediaID" name="MediaID" value="'.$mediaID.'">
-                            <button type="submit" name="Puntos" class="btn-woof 1 '.$mediaID.'" value="1"><i class="fas fa-paw"></i></button>
-                            <button type="submit" name="Puntos" class="btn-woof 2 '.$mediaID.'" value="2"><i class="fas fa-paw"></i></button>
-                            <button type="submit" name="Puntos" class="btn-woof 3 '.$mediaID.'" value="3"><i class="fas fa-paw"></i></button>
-                            <button type="submit" name="Puntos" class="btn-woof 4 '.$mediaID.'" value="4"><i class="fas fa-paw"></i></button>
-                            <button type="submit" name="Puntos" class="btn-woof 5 '.$mediaID.'" value="5"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof puntos-1 media-'.$mediaID.'" value="1"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof puntos-2 media-'.$mediaID.'" value="2"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof puntos-3 media-'.$mediaID.'" value="3"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof puntos-4 media-'.$mediaID.'" value="4"><i class="fas fa-paw"></i></button>
+                            <button type="submit" name="Puntos" class="btn-woof puntos-5 media-'.$mediaID.'" value="5"><i class="fas fa-paw"></i></button>
                         </form>';
             }
             return $btnWoofs;

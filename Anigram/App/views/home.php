@@ -23,5 +23,9 @@
             echo $media_controller->getUltimasPublicaciones();
         ?>
     </div>
+    <div ID="masContenido">
+        <button id="cargaMasContenido" class="btn btn-outline-info">Cargar más</button>
+    </div>
+    
 </body>
 </html>

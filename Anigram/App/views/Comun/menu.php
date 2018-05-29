@@ -7,25 +7,30 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu-lateral">
     <a class="navbar-item" id="selector-mascota-icon"><img class="perfil-pe " src="<?php  if(isset($_SESSION['fotoPerfilActivo'])){ echo $_SESSION['fotoPerfilActivo']; } else{ echo ''.__urlFotoUsuario__;} ?>" alt="Haga click para cambiar de mascota" /></a>
     <a class="navbar-item" href="./home.php"><i id="home-icon" class="material-icons">home</i></a>
-    <a class="navbar-item" href="./notificaciones.php"><img  class="menu-icon " src="<?= __urlFotoIcono__?>notificaciones-icon.png" alt="Ir a notificaciones"></a>
-    <a class="navbar-item" href="./busqueda.php"><img  class="menu-icon " src="<?= __urlFotoIcono__?>search-icon.png" alt="Ir a búsqueda"></a>
     <?php 
-       if(isset($_SESSION['UserID'])) echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subirFotoMascota">
-            <img src="'.__urlFotoIcono__.'pataFondo.png">
-        </button> ';
+       if(isset($_SESSION['UserID'])) 
+          echo '<a class="navbar-item" href="./notificaciones.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'notificaciones-icon.png" alt="Ir a notificaciones"></a>
+                <a class="navbar-item" href="./busqueda.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'search-icon.png" alt="Ir a búsqueda"></a>
+                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subirFotoMascota">
+                  <img src="'.__urlFotoIcono__.'pataFondo.png">
+                </button> 
+                
+                <a class="navbar-item" href="./amigos.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'friends-icon.png" alt="Ir a amigos"></a>
+                <a class="navbar-item" href="./config.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'config-icon.png" alt="Ir a configuración"></a>';
     ?>
-    <a class="navbar-item" href="./amigos.php"><img  class="menu-icon " src="<?= __urlFotoIcono__?>friends-icon.png" alt="Ir a amigos"></a>
-    <a class="navbar-item" href="./config.php"><img  class="menu-icon " src="<?= __urlFotoIcono__?>config-icon.png" alt="Ir a configuración"></a>
     <a class="navbar-item" href="../controllers/logout_controller.php"><img  class="menu-icon " src="<?= __urlFotoIcono__?>logout-icon.png" alt="Ir a Login"></a>
 
 </nav>
 
 <?php if(isset($_SESSION['LoginSuccess'] ) && $_SESSION['LoginSuccess'] ) { ?>
   <div id="menu-secundario" class="bounceOutLeft">
-      <?php  
-          $mascotas_controller = new es\ucm\fdi\aw\Mascota_Controller();
-          echo $mascotas_controller->getMascotasUsuario($_SESSION['UserID']);
-      ?>
+      <form action="../controllers/gestionaCambioMascota.php" method="post">
+        <?php  
+            $mascotas_controller = new es\ucm\fdi\aw\Mascota_Controller();
+            echo $mascotas_controller->getMascotasUsuario($_SESSION['UserID']);
+        ?>
+      </form>
   </div>
 <?php  } ?>
 

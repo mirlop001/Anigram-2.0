@@ -23,7 +23,7 @@
                 $_SESSION['UserID'] = $usuario->getID();
                 $_SESSION['RolUsuario'] = $usuario->getRol();
                 
-
+                $_SESSION['IDPerfilActivo'] = $mascota->getID();
                 $_SESSION['fotoPerfilActivo'] = ($mascota->getURLFoto() != "")? __urlFotoGuardada__.$mascota->getURLFoto():__urlFotoUsuario__;
                 $_SESSION['NombrePerfilActivo'] = $mascota->getNombre();
             }

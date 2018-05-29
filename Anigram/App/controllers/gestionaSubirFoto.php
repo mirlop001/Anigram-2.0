@@ -7,8 +7,8 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
 
 $modeloMascota = new es\ucm\fdi\aw\Media_Model();
 
-$userID = htmlspecialchars(trim(strip_tags($_REQUEST['UserID'])));
-$IDmascota = htmlspecialchars(trim(strip_tags($_REQUEST['mascota'])));
+$userID = $_SESSION['UserID'];
+$IDmascota = $_SESSION['IDPerfilActivo'];
 
 //Obtener datos de la mascota
 if(isset($_FILES['fotoMascota']) && $_FILES['fotoMascota']['error'] == 0){

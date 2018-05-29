@@ -147,9 +147,9 @@
                 success: function(data) {
 
                     (function(p) {
-                        $('.btn-woof .fa-paw').removeClass('woofed');
+                        $('.btn-woof.media-' + media + ' .fa-paw').removeClass('woofed');
                         for (var i = 1; i <= p; i++) {
-                            $('.btn-woof.' + i + '.' + media + ' .fa-paw').addClass('woofed');
+                            $('.btn-woof.puntos-' + i + '.media-' + media + ' .fa-paw').addClass('woofed');
                         }
 
 
@@ -221,7 +221,7 @@ function getError(mensaje, clase) {
 function muestraNuevoComentario(data) {
     var imagen = "";
     if (data.ImagenUsuario != "") {
-        imagen = '__urlFotoIcono__saved/' + data.ImagenUsuario;
+        imagen = '../../public/img/saved/' + data.ImagenUsuario;
     } else {
         imagen = '../../public/img/Juan-Niebla.png';
     }
