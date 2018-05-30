@@ -52,6 +52,11 @@ include '../models/mascota_model.php';
             
         }
 
+        function getMPrincipal($IDUser){
+            $modelo_mascota = new Mascota_Model();
+            return $modelo_mascota->getMascotaPrincipalByID($IDUser);
+        }
+
     
     }
 ?>

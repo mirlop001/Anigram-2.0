@@ -2,9 +2,15 @@
     include_once '../configuracion/config.php';
     include_once '../controllers/publicacion_controller.php';
     include 'Comun/cabecera.php';
+    include_once '../controllers/mascota_controller.php';
+
+    $mascota = new es\ucm\fdi\aw\Mascota_Controller(); 
+    $datos = $mascota->getMPrincipal($_SESSION['UserID']); 
+    $nombre = $datos->getNombre();
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +39,7 @@
                     <div class="contenedor contedor-derecho separador col-md-12 col-lg-6 offset-lg-1">
                         <ul class="nav nav-tabs select-tabs">
                             <li class="nav-item">
-                                <a id="Mascota" class="menu-tabs nav-link active" aria-label="div-mascota" onclick="selectTab('Mascota');">Mascota</a>
+                                <a id="Mascota" class="menu-tabs nav-link active" aria-label="div-mascota" onclick="selectTab('Mascota');"><?php echo $nombre;  ?></a>
                             </li>
                             <li class="nav-item">
                                 <a id="Comercio" class="menu-tabs nav-link" aria-label="div-comercio" onclick="selectTab('Comercio');">+</a>
@@ -43,11 +49,11 @@
                         <div id="div-Mascota" class="tab-content active">
                             <?php include 'updateMascota.php' ?>
                         </div>
-                        <!--
+                        
                         <div id="div-Comercio" class="tab-content">
-                            <?php //include 'updateMascota.php' ;
+                            <?php //include 'registroMascota.php' ;
                             ?>
-                        </div>-->
+                        </div>
                     </div> 
                 </div>
                 <div class="row">
@@ -61,3 +67,4 @@
     
 </body>
 </html>
+
