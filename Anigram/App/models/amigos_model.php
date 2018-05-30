@@ -56,31 +56,34 @@ class Amigos_Model{
     public function getAllPeticionesAceptadas($idSeguido) {
         $result = mysqli_query($this->db, "SELECT * FROM amigos WHERE  (IDSeguido= '$idSeguido' or IDSeguidor='$idSeguido') and Aceptado ='1'");
         $newAmigos = null;
-
-        if($result->num_rows > 0){
-            for($i=0; $i < $result->num_rows ; $i++){
-                if($row = $result->fetch_assoc()){
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                    if($row = $result->fetch_assoc()){
                     $amigos = new self();
                     $amigos->amigos($row['IDSeguidor'], $row['IDSeguido'], $row['Aceptado']);
                     $newAmigos[$i] = $amigos;
                 }
             }
         }
+        }
         return $newAmigos;
+
     }
     public function getAllPeticionesPendientes($idSeguido){
         $result = mysqli_query($this->db, "SELECT * FROM amigos WHERE IDSeguido= '$idSeguido' and Aceptado ='0'");
         $newAmigos = null;
-
-        if($result->num_rows > 0){
-            for($i=0; $i < $result->num_rows ; $i++){
-                if($row = $result->fetch_assoc()){
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                     if($row = $result->fetch_assoc()){
                     $amigos = new self();
                     $amigos->amigos($row['IDSeguidor'], $row['IDSeguido'], $row['Aceptado']);
                     $newAmigos[$i] = $amigos;
                 }
             }
         }
+    }
         return $newAmigos;
         
     }

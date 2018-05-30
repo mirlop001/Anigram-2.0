@@ -33,31 +33,140 @@ include_once '../models/amigos_model.php';
              }
             return $lista;
         }
-        public static function getSeguidosFiltro($idSeguido){
+  
+        public static function getSeguidosPorTipo($tipo,$actualUser){
+            $mascota_model = new Mascota_Model();
             $amigos_model = new Amigos_Model();
-            $mascota_model= new Mascota_Model();
-            
-            $mascotasUser = $mascota_model->getDatosMascota($_SESSION['IDAmoBuscado']);
             $lista="";
-            foreach($mascotasUser as $pet){
-            $peticionesAceptadasFiltro= $amigos_model->peticionesAceptadas($pet->getID(), $idSeguido);
-            if($peticionesAceptadasFiltro['IDSeguidor']== $idSeguido)$datosMascota= $mascota_model->getDatosMascota($peticionesAceptadasFiltro['IDSeguido']);
-            else $datosMascota = $mascota_model->getDatosMascota($peticionesAceptadasFiltro['IDSeguidor']);
-            foreach($datosMascota as $mascota){
-            $lista =   $lista . '<div class="panel panel-default">
-                         <div class="panel-body">
-                         <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
-			 		    </div>';
-           }
+            $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
+        
+            foreach ($peticionesAceptadas as $peticiones) {
+
+                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
+                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $datosMascota = $mascota_model->buscarMascotaByTipo($tipo);
+                    if($datosMascota){
+               
+                        foreach ($datosMascota as $mascota) {
+                  
+                            if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo()){
+                            $lista =   $lista . '<div class="panel panel-default">
+                            <div class="panel-body">
+                            <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+			 		        </div>';
+                        }
+                    
+                    }
+                }
+                    else {
+                        $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos de ese tipo
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>';
+                    }   
+            }
+           
+            
+            return $lista;
+        }
+        public static function getSeguidosPorTipoNombreM($tipo,$actualUser,$nombreMascota){
+            $mascota_model = new Mascota_Model();
+            $amigos_model = new Amigos_Model();
+            $lista="";
+            $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
+        
+            foreach ($peticionesAceptadas as $peticiones) {
+
+                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
+                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $datosMascota = $mascota_model->buscarMascotasByTipoNombre($tipo,$nombreMascota);
+                if($datosMascota){
+                    foreach ($datosMascota as $mascota) {
+                  
+                            if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $nombreMascota == $mascota->getNombre() ){
+                                $lista =   $lista . '<div class="panel panel-default">
+                                <div class="panel-body">
+                                <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+			 		            </div>';
+                            }
+                   
+                    }
+                }
+                else {
+                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos de ese tipo o nombre mascota.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>';
+            }   
         }
             return $lista;
         }
+        public static function getSeguidosPorTipoAmo($tipo,$actualUser,$IDAmo){
+            $mascota_model = new Mascota_Model();
+            $amigos_model = new Amigos_Model();
+            $lista="";
+            $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
+        
+            foreach ($peticionesAceptadas as $peticiones) {
 
+                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
+                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $datosMascota = $mascota_model->buscarMascotasByTipoAmo($tipo,$IDAmo);
+                    if($datosMascota){
+                        foreach ($datosMascota as $mascota) {
+                  
+                            if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $IDAmo = $mascota->getAmo()){
+                                $lista =   $lista . '<div class="panel panel-default">
+                                <div class="panel-body">
+                                <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+			 		            </div>';
+                            }
+                   
+                    }
+                }
+                else {
+                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos con ese tipo de mascota o con el nombre de mascota.
+                            button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>';
+                }   
+            }
+            return $lista;
+        }
+        public static function getSeguidosAllFiltros($tipo, $nombreMascota, $IDAmo, $actualUser){
+            $mascota_model = new Mascota_Model();
+            $amigos_model = new Amigos_Model();
+            $lista="";
+            $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
+        
+            foreach ($peticionesAceptadas as $peticiones) {
+
+                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
+                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $datosMascota = $mascota_model->buscarMascota($tipo,$nombreMascota,$IDAmo);
+                    if($datosMascota){
+                        foreach ($datosMascota as $mascota) {
+                  
+                            if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $nombreMascota = $mascota->getNombre() && $IDAmo = $mascota->getAmo()){
+                                $lista =   $lista . '<div class="panel panel-default">
+                                <div class="panel-body">
+                                <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+			 		            </div>';
+                            }
+                   
+                    }
+                }
+                else {
+                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos con ese tipo de mascota, con el nombre de mascota o con el nombre del dueño.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>';
+                }   
+            }
+            return $lista;
+        }
+        
         public static function getPeticionesAmistad($idSeguido){
             $amigos_model = new Amigos_Model();
             $mascota_model= new Mascota_Model();
             $peticionesPendientes = $amigos_model->getAllPeticionesPendientes($idSeguido);
-           $lista ="";
+            $lista ="";
             if($peticionesPendientes){
             foreach($peticionesPendientes as $peticiones){
                 $datosMascotas = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());

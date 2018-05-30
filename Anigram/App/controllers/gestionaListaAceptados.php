@@ -15,31 +15,45 @@ $tipo = htmlspecialchars(trim(strip_tags($_REQUEST['tipo'])));
 $nombreMascota = htmlspecialchars(trim(strip_tags($_REQUEST['nombreMascota'])));
 $nombreDueño = htmlspecialchars(trim(strip_tags($_REQUEST['nombreDueño'])));
 
-$idAmo = $usuario->getUserConMascota($nombreDueño);
-$mascotasByAmo = $mascota->getMascotasByIDUsuario($idAmo['ID']);
+// $idAmo = $usuario->getUserConMascota($nombreDueño);
+// $mascotasByAmo = $mascota->getMascotasByIDUsuario($idAmo['ID']);
+ $IDTipoMascota = $tipoMascota->getIDByNombre($tipo);
+if($tipo || $nombreMascota || $nombreDueño){
+    $_SESSION['conFiltro']= true;
+    if($tipo!=null && $nombreMascota == null && $nombreDueño ==null){
+            $_SESSION['busquedaTipo'] = $IDTipoMascota['ID']; 
+            $_SESSION['mascotaByTipo'] = true;
+            
 
-
-//$mascotaBuscada = $mascota->getMascotasByIDUsuario($id)
-        if($tipo && $nombreMascota && $nombreDueño){
-                    $_SESSION['conFiltro']=true;
-                    $_SESSION['nombreDueñoBuscado'] = $nombreDueño;
-                    $_SESSION['nombreMascotaBuscada']= $nombreMascota;
-                    $_SESSION['tipoBuscado'] = $tipo;
-                    $_SESSION['IDAmoBuscado'] = $idAmo['ID'];
-              
-                    }
-                    
-                    
-                
- 
-        
-        else {
-            $_SESSION['conFiltro']=false;
-        }
+    }
+    else if($tipo!=null && $nombreMascota!=null && $nombreDueño == null){
+            $_SESSION['busquedaNombreMascota'] = $nombreMascota;
+            $_SESSION['busquedaTipo'] = $IDTipoMascota['ID']; 
+            $_SESSION['mascotaByNombreTipo'] = true;
     
-
-         header('Location: ../views/amigos.php');
-         exit();
+    }
+    else if($tipo && $nombreMascota==null && $nombreDueño){
+            $IDAmo = $usuario->getUserConMascota($nombreDueño);
+            $_SESSION['busquedaNombreDueño'] = $IDAmo['ID'];
+            $_SESSION['busquedaTipo'] = $IDTipoMascota['ID']; 
+            $_SESSION['mascotaByDueñoTipo'] = true;
+            
+    }
+    else if($tipo && $nombreMascota && $nombreDueño){
+            
+            $_SESSION['nombreDueñoBuscado'] = $nombreDueño;
+            $_SESSION['nombreMascotaBuscada']= $nombreMascota;
+            $_SESSION['tipoBuscado'] = $tipo;
+            $_SESSION['IDAmoBuscado'] = $idAmo['ID'];               
+              
+    }     
+}  
+                    
+        
+else $_SESSION['conFiltro']=false;
+      
+header('Location: ../views/amigos.php');
+exit();
  
 
 ?>
