@@ -27,9 +27,3 @@ ALTER TABLE `comentario` DROP FOREIGN KEY `FK_Comentario_usuario`; ALTER TABLE `
 
 /*Amigos*/
 ALTER TABLE `amigos` DROP FOREIGN KEY `FK_Amigos_seguido`; ALTER TABLE `amigos` ADD CONSTRAINT `FK_Amigos_seguido` FOREIGN KEY (`IDSeguido`) REFERENCES `mascota`(`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `amigos` ADD `Aceptado` TINYINT NOT NULL ;
-/*Para probar casos*/
-INSERT INTO `amigos` (`IDSeguidor`, `IDSeguido`, `Aceptado`) VALUES
-(40, 53, 1),
-(41, 53, 1),
-(42, 53, 0);
