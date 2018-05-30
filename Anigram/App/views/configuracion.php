@@ -29,7 +29,7 @@
                     <div class="contenedor contedor-izquierdo col-md-12 col-lg-5">
                         <?php include 'updateUsuario.php' ?>
                     </div>
-                    <!--
+                    
                     <div class="contenedor contedor-derecho separador col-md-12 col-lg-6 offset-lg-1">
                         <ul class="nav nav-tabs select-tabs">
                             <li class="nav-item">
@@ -41,13 +41,14 @@
                         </ul>
 
                         <div id="div-Mascota" class="tab-content active">
-                            <?php //include 'updateMascota.php' ?>
+                            <?php include 'updateMascota.php' ?>
                         </div>
+                        <!--
                         <div id="div-Comercio" class="tab-content">
                             <?php //include 'updateMascota.php' ;
                             ?>
-                        </div>
-                    </div> -->
+                        </div>-->
+                    </div> 
                 </div>
                 <div class="row">
                     <div id="boton_enviar" >

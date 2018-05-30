@@ -12,12 +12,12 @@
     </div>
 
     <div class="col-md-6">
-        <input type="text" class="formulario-textbox required" name="nombre" value='<?= (isset($_SESSION["Nombre_Mascota"]))? $_SESSION["Nombre_Mascota"]:"" ?>' placeholder = "Nombre" />
-        <input type="text" class="formulario-textbox required" name="raza" value='<?= (isset($_SESSION["Raza_Mascota"]))? $_SESSION["Raza_Mascota"]:"" ?>' placeholder = "Raza"  />
+        <input type="text" class="formulario-textbox required" name="nombre" value='<?= (isset($_SESSION["Nombre_Mascota"]))? $_SESSION["Nombre_Mascota"]:"" ?>' placeholder = "Nuevo nombre" />
+        <input type="text" class="formulario-textbox required" name="raza" value='<?= (isset($_SESSION["Raza_Mascota"]))? $_SESSION["Raza_Mascota"]:"" ?>' placeholder = "Nueva raza"  />
         <input type="text" class="formulario-textbox required" name="tipo" id="input-tipo-mascota" value='<?= (isset($_SESSION["Tipo_Mascota"]))? $_SESSION["Tipo_Mascota"]:null ?>'  />
     
         <button class="btn btn-secondary dropdown-toggle" id="dropdownTipoMascota" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <label>Tipo de mascota:</label>
+            <label>Cambiar tipo de mascota:</label>
             <i class="material-icons">arrow_drop_down</i>
         </button>
         <div id="tipos-mascota" class="dropdown-menu" aria-labelledby="dropdownTipoMascota">
@@ -29,7 +29,7 @@
     </div>	
 </div>
 <div class="col-md-12 row">
-    <textarea name="bio" class="formulario-textbox bio-mascota" rows="6" placeholder="Descripción" cols="20"  ><?= (isset($_SESSION["Bio_Mascota"]))? $_SESSION["Bio_Mascota"]:"" ?></textarea>
+    <textarea name="bio" class="formulario-textbox bio-mascota" rows="6" placeholder="Nueva descripción" cols="20"  ><?= (isset($_SESSION["Bio_Mascota"]))? $_SESSION["Bio_Mascota"]:"" ?></textarea>
 </div>
 		
 

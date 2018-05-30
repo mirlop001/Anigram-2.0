@@ -98,6 +98,17 @@ class Mascota_Model{
         }
     }
 
+    function getMascotaPrincipalByID($IDUsuario){
+        $result = mysqli_query($this->db, "SELECT * from mascota where Amo = '$IDUsuario' and Principal = '1' "  );
+        if($result->num_rows > 0){
+            if($row = $result->fetch_assoc()){
+                $mascotaObject = new self();
+                $mascotaObject->nuevoMediaObject($row['ID'], $IDUsuario, $row['Tipo'],$row['Nombre'], $row['Raza'], $row['URLFoto'], $row['Bio']);
+                return $mascotaObject;
+            }
+        }
+    }
+
     function getIDmascota($nombreMascota){
         $idMascota = null;
         if ($result = mysqli_query($this->db, "SELECT * from mascota where Nombre ='$nombreMascota'")) {
@@ -140,6 +151,26 @@ class Mascota_Model{
             }
         }
         return $mascota;
+    }
+
+    function updateNombre($nombre, $id){
+        mysqli_query($this->db, "UPDATE mascota SET Nombre = '$nombre' WHERE mascota.ID = '$id';");
+    } 
+
+    function updateRaza($raza, $id){
+        mysqli_query($this->db, "UPDATE mascota SET Raza = '$raza' WHERE mascota.ID = '$id';");
+    } 
+
+    function updateTipo($tipo, $id){
+        mysqli_query($this->db, "UPDATE mascota SET Tipo = '$tipo' WHERE mascota.ID = '$id';");
+    } 
+
+    function updateBio($bio, $id){
+        mysqli_query($this->db, "UPDATE mascota SET Bio = '$bio' WHERE mascota.ID = '$id';");
+    } 
+
+    function updateURL($url, $id){
+        mysqli_query($this->db, "UPDATE mascota SET URLFoto = '$url' WHERE mascota.ID = '$id';"); 
     }
 }
 ?>

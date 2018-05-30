@@ -22,6 +22,7 @@
                 $_SESSION['LoginSuccess'] = true;
                 $_SESSION['UserID'] = $usuario->getID();
                 $_SESSION['RolUsuario'] = $usuario->getRol();
+                $_SESSION['Email'] = $usuario->getEmail(); 
                 
                 $_SESSION['IDPerfilActivo'] = $mascota->getID();
                 $_SESSION['fotoPerfilActivo'] = ($mascota->getURLFoto() != "")? __urlFotoGuardada__.$mascota->getURLFoto():__urlFotoUsuario__;

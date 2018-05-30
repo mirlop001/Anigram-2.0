@@ -3,10 +3,12 @@
 use es\ucm\fdi\aw\SubidaImagen_Controller;
     require_once '../configuracion/config.php';
     require_once "../models/usuario_model.php";
+    require_once "../models/mascota_model.php";
     require_once "../controllers/gestionaSubidaImagen.php";
     require_once "../controllers/password_compat-master/lib/password.php";
 
     $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
+    $modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
 
     $urlFoto = null;
     //Obtener datos usuario
@@ -25,7 +27,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     $raza = htmlspecialchars(trim(strip_tags($_POST['raza'])));
     $tipo = htmlspecialchars(trim(strip_tags($_POST['tipo'])));
     $bio = htmlspecialchars(trim(strip_tags($_POST['bio'])));
-    $urlFotoMascota = "";
+    if($_GET['fotoPerfilMascota']) $urlFotoMascota = $_GET['fotoPerfilMascota'];
 
     //Obtener foto de la mascota
     if(isset($_FILES["fotoPerfilMascota"]["name"][0])&& $_FILES["fotoPerfilMascota"]["name"][0]!= "")
@@ -67,36 +69,31 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
             
             echo 'IMAGEN GUARDADA';
         }
-
-        if($rol == 1){
-
-            if(isset($_FILES['fotoPerfilMascota']) && $_FILES['fotoPerfilMascota']['error'] == 0){
-                $nombre_imagen = $_FILES['fotoPerfilMascota']['name'];
-                $imagen_tmp =$_FILES['fotoPerfilMascota']['tmp_name'];
-                $urlFotoMascota = $_SESSION['UserID'].'-'.$nombre_imagen;
-
-                $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen,$_SESSION['UserID'], $urlFotoMascota);
-                $imagen->guardaImagen();
-            }
-            header('Location: ./gestionaRegistroMascota.php?id_amo='.$_SESSION['UserID'].'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$urlFotoMascota);
-            exit;
-        }else if($rol == 2){
-            if(isset($_FILES['fotoPerfilComercio'])  && $_FILES['fotoPerfilComercio']['error'] == 0){
-                $nombre_imagen = $_FILES['fotoPerfilComercio']['name'];
-                $imagen_tmp =$_FILES['fotoPerfilComercio']['tmp_name'];
-                $urlFotoMascota =$_SESSION['UserID'].'-'.$nombre_imagen;
-
-                $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $_SESSION['UserID'], $urlFotoComercio);
-                $imagen->guardaImagen();
-            }
-            header('Location: ./gestionaRegistroComercio.php?id_amo='.$_SESSION['UserID'].'&nombre='.$nombreComercio.'&telefono='.$telefono.'&correo='.$correo.'&descripcion='.$descripcion.'&urlFoto='.$urlFotoComercio);
-            exit;
-
-        }else{
-            header('Location: ../views/config.php');
-            exit;
-        }
-    
     }
+    $mascota = $modeloMascota->getMascotaPrincipalByID($_SESSION['UserID']); 
+    $idMascota = $mascota->getID();
+
+    if($nombreMascota != ''){
+        $modeloMascota->updateNombre($nombreMascota, $idMascota ); 
+    }
+    
+    if($raza != ''){
+        $modeloMascota->updateRaza($raza, $idMascota);
+    }
+    
+    if($tipo != ''){
+        $modeloMascota->updateTipo($tipo, $idMascota); 
+    }
+    
+    if($bio != ''){
+        $modeloMascota->updateBio($bio, $idMascota); 
+    }
+    
+    if($urlFoto != '' ){ 
+        $modeloMascota->updateURL($urlFoto, $idMascota);
+        $_SESSION['fotoPerfilMascota'] = $urlFoto;
+    }
+
+
 
 ?>
