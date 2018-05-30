@@ -141,5 +141,11 @@ namespace es\ucm\fdi\aw;
 
             mysqli_query($this->db, "UPDATE usuario SET Email = '$email' WHERE usuario.ID = '$id';");
         }
+        function getUserConMascota($nombreCompleto){
+            
+            $result = mysqli_query($this->db, "SELECT * from usuario where NombreCompleto = '$nombreCompleto' and Rol ='1'");
+            return  mysqli_fetch_array($result);
+
+        }
     }
 ?>

@@ -98,6 +98,48 @@ class Mascota_Model{
         }
     }
 
-  
+    function getIDmascota($nombreMascota){
+        $idMascota = null;
+        if ($result = mysqli_query($this->db, "SELECT * from mascota where Nombre ='$nombreMascota'")) {
+        if($result->num_rows > 0){
+            if($row = $result->fetch_assoc()){
+                $idMascota['ID'] = $row['ID'];
+               
+            }
+        }
+            return $idMascota;
+        }
+        else    {printf("No se ha devuelto nada con los valores %s %s", $email, $clave);}
+        return $idMascota;
+        
+    }
+    //hay que utilizarlo al buscar amigos con filtro!
+    function buscarMascota($amo,$tipo, $ID){
+        $mascotaID = null;
+       if($result = mysqli_query($this->db, "SELECT * from mascota where  Amo ='$amo' and Tipo ='$tipo' and ID ='$ID'")){
+        if($result->num_rows > 0){
+            $mascota = mysqli_fetch_array($result);
+            $mascotaID = $mascota['ID'];
+            }
+        return $mascotaID;
+        
+        }
+    }
+    function getDatosMascota($idMascota){
+        $result = mysqli_query($this->db, "SELECT * from mascota where ID = '$idMascota'");
+
+        $mascota= null;
+
+        if($result->num_rows > 0){
+            for($i=0; $i < $result->num_rows ; $i++){
+                if($row = $result->fetch_assoc()){
+                    $mascotaObject = new self();
+                    $mascotaObject->nuevoMediaObject($idMascota, $row['Amo'], $row['Tipo'],$row['Nombre'], $row['Raza'], $row['URLFoto'], $row['Bio']);
+                    $mascota[$i] = $mascotaObject;
+                }
+            }
+        }
+        return $mascota;
+    }
 }
 ?>
