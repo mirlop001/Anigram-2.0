@@ -1,7 +1,8 @@
 <?php
     include_once '../configuracion/config.php';
     include_once '../controllers/publicacion_controller.php';
-    include 'Comun/cabecera.php';
+    include_once '../controllers/mascota_controller.php';
+    include_once 'Comun/cabecera.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@
 </head>
 <body>
     <?php
-        include 'Comun/menu.php';
+        include_once 'Comun/menu.php';
     ?> 
 	<div class="container-anigram ">
         
@@ -26,6 +27,14 @@
     <div ID="masContenido">
         <button id="cargaMasContenido" class="btn btn-outline-info">Cargar más</button>
     </div>
-    
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="perfil-mascota-modal">
+                <div id="perfil-mascota-content"></div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

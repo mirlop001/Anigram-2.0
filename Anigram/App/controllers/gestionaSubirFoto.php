@@ -5,7 +5,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     require_once "gestionaSubidaImagen.php";   
 	require_once "../models/media_model.php";  
 
-$modeloMascota = new es\ucm\fdi\aw\Media_Model();
+$modeloMedia = new es\ucm\fdi\aw\Media_Model();
 
 $userID = $_SESSION['UserID'];
 $IDmascota = $_SESSION['IDPerfilActivo'];
@@ -19,14 +19,8 @@ if(isset($_FILES['fotoMascota']) && $_FILES['fotoMascota']['error'] == 0){
     $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $userID, $foto);
     $imagen->guardaImagen();
 }
-
-if($registrado = $modeloMascota->insertaNuevaImagen($IDmascota, $foto) == true){
+$registrado = $modeloMedia->insertaNuevaImagen($IDmascota, $foto) == true;
 
 	header('Location: ../views/home.php');
-}
-else {
-	header('Location: ../views/registro.php');
-}
-
 
 ?>

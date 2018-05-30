@@ -90,7 +90,49 @@
             color: #ffc37e;
         }
         /*------------------------- General ------------------------- */
+        #publicaciones img{
+            width: 100%;
+        }
+
+        #publicaciones div{
+            padding: 1;
+        }
+        div#publicaciones {
+            max-height: 40%;
+            overflow: auto;
+            padding: 5px;
+            border-style: ridge;
+            border: 2px #893545 dashed;
+            background-color: #651e2c;
+        }
         
+        
+
+        div#imagen-perfil {
+            justify-content: center;
+        }
+
+        #perfil-mascota-modal {
+            background-color: #8a2f41ed;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+        #perfil-mascota-modal h2 {
+            font-size: 5vh;
+        }
+        #perfil-mascota-modal h2, #perfil-mascota-modal label{
+            color: white;
+        }
+        button.btn-perfil label {
+            cursor: pointer;
+        }
+        
+        button.btn-perfil {
+            background: none;
+            border: none;
+        }
         svg.svg-inline--fa.fa-angle-down.fa-w-10,
         svg.svg-inline--fa.fa-angle-double-up.fa-w-10 {
             font-size: 60px;

@@ -83,6 +83,19 @@ var page;
             }
         });
 
-
+        $('.btn-perfil').on('click', function(event) {
+            var idMascota = event.currentTarget.value;
+            $.ajax({
+                url: '../../App/controllers/gestionaPerfilMascota.php',
+                type: "POST",
+                data: { 'idMascota': idMascota },
+                success: function(data) {
+                    if (data.match(/\w+/g)) {
+                        $('#perfil-mascota-content').html(data);
+                    } 
+                },
+                error: function(jXHR, textStatus, errorThrown) {}
+            });
+        });
     });
 })(page);

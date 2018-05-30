@@ -1,8 +1,8 @@
 <?php
 namespace es\ucm\fdi\aw;
-include '../models/media_model.php';
-include '../models/woof_model.php';
-include '../models/comentarios_model.php';
+include_once '../models/media_model.php';
+include_once '../models/woof_model.php';
+include_once '../models/comentarios_model.php';
 
     class Publicacion_Controller{
         private $actualPage;
@@ -24,16 +24,16 @@ include '../models/comentarios_model.php';
             if($ultimasPublicaciones){
                 foreach( $ultimasPublicaciones as $publicacion ){
                     $post = '<div class="row"><div class="publicacion offset-md-1 col-md-6 col-sm-12">
-                                <label><img ';
+                                    <button class="btn-perfil" value="'.$publicacion->getIDMascota().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                    <label><img ';
                     if($publicacion->getURLImagenMascota() != ""){
                         $post = $post.' src="'.__urlFotoGuardada__.$publicacion->getURLImagenMascota().'"';
                     } 
                     else   
                         $post = $post."src='".__urlFotoMascota__."'";
-
-                    $post = $post.' class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label>
+                                    $post = $post.' class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label></button>
                                 <div class="foto-publicada">
-                                    <img  src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="foto-publicada"/>
+                                        <img  src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="foto-publicada"/>
                                 </div>
                             </div>
                             <div class="publicacion comentarios  offset-md-1 col-md-4 col-sm-12">

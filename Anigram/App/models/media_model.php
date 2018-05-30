@@ -1,13 +1,16 @@
 <?php
 namespace es\ucm\fdi\aw;
+require_once '../models/woof_model.php';
 
 class Media_Model{
     private $db; 
     private $ID; 
+    private $IDMascota;
     private $NombreMascota; 
     private $URLImagenMascota; 
     private $URLImagen; 
     private $woofs; 
+    private $descripcion;
 
 
     public function __construct(){
@@ -20,19 +23,25 @@ class Media_Model{
         }
     }
 
-    function nuevoMediaObject($ID, $NombreMascota, $URLImagenMascota,  $URLImagen){
+    function nuevoMediaObject($ID, $IDMascota, $NombreMascota, $URLImagenMascota,  $URLImagen, $descripcion){
         $modelo_woofs = new Woof_Model();
         $woofsPublicacion = $modelo_woofs->getWoofsPublicacion($ID);
 
         $this->ID = $ID;
+        $this->IDMascota = $IDMascota;
         $this->NombreMascota = $NombreMascota;
         $this->URLImagenMascota = $URLImagenMascota;
         $this->URLImagen = $URLImagen;
         $this->woofs = $woofsPublicacion;
+        $this->descripcion = $descripcion;
     }
     
     public function getID(){
         return $this->ID;
+    }
+
+    public function getIDMascota(){
+        return $this->IDMascota;
     }
 
     public function getNombreMascota(){
@@ -50,6 +59,10 @@ class Media_Model{
     public function getWoofs(){
         return $this->woofs;
     }
+
+    public function getDescripcion(){
+        return $this->descripcion;
+    }
     
     function insertaNuevaImagen($IDMascota, $URLImagen, $tipo=1){
         $result = null;
@@ -58,10 +71,10 @@ class Media_Model{
 
         return $result;
     }
-
+    
     function obtenerTodasPublicaciones($page = 0, $top = __maxPublicacionesPaginador__){
         $offset =  $top * ($page);
-        $query = "SELECT media.ID as IDImagen, media.URLImagen, mascota.Nombre, Mascota.URLFoto, fecha 
+        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota,mascota.Nombre, mascota.URLFoto, fecha 
         from media inner join mascota on mascota.ID = media.Mascota ORDER BY fecha desc  limit ".$top." offset ".$offset;
         $result = mysqli_query($this->db, $query);
         $ultimasPublicaciones = null;
@@ -70,7 +83,7 @@ class Media_Model{
                 for($i=0; $i < $result->num_rows ; $i++){
                     if($row = $result->fetch_assoc()){
                         $mediaObject = new self();
-                        $mediaObject->nuevoMediaObject($row['IDImagen'], $row['Nombre'], $row['URLFoto'], $row['URLImagen']);
+                        $mediaObject->nuevoMediaObject($row['IDImagen'], $row['idMascota'], $row['Nombre'], $row['URLFoto'], $row['URLImagen'], $row['Descripcion']);
                         $ultimasPublicaciones[$i] = $mediaObject;
                     }
                 }
@@ -80,11 +93,11 @@ class Media_Model{
     }
 
     function getUltimasNPublicaciones($page = 0, $top = __maxPublicacionesPaginador__){
-        $query = "SELECT media.ID as IDImagen, media.URLImagen, mascota.Nombre, Mascota.URLFoto, fecha 
+        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota, mascota.Nombre, mascota.URLFoto, fecha 
         from media inner join mascota on mascota.ID = media.Mascota
                     inner JOIN amigos on amigos.IDSeguido = mascota.ID
-        where amigos.IDSeguidor =".$_SESSION['IDPerfilActivo'].
-        " UNION SELECT  media.ID as IDImagen, media.URLImagen, mascota.Nombre, Mascota.URLFoto, fecha from media inner join mascota on mascota.ID = media.Mascota where media.Mascota =".$_SESSION['IDPerfilActivo']." ORDER BY fecha desc  limit ".$top." offset ".($top * $page );
+        where amigos.IDSeguidor =".$_SESSION['IDPerfilActivo'];
+        //" UNION SELECT  media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.Nombre, Mascota.URLFoto, fecha from media inner join mascota on mascota.ID = media.Mascota where media.Mascota =".$_SESSION['IDPerfilActivo']." ORDER BY fecha desc  limit ".$top." offset ".($top * $page );
 
         $result = mysqli_query($this->db, $query);
         
@@ -94,12 +107,32 @@ class Media_Model{
                 for($i=0; $i < $result->num_rows ; $i++){
                     if($row = $result->fetch_assoc()){
                         $mediaObject = new self();
-                        $mediaObject->nuevoMediaObject($row['IDImagen'], $row['Nombre'], $row['URLFoto'], $row['URLImagen']);
+                        $mediaObject->nuevoMediaObject($row['IDImagen'], $row['idMascota'], $row['Nombre'], $row['URLFoto'], $row['URLImagen'], $row['Descripcion']);;
                         $ultimasPublicaciones[$i] = $mediaObject;
                     }
                 }
             }else{
                 $ultimasPublicaciones = $this->obtenerTodasPublicaciones($page, $top);
+            }
+        }
+        return $ultimasPublicaciones;
+    }
+
+    function getImagenesMascota($IDMascota){
+        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota, mascota.Nombre, mascota.URLFoto, fecha 
+        from media inner join mascota on mascota.ID = media.Mascota where mascota.ID = ".$IDMascota." ORDER BY fecha desc ";
+        $result = mysqli_query($this->db, $query);
+
+        $ultimasPublicaciones = null;
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                    if($row = $result->fetch_assoc()){
+                        $mediaObject = new self();
+                        $mediaObject->nuevoMediaObject($row['IDImagen'], $row['idMascota'], $row['Nombre'], $row['URLFoto'], $row['URLImagen'], $row['Descripcion']);;
+                        $ultimasPublicaciones[$i] = $mediaObject;
+                    }
+                }
             }
         }
         return $ultimasPublicaciones;

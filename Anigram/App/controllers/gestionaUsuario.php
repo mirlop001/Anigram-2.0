@@ -18,7 +18,7 @@
         $usuario = $usuario_controller->getDatosLogin( $email);
         if($usuario){
             if($result = password_verify($clave, $usuario->getClave())){
-                $mascota = $mascota_controller->getDatosMascotaPrincipal( $usuario->getMascotaPrincipal());
+                $mascota = $mascota_controller->getDatosMascota( $usuario->getMascotaPrincipal());
                 $_SESSION['LoginSuccess'] = true;
                 $_SESSION['UserID'] = $usuario->getID();
                 $_SESSION['RolUsuario'] = $usuario->getRol();

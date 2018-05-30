@@ -1,5 +1,6 @@
 <?php
 namespace es\ucm\fdi\aw;
+include_once '../models/media_model.php';
 include '../models/tipoMascota_model.php';
 include '../models/mascota_model.php';
 
@@ -46,12 +47,51 @@ include '../models/mascota_model.php';
             return $selectMascota;
         }
 
-        function getDatosMascotaPrincipal($IDMascota){
+        function getDatosMascota($IDMascota){
             $modelo_mascota = new Mascota_Model();
             return  $modelo_mascota->getMascotasByID($IDMascota);
             
         }
 
+        function getPerfilMascota($IDMascota){
+            $modelo_mascota = new Mascota_Model();
+            $modelo_media = new Media_Model();
+            $mascota = $modelo_mascota->getMascotasByID($IDMascota);
+            $publicaciones = $modelo_media->getImagenesMascota($IDMascota);
+
+
+            $perfil =  '<div id="perfil-mascota-content">
+            <div class="modal-header"> 
+                <h2 class="modal-title">'.$mascota->getNombre().'</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="imagen-perfil">
+                    <img class="perfil-gr" src=';
+                    if($mascota->getURLfoto() && $mascota->getURLfoto()!= "")
+                        $perfil = $perfil.__urlFotoGuardada__.$mascota->getURLfoto();
+                    else
+                        $perfil = $perfil.__urlFotoMascota__;
+                    $perfil = $perfil.' alt="Imagen temporal">
+                    
+                </div>
+
+                <label for="Publicaciones">Publicaciones</label>
+                <div class="row" id="publicaciones">';
+
+                foreach($publicaciones as $publicacion){    
+                    $perfil = $perfil.'<div class="col-4">
+                        <img src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="'.$publicacion->getDescripcion().'">
+                    </div>';
+                }
+                $perfil = $perfil.'</div>
+            </div></div>';
+
+            return $perfil;
+        }
+        
         function getMPrincipal($IDUser){
             $modelo_mascota = new Mascota_Model();
             return $modelo_mascota->getMascotaPrincipalByID($IDUser);
