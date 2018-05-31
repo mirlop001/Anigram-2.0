@@ -75,29 +75,31 @@ include '../models/mascota_model.php';
             $modelo_media = new Media_Model();
             $modelo_amigos = new Amigos_Model();
 
-            $idMascotaActual = $_SESSION['IDPerfilActivo'];
+            if(isset($_SESSION['IDPerfilActivo'])){ 
+                $idMascotaActual = $_SESSION['IDPerfilActivo'];
+                $amistad = $modelo_amigos->compruebaAmistad($idMascotaActual, $IDMascota);
+            }
+
             $mascota = $modelo_mascota->getMascotasByID($IDMascota);
             $publicaciones = $modelo_media->getImagenesMascota($IDMascota);
-            $amistad = $modelo_amigos->compruebaAmistad($idMascotaActual, $IDMascota);
-
             $perfil =  '<div class="modal-header"> 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h2 class="modal-title">'.$mascota->getNombre().'</h2>
-                <button id="seguir-usuario" class="btn btn-default" value="'.$mascota->getID().'"
-                ';
-                
-                if($amistad == 'no_seguido'){   
-                    $perfil = $perfil.'><h4>Seguir</h4>';
-                }else if($amistad == 'no_aceptado'){
-                    $perfil = $perfil.'disabled ><h4>Pendiente</h4>';
-                }else if($amistad == 'aceptado'){
-                    $perfil = $perfil.'disabled ><h4>Seguido</h4>';
+                <h2 class="modal-title">'.$mascota->getNombre().'</h2>';
+                if(isset($_SESSION['UserID'])){ 
+                    $perfil = $perfil.'<button id="seguir-usuario" class="btn btn-default" value="'.$mascota->getID().'"';
+                    
+                    if($amistad == 'no_seguido'){   
+                        $perfil = $perfil.'><h4>Seguir</h4>';
+                    }else if($amistad == 'no_aceptado'){
+                        $perfil = $perfil.'disabled ><h4>Pendiente</h4>';
+                    }else if($amistad == 'aceptado'){
+                        $perfil = $perfil.'disabled ><h4>Seguido</h4>';
+                    }
                 }
-
-            $perfil = $perfil. '</button>
-            </div>
+            $perfil = $perfil. '</button>';
+            $perfil = $perfil.'</div>
             <div class="modal-body">
                 <div class="row" id="imagen-perfil">
                     <img class="perfil-gr" src=';

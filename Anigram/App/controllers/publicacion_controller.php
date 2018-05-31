@@ -18,7 +18,8 @@ include_once '../models/amigos_model.php';
             $modelo_comentario = new Comentario_Model();
             $modelo_amigos = new Amigos_Model();
 
-            $tieneAmigos = $modelo_amigos->tieneAmigos($_SESSION['IDPerfilActivo']);
+            if(isset($_SESSION['IDPerfilActivo']) )
+                $tieneAmigos = $modelo_amigos->tieneAmigos($_SESSION['IDPerfilActivo']);
 
             $posts  = "";
             if(isset($_SESSION['IDPerfilActivo']) && $tieneAmigos > 0)
