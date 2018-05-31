@@ -30,7 +30,35 @@ class Amigos_Model{
     public function getIDSeguido(){
         return $this->idSeguido;
     }
+    public function getAceptado(){
+        return $this->Aceptado;
+    }
 
+    public function compruebaAmistad($idSeguidor, $idSeguido){
+        $result = mysqli_query($this->db, "SELECT * FROM amigos WHERE  idSeguidor = '$idSeguidor' and idSeguido = '$idSeguido'");
+        $amistad = 'no_seguido';
+        if($result){
+            if($result->num_rows > 0){
+                if($row = $result->fetch_assoc()){
+                    $amistad =  ($row['Aceptado'] == 1)? 'aceptado': 'no_aceptado';
+                }
+            }
+        }
+        return $amistad;
+    }
+
+    public function tieneAmigos($idMascota){
+        $result = null;
+        $result = mysqli_query($this->db, "select * from amigos where Aceptado = 1 and IDSeguidor = ".$idMascota);
+        return mysqli_num_rows($result);
+    }
+
+    public function nuevaPeticion($idSeguidor, $idSeguido){
+        $result = null;
+        if(mysqli_query($this->db, "INSERT INTO amigos (idSeguidor, idSeguido, Aceptado) VALUES ('$idSeguidor', '$idSeguido', '0')")) 
+            $result = mysqli_insert_id ($this->db);
+        return $result;
+    }
     public function añadirPeticion($idSeguidor, $idSeguido){
       
        if(mysqli_query($this->db, "INSERT INTO amigos (idSeguido, idSeguidor, Aceptado) VALUES ('$idSeguidor', '$idSeguido', '0')")) return true;

@@ -20,7 +20,7 @@
         });
 
         $(".tipo-mascota-drp").on("click", function(event) {
-            $("#dropdownTipoMascota").html($(this).html());
+            $("#dropdownTipo").html($(this).html());
             $("#input-tipo-mascota").val($(this).val());
         });
 

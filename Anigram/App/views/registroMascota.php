@@ -11,9 +11,9 @@
 			<div class="col-md-6">
 				<input type="text" class="formulario-textbox required" name="nombre" value='<?= (isset($_SESSION["Nombre_Mascota"]))? $_SESSION["Nombre_Mascota"]:"" ?>' placeholder = "Nombre"  required/>
 				<input type="text" class="formulario-textbox required" name="raza" value='<?= (isset($_SESSION["Raza_Mascota"]))? $_SESSION["Raza_Mascota"]:"" ?>' placeholder = "Raza" required />
-				<input type="text" class="formulario-textbox required" name="tipo" id="input-tipo-mascota" value='<?= (isset($_SESSION["Tipo_Mascota"]))? $_SESSION["Tipo_Mascota"]:null ?>' required />
+				<input type="text" class="formulario-textbox required" name="tipo" id="input-tipo-mascota"  required />
 			
-				<button class="btn btn-secondary dropdown-toggle" id="dropdownTipoMascota" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn-secondary dropdown-toggle" id="dropdownTipo dropdownTipoMascota" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<label>Tipo de mascota:</label>
 					<i class="material-icons">arrow_drop_down</i>
 				</button>

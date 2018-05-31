@@ -3,6 +3,7 @@ namespace es\ucm\fdi\aw;
 include_once '../models/media_model.php';
 include_once '../models/woof_model.php';
 include_once '../models/comentarios_model.php';
+include_once '../models/amigos_model.php';
 
     class Publicacion_Controller{
         private $actualPage;
@@ -15,8 +16,12 @@ include_once '../models/comentarios_model.php';
             $modelo_media = new Media_Model();
             $modelo_woofs = new Woof_Model();
             $modelo_comentario = new Comentario_Model();
+            $modelo_amigos = new Amigos_Model();
+
+            $tieneAmigos = $modelo_amigos->tieneAmigos($_SESSION['IDPerfilActivo']);
+
             $posts  = "";
-            if(isset($_SESSION['IDPerfilActivo']))
+            if(isset($_SESSION['IDPerfilActivo']) && $tieneAmigos > 0)
                 $ultimasPublicaciones = $modelo_media->getUltimasNPublicaciones($this->actualPage);
             else
                 $ultimasPublicaciones = $modelo_media->obtenerTodasPublicaciones($this->actualPage);

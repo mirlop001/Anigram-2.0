@@ -27,7 +27,7 @@
      
        
             <div class="row">
-                <div class="col align-self-center col-lg-8 offset-lg-2">
+                <div class="col align-self-center col-lg-10 offset-lg-1">
                 
                     <ul class="nav nav-tabs select-tabs1">
                         <li class="nav-item">

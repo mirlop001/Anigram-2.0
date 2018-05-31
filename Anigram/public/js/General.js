@@ -83,19 +83,36 @@ var page;
             }
         });
 
-        $('.btn-perfil').on('click', function(event) {
-            var idMascota = event.currentTarget.value;
-            $.ajax({
-                url: '../../App/controllers/gestionaPerfilMascota.php',
-                type: "POST",
-                data: { 'idMascota': idMascota },
-                success: function(data) {
-                    if (data.match(/\w+/g)) {
-                        $('#perfil-mascota-content').html(data);
-                    } 
-                },
-                error: function(jXHR, textStatus, errorThrown) {}
-            });
-        });
     });
 })(page);
+
+$(document).on('click','.btn-perfil', function(event){
+    var idMascota = event.currentTarget.value;
+    $.ajax({
+        url: '../../App/controllers/gestionaPerfilMascota.php',
+        type: "POST",
+        data: { 'idMascota': idMascota, 'comando': 'verPerfil' },
+        success: function(data) {
+            if (data.match(/\w+/g)) {
+                $('#perfil-mascota-content').html(data);
+            } 
+        },
+        error: function(jXHR, textStatus, errorThrown) {}
+    });
+});
+
+$(document).on('click','button#seguir-usuario', function(event){
+    var idMascota = event.currentTarget.value;
+    $.ajax({
+        url: '../../App/controllers/gestionaPerfilMascota.php',
+        type: "POST",
+        data: { 'idMascota': idMascota, 'comando': 'seguirMascota' },
+        success: function(data) {
+            if (data) {
+                $('button#seguir-usuario').html('<h5>Pendiente</h5>');
+                $('button#seguir-usuario').prop('disabled', true);
+            } 
+        },
+        error: function(jXHR, textStatus, errorThrown) {}
+    });
+});

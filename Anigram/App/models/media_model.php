@@ -93,12 +93,12 @@ class Media_Model{
     }
 
     function getUltimasNPublicaciones($page = 0, $top = __maxPublicacionesPaginador__){
-        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota, mascota.Nombre, mascota.URLFoto, fecha 
-        from media inner join mascota on mascota.ID = media.Mascota
-                    inner JOIN amigos on amigos.IDSeguido = mascota.ID
-        where amigos.IDSeguidor =".$_SESSION['IDPerfilActivo'];
-        //" UNION SELECT  media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.Nombre, Mascota.URLFoto, fecha from media inner join mascota on mascota.ID = media.Mascota where media.Mascota =".$_SESSION['IDPerfilActivo']." ORDER BY fecha desc  limit ".$top." offset ".($top * $page );
-
+        $offset =  $top * ($page);
+        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota,mascota.Nombre, mascota.URLFoto, fecha from media inner join mascota on mascota.ID = media.Mascota inner join amigos on mascota.ID = amigos.IDSeguido where amigos.IDSeguidor = ".$_SESSION['IDPerfilActivo']."
+        union 
+        SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota,mascota.Nombre, mascota.URLFoto, fecha from media inner join mascota on mascota.ID = media.Mascota where mascota.ID = ".$_SESSION['IDPerfilActivo']."
+        ORDER BY fecha desc  limit ".$top." offset ".$offset;
+        
         $result = mysqli_query($this->db, $query);
         
         $ultimasPublicaciones = null;

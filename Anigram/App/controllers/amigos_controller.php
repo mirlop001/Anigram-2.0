@@ -17,20 +17,24 @@ include_once '../models/amigos_model.php';
             $lista="";
             if($peticionesAceptadas){
                 
-                    foreach( $peticionesAceptadas as $peticiones ){
-                        if($actualUser == $peticiones->getIDSeguido())$datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
-                        else $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguido());
-                        foreach($datosMascota as $mascota){
+                foreach( $peticionesAceptadas as $peticiones ){
+                    if($actualUser == $peticiones->getIDSeguido())
+                        $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
+                    else 
+                        $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguido());
+                    
+                    foreach($datosMascota as $mascota){
                         $lista = $lista.
-                        '<div class="panel panel-default">
-                        <div class="panel-body">
-                        <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label>
-                        
-                        </div>
+                        '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
+                            <div class="panel-body">
+                                <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                    <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label>
+                                </button> 
+                            </div>
                         </div>';
                     }
-                }
-             }
+                }   
+            }
             return $lista;
         }
   
@@ -52,8 +56,10 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo()){
                             $lista =   $lista . '<div class="panel panel-default">
                             <div class="panel-body">
-                            <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
-			 		        </div>';
+                                <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                    <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+                                </button> 
+                            </div>';
                         }
                     
                     }
@@ -85,8 +91,10 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $nombreMascota == $mascota->getNombre() ){
                                 $lista =   $lista . '<div class="panel panel-default">
                                 <div class="panel-body">
-                                <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
-			 		            </div>';
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                        <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+                                    </button> 
+                                </div>';
                             }
                    
                     }
@@ -116,8 +124,10 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $IDAmo = $mascota->getAmo()){
                                 $lista =   $lista . '<div class="panel panel-default">
                                 <div class="panel-body">
-                                <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
-			 		            </div>';
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                        <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+                                    </button> 
+                                </div>';
                             }
                    
                     }
@@ -147,8 +157,10 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $nombreMascota = $mascota->getNombre() && $IDAmo = $mascota->getAmo()){
                                 $lista =   $lista . '<div class="panel panel-default">
                                 <div class="panel-body">
-                                <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
-			 		            </div>';
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                        <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+                                    </button> 
+                                </div>';
                             }
                    
                     }
@@ -168,35 +180,47 @@ include_once '../models/amigos_model.php';
             $peticionesPendientes = $amigos_model->getAllPeticionesPendientes($idSeguido);
             $lista ="";
             if($peticionesPendientes){
-            foreach($peticionesPendientes as $peticiones){
-                $datosMascotas = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
-                foreach($datosMascotas as $mascota){
+                foreach($peticionesPendientes as $peticiones){
+                    $datosMascotas = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
+                    foreach($datosMascotas as $mascota){
 
-                $lista = $lista .  '<div class="panel1 panel-default" id="peticiones-amigos">
-                             <div class="panel-body1">
-                             <form method="post" name="Aceptar" action="../controllers/gestionaPeticionesPendientes.php">
-                             <label><img src="../../public/img/saved/'.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'
-                            <div id= "boton-rechazar">
-                            <button type="submit" class="buscar" name="Rechazar" >Rechazar</button>
-                            </div>
-                            <div id="boton-aceptar">
-                            <button type="submit" class="botonAceptar" name="Aceptar">Aceptar</button>
-                            </div>
-                            <input type="hidden" id="mascota" name="mascotaID" value="'.$mascota->getID().'">
-                             </label>
-                            </form>
-                          
-                            </div>
-                            </div>';
+                    $lista = $lista .  '<div class="panel1 panel-default" id="peticiones-amigos">
+                                <div class="panel-body1">
+                                <form method="post" name="Aceptar" action="../controllers/gestionaPeticionesPendientes.php">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                        <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'
+                                    </button>
+                                    <div id= "boton-rechazar">
+                                    <button type="submit" class="buscar" name="Rechazar" >Rechazar</button>
+                                    </div>
+                                    <div id="boton-aceptar">
+                                    <button type="submit" class="botonAceptar" name="Aceptar">Aceptar</button>
+                                    </div>
+                                    <input type="hidden" id="mascota" name="mascotaID" value="'.$mascota->getID().'">
+                                    </label>
+                                </form>
                             
+                                </div>
+                                </div>';
+                                
+                    }
+
                 }
-
-               }
-                
-
+            }
+            return $lista;
         }
-        return $lista;
-    }
 
+        function seguirMascota($idMascota){
+            $idSeguidor = $_SESSION['IDPerfilActivo'];
+            $amigos_model= new Amigos_Model();
+            $amigos_model->nuevaPeticion($idSeguidor, $idMascota);
+        } 
+
+        function compruebaAmistad($idMascota){
+            $idSeguidor = $_SESSION['IDPerfilActivo'];
+            $amigos_model= new Amigos_Model();
+            $amigos_model->compruebaAmistad($idSeguido, $idMascota);
+        } 
     }
+    
 ?>

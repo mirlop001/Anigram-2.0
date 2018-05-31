@@ -11,13 +11,13 @@ $mascota = new Mascota_Model();
 $tipoMascota = new TipoMascota_Model();
 $usuario = new Usuario_Model();
 
-$tipo = htmlspecialchars(trim(strip_tags($_REQUEST['tipo'])));
+$IDTipoMascota = htmlspecialchars(trim(strip_tags($_REQUEST['tipo'])));
 $nombreMascota = htmlspecialchars(trim(strip_tags($_REQUEST['nombreMascota'])));
 $nombreDueño = htmlspecialchars(trim(strip_tags($_REQUEST['nombreDueño'])));
 
 // $idAmo = $usuario->getUserConMascota($nombreDueño);
 // $mascotasByAmo = $mascota->getMascotasByIDUsuario($idAmo['ID']);
- $IDTipoMascota = $tipoMascota->getIDByNombre($tipo);
+//  $IDTipoMascota = $tipoMascota->getIDByNombre($tipo);
 if($tipo || $nombreMascota || $nombreDueño){
     $_SESSION['conFiltro']= true;
     if($tipo!=null && $nombreMascota == null && $nombreDueño ==null){

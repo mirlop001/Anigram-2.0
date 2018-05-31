@@ -16,11 +16,28 @@ include '../models/mascota_model.php';
                 $drpTipos = $drpTipos." <li class='dropdown-item tipo-mascota-drp' href='#' value='".$tipo->getID()."' > <img ";
                 
                 if($tipo->getURLIcono() && $tipo->getURLIcono()!= "")
-                    $drpTipos = $drpTipos."src='__urlFotoIcono__".$tipo->getURLIcono()."' ";
+                    $drpTipos = $drpTipos."src='".__urlFotoIcono__.$tipo->getURLIcono()."' ";
                 else   
                     $drpTipos = $drpTipos."src='".__urlFotoMascota__."'";
                     
                 $drpTipos = $drpTipos."alt='perro-icon'><h2>".$tipo->getNombre()."</h2></li>";
+            }
+            return $drpTipos;
+        }
+        public static function getTiposMascotaBasic(){
+            $modelo_tipoMascota = new TipoMascota_Model();
+            $drpTipos = "";
+            $tipos_mascota = $modelo_tipoMascota->getTiposMascota();
+            
+            foreach( $tipos_mascota as $tipo ){
+                $drpTipos = $drpTipos." <li class='dropdown-item tipo-mascota-drp basic' href='#' value='".$tipo->getID()."' > <img ";
+                
+                if($tipo->getURLIcono() && $tipo->getURLIcono()!= "")
+                    $drpTipos = $drpTipos."src='".__urlFotoIcono__.$tipo->getURLIcono()."' ";
+                else   
+                    $drpTipos = $drpTipos."src='".__urlFotoMascota__."'";
+                    
+                $drpTipos = $drpTipos."alt='icono de mascota ".$tipo->getNombre()."' /></li>";
             }
             return $drpTipos;
         }
@@ -56,16 +73,30 @@ include '../models/mascota_model.php';
         function getPerfilMascota($IDMascota){
             $modelo_mascota = new Mascota_Model();
             $modelo_media = new Media_Model();
+            $modelo_amigos = new Amigos_Model();
+
+            $idMascotaActual = $_SESSION['IDPerfilActivo'];
             $mascota = $modelo_mascota->getMascotasByID($IDMascota);
             $publicaciones = $modelo_media->getImagenesMascota($IDMascota);
+            $amistad = $modelo_amigos->compruebaAmistad($idMascotaActual, $IDMascota);
 
-
-            $perfil =  '<div id="perfil-mascota-content">
-            <div class="modal-header"> 
-                <h2 class="modal-title">'.$mascota->getNombre().'</h2>
+            $perfil =  '<div class="modal-header"> 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <h2 class="modal-title">'.$mascota->getNombre().'</h2>
+                <button id="seguir-usuario" class="btn btn-default" value="'.$mascota->getID().'"
+                ';
+                
+                if($amistad == 'no_seguido'){   
+                    $perfil = $perfil.'><h4>Seguir</h4>';
+                }else if($amistad == 'no_aceptado'){
+                    $perfil = $perfil.'disabled ><h4>Pendiente</h4>';
+                }else if($amistad == 'aceptado'){
+                    $perfil = $perfil.'disabled ><h4>Seguido</h4>';
+                }
+
+            $perfil = $perfil. '</button>
             </div>
             <div class="modal-body">
                 <div class="row" id="imagen-perfil">
