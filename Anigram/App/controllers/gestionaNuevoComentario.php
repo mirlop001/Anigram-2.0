@@ -2,8 +2,10 @@
 
 require_once '../configuracion/config.php';
 require_once "../models/comentarios_model.php";  
+require_once "../models/hashtag_model.php";  
 
 $modeloComentario = new es\ucm\fdi\aw\Comentario_Model();
+$modeloHashtag = new es\ucm\fdi\aw\Hashtag_Model();
 
 $result = false;
 
@@ -17,9 +19,13 @@ if(preg_match('/\S+/',$Comentario)){
     foreach($hashtagsComentarios[0] as $hashtag) {
 		$regex = '/'.$hashtag.'/';
         
-        $Comentario = preg_replace($regex, '<span class="hashtag">'.$hashtag.'</span>', $Comentario);
-    };
-
+		$Comentario = preg_replace($regex, '<span class="hashtag">'.$hashtag.'</span>', $Comentario);
+		$ht = $modeloHashtag->buscaHashtagExactoPorNombre($hashtag);
+		if($ht){
+			$modeloHashtag->insertaHashtag($MediaID, $hashtag);
+		}
+	};
+	
 	
 	$idNuevoComentario = $modeloComentario->nuevoComentario($Comentario, $IDPerfilActivo, $MediaID);
 	$datosComentario = $modeloComentario->getComentarioByID($idNuevoComentario);

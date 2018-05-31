@@ -29,3 +29,5 @@ ALTER TABLE `media` ADD `Descripcion` VARCHAR(300) NULL AFTER `URLImagen`;
 /********************** NUEVO *****************/
 
 ALTER TABLE `woofs` DROP FOREIGN KEY `FK_Woofs_usuario`; ALTER TABLE `woofs` ADD CONSTRAINT `FK_Woofs_usuario` FOREIGN KEY (`IDMascota`) REFERENCES `mascota`(`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `hashtag` DROP FOREIGN KEY `FK_Hashtag_comentario`; ALTER TABLE `hashtag` ADD CONSTRAINT `FK_Hashtag_publicacion` FOREIGN KEY (`Comentario`) REFERENCES `media`(`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `hashtag` CHANGE `Comentario` `IDMedia` INT(11) NOT NULL;
