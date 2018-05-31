@@ -61,6 +61,11 @@ include_once '../models/amigos_model.php';
                                 </button> 
                             </div>';
                         }
+                        else {
+                            $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos de ese tipo
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>';
+                        }   
                     
                     }
                 }
@@ -72,6 +77,119 @@ include_once '../models/amigos_model.php';
             }
            
             
+            return $lista;
+        }
+        public static function getSeguidosPorNombreMascota($nombreMascota, $actualUser){
+            $mascota_model = new Mascota_Model();
+            $amigos_model = new Amigos_Model();
+            $lista="";
+            $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
+        
+            foreach ($peticionesAceptadas as $peticiones) {
+
+                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
+                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $datosMascota = $mascota_model->buscarMascotasByNombre($nombreMascota);
+                if($datosMascota){
+                    foreach ($datosMascota as $mascota) {
+                  
+                            if($mascotaBuscada == $mascota->getID() && $nombreMascota == $mascota->getNombre()){
+                                $lista =   $lista . '<div class="panel panel-default">
+                                <div class="panel-body">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                        <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+                                    </button> 
+                                </div>';
+                            }
+                   
+                    }
+                }
+                else {
+                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos con ese nombre de mascota.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>';
+            }   
+        }
+            return $lista;
+        }
+        public static function getSeguidosPorDueño($IDAmo,$actualUser){
+            $mascota_model = new Mascota_Model();
+            $amigos_model = new Amigos_Model();
+            $lista="";
+            $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
+        
+            foreach ($peticionesAceptadas as $peticiones) {
+
+                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
+                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $datosMascota = $mascota_model->getMascotasByIDUsuario($IDAmo);
+                    if($datosMascota){
+                        foreach ($datosMascota as $mascota) {
+                  
+                            if($mascotaBuscada == $mascota->getID() && $IDAmo = $mascota->getAmo()){
+                                $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
+                                <div class="panel-body">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                        <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+                                    </button> 
+                                </div>';
+                            }
+                            else {
+                                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos asociados a ese nombre de dueño.
+                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                             </div>';             
+                                }   
+                           
+                   
+                    }
+                } 
+                else {
+                   $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos asociados a ese nombre de dueño.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>';             
+                                }   
+                
+            }
+            return $lista;
+        }
+        public static function getSeguidosPorMascotaAmo($IDAmo, $nombreMascota,$actualUser){
+            $mascota_model = new Mascota_Model();
+            $amigos_model = new Amigos_Model();
+            $lista="";
+            $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
+        
+            foreach ($peticionesAceptadas as $peticiones) {
+
+                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
+                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $datosMascota = $mascota_model->buscarMascotasByAmoMascota($IDAmo, $nombreMascota);
+                    if($datosMascota){
+                        foreach ($datosMascota as $mascota) {
+                  
+                            if($mascotaBuscada == $mascota->getID() && $IDAmo = $mascota->getAmo() && $nombreMascota = $mascota->getNombre()){
+                                $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
+                                <div class="panel-body">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                        <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
+                                    </button> 
+                                </div>';
+                            }
+                            else {
+                                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos asociados a ese nombre de dueño y nombre mascota.
+                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                             </div>';             
+                                }   
+                           
+                   
+                    }
+                } 
+                else {
+                   $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos asociados a ese nombre de dueño y nombre mascota.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>';             
+                                }   
+                
+            }
             return $lista;
         }
         public static function getSeguidosPorTipoNombreM($tipo,$actualUser,$nombreMascota){
@@ -89,7 +207,7 @@ include_once '../models/amigos_model.php';
                     foreach ($datosMascota as $mascota) {
                   
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $nombreMascota == $mascota->getNombre() ){
-                                $lista =   $lista . '<div class="panel panel-default">
+                                $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                                 <div class="panel-body">
                                     <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
@@ -133,8 +251,8 @@ include_once '../models/amigos_model.php';
                     }
                 }
                 else {
-                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos con ese tipo de mascota o con el nombre de mascota.
-                            button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                $lista =    '<div class="alert alert-primary lert-dismissible fade show" role="alert">No existen amigos con ese tipo de mascota o con ese dueño.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>';
                 }   
             }

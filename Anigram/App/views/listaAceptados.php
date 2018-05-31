@@ -35,30 +35,44 @@
 
 					if(isset($_SESSION['conFiltro']) && $_SESSION['conFiltro']==true){
 					
-							if(isset($_SESSION['mascotaByTipo']) && $_SESSION['mascotaByTipo']== true){ 
-								echo $amigos_controller->getSeguidosPorTipo($_SESSION['busquedaTipo'],$actualUser);
-								unset($_SESSION['mascotaByTipo']);
+						if(isset($_SESSION['mascotaByTipo']) && $_SESSION['mascotaByTipo']== true){ 
+							echo $amigos_controller->getSeguidosPorTipo($_SESSION['busquedaTipo'],$actualUser);
+							unset($_SESSION['mascotaByTipo']);
+							
+						}
+						else if(isset($_SESSION['mascotabyNombre']) && $_SESSION['mascotabyNombre'] == true){
+							echo $amigos_controller-> getSeguidosPorNombreMascota($_SESSION['busquedaNombreMascota'],$actualUser);
+							unset($_SESSION['mascotabyNombre']);
+						}
+						else if(isset($_SESSION['mascotabyDueño']) && $_SESSION['mascotabyDueño'] == true){
+							echo $amigos_controller-> getSeguidosPorDueño($_SESSION['busquedaDueño'],$actualUser);
+							unset($_SESSION['mascotabyDueño']);
+						}
+						else if(isset($_SESSION['mascotaByMascotaDueño']) && $_SESSION['mascotaByMascotaDueño'] == true){
+							echo $amigos_controller-> getSeguidosPorMascotaAmo($_SESSION['busquedaAmo'], $_SESSION['busquedaMascota'], $actualUser);
+							unset($_SESSION['mascotaByMascotaDueño']);
+						}
+
+						else if(isset($_SESSION['mascotaByNombreTipo']) && $_SESSION['mascotaByNombreTipo']== true){
+							echo $amigos_controller->getSeguidosPorTipoNombreM($_SESSION['busquedaTipo'],$actualUser,$_SESSION['busquedaNombreMascota']);
+							unset($_SESSION['mascotaByNombreTipo']);
+						}
+						else if(isset( $_SESSION['mascotaByDueñoTipo'])&& $_SESSION['mascotaByDueñoTipo'] == true){
+							echo $amigos_controller->getSeguidosPorTipoAmo($_SESSION['busquedaTipo'],$actualUser,$_SESSION['busquedaNombreDueño']);
+							unset($_SESSION['mascotaByDueñoTipo']);
+						}
+						else if(isset($_SESSION['busquedaFiltro']) && $_SESSION['busquedaFiltro'] == true){
+							echo $amigos_controller->getSeguidosAllFiltros($_SESSION['busquedaTipo'],$_SESSION['busquedaNombreMascota'],$_SESSION['busquedaNombreDueño'],$actualUser);
+							unset($_SESSION['busquedaFiltro']);
+						}
+				
+						unset($_SESSION['conFiltro']);
 								
-							}
-							else if(isset($_SESSION['mascotaByNombreTipo']) && $_SESSION['mascotaByNombreTipo']== true){
-								echo $amigos_controller->getSeguidosPorTipoNombreM($_SESSION['busquedaTipo'],$actualUser,$_SESSION['busquedaNombreMascota']);
-								unset($_SESSION['mascotaByNombreTipo']);
-							}
-							else if(isset( $_SESSION['mascotaByDueñoTipo'])&& $_SESSION['mascotaByDueñoTipo'] == true){
-								echo $amigos_controller->getSeguidosPorTipoAmo($_SESSION['busquedaTipo'],$actualUser,$_SESSION['busquedaNombreDueño']);
-								unset($_SESSION['mascotaByDueñoTipo']);
-							}
-							else{
-								echo $amigos_controller->getSeguidosAllFiltros($_SESSION['busquedaTipo'],$_SESSION['busquedaNombreMascota'],$_SESSION['busquedaNombreDueño'],$actualUser);
-							}
-					
-							unset($_SESSION['conFiltro']);
-									
-					}
-					else{
-						$amigos_controller = new es\ucm\fdi\aw\Amigos_Controller();
-						echo $amigos_controller->getSeguidos($actualUser);
-					}
+				}
+				else{
+					$amigos_controller = new es\ucm\fdi\aw\Amigos_Controller();
+					echo $amigos_controller->getSeguidos($actualUser);
+				}
 			
 				?>
 			</div>

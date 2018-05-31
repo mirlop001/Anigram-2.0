@@ -73,13 +73,14 @@ class Mascota_Model{
         $result = mysqli_query($this->db, "SELECT * from mascota where Amo = ".$IDUsuario );
 
         $mascotasUsuario = null;
-
-        if($result->num_rows > 0){
-            for($i=0; $i < $result->num_rows ; $i++){
-                if($row = $result->fetch_assoc()){
-                    $mascotaObject = new self();
-                    $mascotaObject->nuevoMediaObject($row['ID'], $IDUsuario, $row['Tipo'],$row['Nombre'], $row['Raza'], $row['URLFoto'], $row['Bio']);
-                    $mascotasUsuario[$i] = $mascotaObject;
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                    if($row = $result->fetch_assoc()){
+                        $mascotaObject = new self();
+                        $mascotaObject->nuevoMediaObject($row['ID'], $IDUsuario, $row['Tipo'],$row['Nombre'], $row['Raza'], $row['URLFoto'], $row['Bio']);
+                        $mascotasUsuario[$i] = $mascotaObject;
+                    }
                 }
             }
         }
@@ -162,6 +163,24 @@ class Mascota_Model{
          return $mascota;
          
      }
+     function buscarMascotasByNombre($nombre){
+        $result = mysqli_query($this->db, "SELECT * from mascota where Nombre = '$nombre'");
+        $mascota= null;
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                    if($row = $result->fetch_assoc()){
+                    $mascotaObject = new self();
+                    $mascotaObject->nuevoMediaObject($row['ID'], $row['Amo'], $row['tipo'], $nombre, $row['Raza'], $row['URLFoto'], $row['Bio']);
+                    $mascota[$i] = $mascotaObject;
+                    }
+                }
+            }
+        }
+        return $mascota;
+        
+    }
+
      function buscarMascotasByTipoNombre($tipo, $nombre){
          $result = mysqli_query($this->db, "SELECT * from mascota where Tipo = '$tipo' and Nombre = '$nombre'");
          $mascota= null;
@@ -187,7 +206,7 @@ class Mascota_Model{
                  for($i=0; $i < $result->num_rows ; $i++){
                      if($row = $result->fetch_assoc()){
                      $mascotaObject = new self();
-                     $mascotaObject->nuevoMediaObject($row['ID'], $amo, $tipo, $nombre, $row['Raza'], $row['URLFoto'], $row['Bio']);
+                     $mascotaObject->nuevoMediaObject($row['ID'], $amo, $tipo, $row['Nombre'], $row['Raza'], $row['URLFoto'], $row['Bio']);
                      $mascota[$i] = $mascotaObject;
                      }
                  }
@@ -196,6 +215,23 @@ class Mascota_Model{
          return $mascota;
          
      }
+     function buscarMascotasByAmoMascota($amo, $nombre){
+        $result = mysqli_query($this->db, "SELECT * from mascota where Amo = '$amo' and Nombre = '$nombre'");
+        $mascota= null;
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                    if($row = $result->fetch_assoc()){
+                    $mascotaObject = new self();
+                    $mascotaObject->nuevoMediaObject($row['ID'], $amo, $row['Tipo'], $nombre, $row['Raza'], $row['URLFoto'], $row['Bio']);
+                    $mascota[$i] = $mascotaObject;
+                    }
+                }
+            }
+        }
+        return $mascota;
+        
+    }
 
     function updateNombre($nombre, $id){
         mysqli_query($this->db, "UPDATE mascota SET Nombre = '$nombre' WHERE mascota.ID = '$id';");
