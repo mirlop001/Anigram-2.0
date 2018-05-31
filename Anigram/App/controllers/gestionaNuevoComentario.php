@@ -26,8 +26,8 @@ if(preg_match('/\S+/',$Comentario)){
 
 	$result['IDMedia'] = $MediaID;
 	$result['Comentario'] = $datosComentario[0]->getComentario();
-	$result['ImagenUsuario'] = $datosComentario[0]->getImagenUsuario();
-	$result['NombreUsuario'] = $datosComentario[0]->getNombreUsuario();
+	$result['ImagenMascota'] = $datosComentario[0]->getImagenMascota();
+	$result['NombreMascota'] = $datosComentario[0]->getNombreMascota();
 
 	$result = json_encode((object)$result);
 }

@@ -12,6 +12,7 @@ $MediaID = $_POST['MediaID'];
 $Puntos = $_POST['Puntos'];
 
 $Modifica = $modeloWoof->compruebaWoof($IDMascota, $MediaID);
+
 if($Modifica > 0){
 	echo 'Se actualiza woof '.$modeloWoof->actualizaWoof($Puntos, $IDMascota, $MediaID);
 	

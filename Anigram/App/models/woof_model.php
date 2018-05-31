@@ -70,14 +70,14 @@ class Woof_Model{
 
     function nuevoWoof($puntos, $IDMascota, $mediaID ){
         $result = null;
-        if (mysqli_query($this->db, "INSERT INTO Woofs (IDMedia, IDMascota, Puntos) VALUES ('".$mediaID."', '".$IDMascota."', '".$puntos."')")) 
+        if (mysqli_query($this->db, "INSERT INTO woofs (IDMedia, IDMascota, Puntos) VALUES ('".$mediaID."', '".$IDMascota."', '".$puntos."')")) 
             $result = mysqli_insert_id ($this->db);
 
         return $result;
     }
 
     function actualizaWoof($puntos, $IDMascota, $mediaID ){
-        return mysqli_query($this->db, "UPDATE Woofs SET Puntos = ".$puntos.", fecha = CURRENT_TIMESTAMP WHERE IDMedia =".$mediaID." and IDMascota = ".$IDMascota);
+        return mysqli_query($this->db, "UPDATE woofs SET Puntos = ".$puntos.", fecha = CURRENT_TIMESTAMP WHERE IDMedia =".$mediaID." and IDMascota = ".$IDMascota);
     }
 
 }

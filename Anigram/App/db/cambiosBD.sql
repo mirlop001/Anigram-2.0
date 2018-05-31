@@ -23,7 +23,9 @@ ALTER TABLE `comentario` DROP FOREIGN KEY `FK_Comentario_usuario`; ALTER TABLE `
 
 ALTER TABLE `amigos` DROP FOREIGN KEY `FK_Amigos_seguido`; ALTER TABLE `amigos` ADD CONSTRAINT `FK_Amigos_seguido` FOREIGN KEY (`IDSeguido`) REFERENCES `mascota`(`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `amigos` ADD `Aceptado` TINYINT NOT NULL ;
+ALTER TABLE `media` ADD `Descripcion` VARCHAR(300) NULL AFTER `URLImagen`;
+
 
 /********************** NUEVO *****************/
 
-ALTER TABLE `media` ADD `Descripcion` VARCHAR(300) NULL AFTER `URLImagen`;
+ALTER TABLE `woofs` DROP FOREIGN KEY `FK_Woofs_usuario`; ALTER TABLE `woofs` ADD CONSTRAINT `FK_Woofs_usuario` FOREIGN KEY (`IDMascota`) REFERENCES `mascota`(`ID`) ON DELETE CASCADE ON UPDATE CASCADE;

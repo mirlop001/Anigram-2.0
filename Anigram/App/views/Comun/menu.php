@@ -13,7 +13,7 @@
                 <a class="navbar-item" href="./busqueda.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'search-icon.png" alt="Ir a búsqueda"></a>
                 
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subirFotoMascota">
-                  <img src="'.__urlFotoIcono__.'pataFondo.png">
+                  <img src="'.__urlFotoIcono__.'PataFondo.png">
                 </button> 
                 
                 <a class="navbar-item" href="./amigos.php"><img  class="menu-icon " src="'.__urlFotoIcono__.'friends-icon.png" alt="Ir a amigos"></a>

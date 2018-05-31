@@ -16,7 +16,7 @@
 <body>
     <div class="container-anigram ">
         <div class="row references">
-            <h3><img src="<?= __urlFotoIcono__?>ic_keyboard_arrow_left_black_24px.svg" alt="" /><a href="login.php">Volver</a></h3>
+            <h3><a href="login.php">Volver</a></h3>
         </div>
         <div class="row logo"><img src="<?=__urlFotoIcono__?>Logo-Nombre.png" alt="" /></div>
         <div class="row registro">
