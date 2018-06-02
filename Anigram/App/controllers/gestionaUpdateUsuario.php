@@ -11,7 +11,8 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     $modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
 
     $urlFoto = null;
-    //Obtener datos usuario
+    $nuevaUrlFotoMascota = null; 
+    //Obtener datos usuario actualizados
     if(isset($_FILES["fotoPerfilUsuario"]["name"][0]))
         $urlFoto = basename($_FILES["fotoPerfilUsuario"]["name"]);
 
@@ -22,12 +23,19 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     $rol = htmlspecialchars(trim(strip_tags($_POST['rol'])));
 
 
-    //Mascota
+    //Mascota update
     $nombreMascota = htmlspecialchars(trim(strip_tags($_POST['nombre'])));
     $raza = htmlspecialchars(trim(strip_tags($_POST['raza'])));
     $tipo = htmlspecialchars(trim(strip_tags($_POST['tipo'])));
     $bio = htmlspecialchars(trim(strip_tags($_POST['bio'])));
     if($_GET['fotoPerfilMascota']) $urlFotoMascota = $_GET['fotoPerfilMascota'];
+
+    //NuevaMascota
+    $nuevoNombreMascota = htmlspecialchars(trim(strip_tags($_POST['nuevoNombre'])));
+    $nuevaRaza = htmlspecialchars(trim(strip_tags($_POST['nuevaRaza'])));
+    $nuevoTipo = htmlspecialchars(trim(strip_tags($_POST['nuevoTipo'])));
+    $nuevaBio = htmlspecialchars(trim(strip_tags($_POST['nuevaBio'])));
+    if($_GET['nuevafotoPerfilMascota']) $nuevaUrlFotoMascota = $_GET['nuevafotoPerfilMascota'];
 
     //Obtener foto de la mascota
     if(isset($_FILES["fotoPerfilMascota"]["name"][0])&& $_FILES["fotoPerfilMascota"]["name"][0]!= "")
@@ -64,7 +72,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
             $foto = $_SESSION['UserID'].'-'.$nombre_imagen;
             $_SESSION['fotoPerfilUsuario'] = $_SESSION['UserID'].'-'.$nombre_imagen;
 
-            $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $_SESSION['UserID'], $foto);
+            $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $_SESSION['UserID'], $nuevaUrlFotoMascota);
             $imagen->guardaImagen();
             
             echo 'IMAGEN GUARDADA';
@@ -92,6 +100,18 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     if($urlFoto != '' ){ 
         $modeloMascota->updateURL($urlFoto, $idMascota);
         $_SESSION['fotoPerfilMascota'] = $urlFoto;
+    }
+
+    if($nuevoNombreMascota != '' && $nuevaRaza!= '' && $nuevoTipo != ''){
+        if($modeloMascota->registraMascota($_SESSION['UserID'], $nuevoTipo, $nuevoNombreMascota, $nuevaRaza, $nuevaBio, $urlFoto) ){
+
+            if($urlFoto ) 
+                $_SESSION['fotoPerfilMascota'] = $urlFoto;
+            return new Exception('Error en el registro');
+        }	
+        else {
+            return new Exception('Error en el registro');
+        }
     }
 
 

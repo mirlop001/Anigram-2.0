@@ -51,7 +51,7 @@
                         </div>
                         
                         <div id="div-Comercio" class="tab-content">
-                            <?php //include 'registroMascota.php' ;
+                            <?php include 'nuevaMascota.php' ;
                             ?>
                         </div>
                     </div> 
