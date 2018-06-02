@@ -13,6 +13,10 @@
             muestraImagenMascota(event);
 
         });
+        $("#fotoPerfilMascotaNuevo").on("change", function(event) {
+            muestraImagenMascota(event);
+
+        });
 
         $("#fotoPerfilComercio").on("change", function(event) {
             muestraImagenComercio(event);
@@ -24,6 +28,10 @@
             $("#input-tipo-mascota").val($(this).val());
         });
 
+        $(".tipo-mascota-drp").on("click", function(event) {
+            $("#dropdownTipoNuevo").html($(this).html());
+            $("#input-tipo-mascota-nuevo").val($(this).val());
+        });
 
         $('#email-registro').on('change', function() {
             var parametros = {
@@ -168,7 +176,7 @@
                 type: "POST",
                 data: $(this).serialize(),
                 success: function(data) {
-                    window.location.href = '../views/home.php';
+                    // window.location.href = '../views/home.php';
                 },
                 error: function(jXHR, textStatus, errorThrown) {
                     alert(errorThrown);
@@ -183,7 +191,16 @@
                 type: "POST",
                 data: $(this).serialize(),
                 success: function(data) {
-                    window.location.href = '../views/home.php';
+                        $('svg.svg-inline--fa.fa-spinner.fa-w-16.fa-spin ').show();
+                        $('#submit').hide();
+
+                        // window.location.href = '../views/home.php';
+                    setTimeout(function(){ 
+                        $('svg.svg-inline--fa.fa-spinner.fa-w-16.fa-spin ').hide();
+                        $('#submit').show();
+                        $('#modificacion-correcta').show(); 
+                    }, 1000);
+                   
                 },
                 error: function(jXHR, textStatus, errorThrown) {
                     alert(errorThrown);

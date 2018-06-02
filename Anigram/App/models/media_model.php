@@ -138,5 +138,31 @@ class Media_Model{
         return $ultimasPublicaciones;
     }
 
+    function busquedaParcialPublicacion($mascota, $comentario, $hashtag){
+        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota, mascota.Nombre, mascota.URLFoto, fecha 
+        from media inner join mascota on mascota.ID = media.Mascota 
+        inner join comentario c on c.IDMedia = media.ID where mascota.ID = ".$IDMascota;
+
+        if($mascota) $query = $query." AND mascota.Nombre like '%".$mascota."%'";
+        if($comentario) $query = $query." AND c.Comentario like '%".$comentario."%'";
+        if($hashtag) $query = $query." AND c.Comentario like '%#".$hashtag."%'";
+        
+        $result = mysqli_query($this->db, $query);
+
+        $ultimasPublicaciones = null;
+        if($result){
+            if($result->num_rows > 0){
+                for($i=0; $i < $result->num_rows ; $i++){
+                    if($row = $result->fetch_assoc()){
+                        $mediaObject = new self();
+                        $mediaObject->nuevoMediaObject($row['IDImagen'], $row['idMascota'], $row['Nombre'], $row['URLFoto'], $row['URLImagen'], $row['Descripcion']);;
+                        $ultimasPublicaciones[$i] = $mediaObject;
+                    }
+                }
+            }
+        }
+        return $ultimasPublicaciones;
+    }
+
 }
 ?>

@@ -11,57 +11,80 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     $modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
 
     $urlFoto = null;
-    $nuevaUrlFotoMascota = null; 
+    $nuevaUrlFotoMascota = null;
+    $nombreCompleto = null;
+    $email = null;
+    $clave1 = null;
+    $clave2 = null;
+    $rol = null;
+
+    $nombre = null;
+    $raza  = null;
+    $tipo = null;
+    $bio = null;
+    $fotoPerfilMascota = null;
+
+    $nuevoNombre = null;
+    $nuevaRaza = null;
+    $nuevoTipo = 1;
+    $nuevaBio = null;
+    $nuevafotoPerfilMascota = null;
+
+    $nombre_comercio = null;
+    $telefono =null;
+    $email_comercio = null;
+    $descripcion = null;
+    $fotoPerfilComercio = null;
+
     //Obtener datos usuario actualizados
     if(isset($_FILES["fotoPerfilUsuario"]["name"][0]))
         $urlFoto = basename($_FILES["fotoPerfilUsuario"]["name"]);
-
-    $nombreCompleto = htmlspecialchars(trim(strip_tags($_POST['nombreCompleto'])));
-    $email = htmlspecialchars(trim(strip_tags($_POST['email'])));
-    $clave1 = htmlspecialchars(trim(strip_tags($_POST['clave1'])));
-    $clave2 = htmlspecialchars(trim(strip_tags($_POST['clave2'])));
-    $rol = htmlspecialchars(trim(strip_tags($_POST['rol'])));
+if(isset($_POST['nombreCompleto'])) $nombreCompleto = htmlspecialchars(trim(strip_tags($_POST['nombreCompleto'])));
+if(isset($_POST['email'])) $email = htmlspecialchars(trim(strip_tags($_POST['email'])));
+if(isset($_POST['clave1'])) $clave1 = htmlspecialchars(trim(strip_tags($_POST['clave1'])));
+if(isset($_POST['clave2'])) $clave2 = htmlspecialchars(trim(strip_tags($_POST['clave2'])));
+if(isset($_POST['rol'])) $rol = htmlspecialchars(trim(strip_tags($_POST['rol'])));
 
 
     //Mascota update
-    $nombreMascota = htmlspecialchars(trim(strip_tags($_POST['nombre'])));
-    $raza = htmlspecialchars(trim(strip_tags($_POST['raza'])));
-    $tipo = htmlspecialchars(trim(strip_tags($_POST['tipo'])));
-    $bio = htmlspecialchars(trim(strip_tags($_POST['bio'])));
-    if($_GET['fotoPerfilMascota']) $urlFotoMascota = $_GET['fotoPerfilMascota'];
+    if(isset($_POST['nombre']))   $nombreMascota = htmlspecialchars(trim(strip_tags($_POST['nombre'])));
+    if(isset($_POST['raza']))   $raza = htmlspecialchars(trim(strip_tags($_POST['raza'])));
+    if(isset($_POST['tipo']))$tipo = htmlspecialchars(trim(strip_tags($_POST['tipo'])));
+    if(isset($_POST['bio']))$bio = htmlspecialchars(trim(strip_tags($_POST['bio'])));
+    if(isset($_POST['fotoPerfilMascota']))if($_GET['fotoPerfilMascota']) $urlFotoMascota = $_GET['fotoPerfilMascota'];
 
     //NuevaMascota
-    $nuevoNombreMascota = htmlspecialchars(trim(strip_tags($_POST['nuevoNombre'])));
-    $nuevaRaza = htmlspecialchars(trim(strip_tags($_POST['nuevaRaza'])));
-    $nuevoTipo = htmlspecialchars(trim(strip_tags($_POST['nuevoTipo'])));
-    $nuevaBio = htmlspecialchars(trim(strip_tags($_POST['nuevaBio'])));
-    if($_GET['nuevafotoPerfilMascota']) $nuevaUrlFotoMascota = $_GET['nuevafotoPerfilMascota'];
+    if(isset($_POST['nuevoNombre']))$nuevoNombreMascota = htmlspecialchars(trim(strip_tags($_POST['nuevoNombre'])));
+    if(isset($_POST['nuevaRaza']))$nuevaRaza = htmlspecialchars(trim(strip_tags($_POST['nuevaRaza'])));
+    if(isset($_POST['nuevoTipo']))$nuevoTipo = htmlspecialchars(trim(strip_tags($_POST['nuevoTipo'])));
+    if(isset($_POST['nuevaBio']))$nuevaBio = htmlspecialchars(trim(strip_tags($_POST['nuevaBio'])));
+    if(isset($_GET['nuevafotoPerfilMascota']) && $_GET['nuevafotoPerfilMascota']) $nuevaUrlFotoMascota = $_GET['nuevafotoPerfilMascota'];
 
     //Obtener foto de la mascota
     if(isset($_FILES["fotoPerfilMascota"]["name"][0])&& $_FILES["fotoPerfilMascota"]["name"][0]!= "")
         $urlFotoMascota = basename($_FILES["fotoPerfilMascota"]["name"]);
 
     //Comercio
-    $nombreComercio = htmlspecialchars(trim(strip_tags($_POST['nombre_comercio'])));
-    $telefono = htmlspecialchars(trim(strip_tags($_POST['telefono'])));
-    $correo = htmlspecialchars(trim(strip_tags($_POST['email_comercio'])));
-    $descripcion = htmlspecialchars(trim(strip_tags($_POST['descripcion'])));
+    if(isset($_POST['nombre_comercio'])) $nombreComercio = htmlspecialchars(trim(strip_tags($_POST['nombre_comercio'])));
+    if(isset($_POST['telefono'])) $telefono = htmlspecialchars(trim(strip_tags($_POST['telefono'])));
+    if(isset($_POST['email_comercio'])) $correo = htmlspecialchars(trim(strip_tags($_POST['email_comercio'])));
+    if(isset($_POST['descripcion'])) $descripcion = htmlspecialchars(trim(strip_tags($_POST['descripcion'])));
     $urlFotoComercio = "";
 
     //Obtener foto del comercio
     if(isset($_FILES["fotoPerfilComercio"]["name"][0])&& $_FILES["fotoPerfilComercio"]["name"][0]!= "")
         $urlFotoComercio = basename($_FILES["fotoPerfilComercio"]["name"]);
-    
-    if($clave1 != ''){
+
+    if($clave1){
         $hash =  password_hash($clave1, PASSWORD_BCRYPT);
-        $modeloUsuario->actualizaPass($hash); 
+        $modeloUsuario->actualizaPass($hash);
     }
 
-    if($email != ''){
-        $modeloUsuario->actualizaEmail($email); 
+    if($email){
+        $modeloUsuario->actualizaEmail($email);
     }
 
-    if($nombreCompleto != ''){
+    if($nombreCompleto){
         $modeloUsuario->actualizaNombreUsuario($nombreCompleto);
         $_SESSION['ErrorRegistro'] = false;
         $_SESSION['Nombre'] = $nombreCompleto;
@@ -74,46 +97,47 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
 
             $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $_SESSION['UserID'], $nuevaUrlFotoMascota);
             $imagen->guardaImagen();
-            
+
             echo 'IMAGEN GUARDADA';
         }
     }
-    $mascota = $modeloMascota->getMascotaPrincipalByID($_SESSION['UserID']); 
+    $mascota = $modeloMascota->getMascotaPrincipalByID($_SESSION['UserID']);
     $idMascota = $mascota->getID();
 
-    if($nombreMascota != ''){
-        $modeloMascota->updateNombre($nombreMascota, $idMascota ); 
+    if($nombreMascota){
+        $modeloMascota->updateNombre($nombreMascota, $idMascota );
     }
-    
-    if($raza != ''){
+
+    if($raza){
         $modeloMascota->updateRaza($raza, $idMascota);
     }
-    
-    if($tipo != ''){
-        $modeloMascota->updateTipo($tipo, $idMascota); 
+
+    if($tipo){
+        $modeloMascota->updateTipo($tipo, $idMascota);
     }
-    
-    if($bio != ''){
-        $modeloMascota->updateBio($bio, $idMascota); 
+
+    if($bio){
+        $modeloMascota->updateBio($bio, $idMascota);
     }
-    
-    if($urlFoto != '' ){ 
+
+    if($urlFoto){
         $modeloMascota->updateURL($urlFoto, $idMascota);
         $_SESSION['fotoPerfilMascota'] = $urlFoto;
     }
 
-    if($nuevoNombreMascota != '' && $nuevaRaza!= '' && $nuevoTipo != ''){
+    if($nuevoNombreMascota  && $nuevaRaza && $nuevoTipo ){
         if($modeloMascota->registraMascota($_SESSION['UserID'], $nuevoTipo, $nuevoNombreMascota, $nuevaRaza, $nuevaBio, $urlFoto) ){
 
-            if($urlFoto ) 
+            if($urlFoto )
                 $_SESSION['fotoPerfilMascota'] = $urlFoto;
             return new Exception('Error en el registro');
-        }	
+        }
         else {
             return new Exception('Error en el registro');
         }
+        echo 'crea nuevo';
     }
-
+echo 'nombre: '.$nuevoNombreMascota.' raza: '.$nuevaRaza.' tipo: '.$nuevoTipo;
 
 
 ?>

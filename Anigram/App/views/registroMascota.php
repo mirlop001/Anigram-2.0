@@ -13,11 +13,11 @@
 				<input type="text" class="formulario-textbox required" name="raza" value='<?= (isset($_SESSION["Raza_Mascota"]))? $_SESSION["Raza_Mascota"]:"" ?>' placeholder = "Raza" required />
 				<input type="text" class="formulario-textbox required" name="tipo" id="input-tipo-mascota"  required />
 			
-				<button class="btn btn-secondary dropdown-toggle" id="dropdownTipo dropdownTipoMascota" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<label>Tipo de mascota:</label>
+				<button class="btn btn-secondary dropdown-toggle dropdownTipoMascota" id="dropdownTipo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<label>Cambiar tipo de mascota:</label>
 					<i class="material-icons">arrow_drop_down</i>
 				</button>
-				<div id="tipos-mascota" class="dropdown-menu" aria-labelledby="dropdownTipoMascota">
+				<div id="tipos-mascota" class="dropdown-menu" aria-labelledby="dropdownTipo">
 					<?php 
 						$mascotas_controller = new es\ucm\fdi\aw\Mascota_Controller();
 						echo $mascotas_controller->getTiposMascota();

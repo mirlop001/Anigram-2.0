@@ -60,8 +60,12 @@ class Mascota_Model{
     }
 
     function existeMascotaPrincipal($Amo){
-        $result = mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio) VALUES ($Amo, $Tipo, '$Nombre', '$Raza', '$URLFoto', '$Bio')");
-        return $result->num_rows == 0;
+        $esPrincipal = 0;
+        $result = mysqli_query($this->db, "SELECT FROM mascota where Amo = $Amo and IDMascotaPrincipal <> null");
+        if($result){
+            $esPrincipal = ($result->num_rows == 0);
+        }
+        return $esPrincipal;
     }
 
     function registraMascota($Amo, $Tipo, $Nombre, $Raza, $Bio, $URLFoto){
@@ -110,7 +114,23 @@ class Mascota_Model{
         }
     }
 
-    
+    function busquedaParcialMascotas($nombre){
+        $result = mysqli_query($this->db, "SELECT * from mascota where  Nombre like '%".$nombre."%'");
+         $mascotas= null;
+         if($result){
+             if($result->num_rows > 0){
+                 for($i=0; $i < $result->num_rows ; $i++){
+                     if($row = $result->fetch_assoc()){
+                     $mascotaObject = new self();
+                     $mascotaObject->nuevoMediaObject($row['ID'], $row['Amo'], $row['Tipo'], $row['Nombre'], $row['Raza'], $row['URLFoto'], $row['Bio']);
+                     $mascotas[$i] = $mascotaObject;
+                     }
+                 }
+             }
+         }
+         return $mascotas;
+         
+     }
     
     function buscarMascota($tipo, $nombre, $amo){
         
@@ -130,6 +150,7 @@ class Mascota_Model{
          return $mascota;
          
      }
+
      function getDatosMascota($idMascota){
          $result = mysqli_query($this->db, "SELECT * from mascota where ID = '$idMascota'");
  

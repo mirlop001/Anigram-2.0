@@ -24,6 +24,7 @@ include '../models/mascota_model.php';
             }
             return $drpTipos;
         }
+
         public static function getTiposMascotaBasic(){
             $modelo_tipoMascota = new TipoMascota_Model();
             $drpTipos = "";
@@ -130,6 +131,7 @@ include '../models/mascota_model.php';
             return $modelo_mascota->getMascotaPrincipalByID($IDUser);
         }
 
+       
     
     }
 ?>

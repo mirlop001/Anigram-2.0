@@ -9,16 +9,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   
+
     <title>Home</title>
 </head>
 <body>
     <?php
         include 'Comun/menu.php';
-    ?> 
-	<div class="container-anigram ">
-        <div class="row">
-         <h1>BÚSQUEDA</h1>
+    ?>
+    <div class="row">
+        <div class="col-9 offset-2">
+            <div id="input-busqueda" class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar..." aria-describedby="basic-addon2">
+                <!-- <span class="input-group-addon" id="basic-addon2"><i class="material-icons">search</i></span> -->
+            </div>
+        </div>
+    </div>
+    <div  class="row">
+        <div class="col-11 offset-1">
+            <div id="resultados" >
+                <div class="container-anigram">
+                    <?php
+                        $media_controller = new es\ucm\fdi\aw\Publicacion_Controller();
+                        echo $media_controller->obtenerTodasPublicaciones();
+                    ?>
+                </div>
+                <div ID="masContenido">
+                    <button id="cargaMasContenido" class="btn btn-outline-info">Cargar más</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -82,7 +82,21 @@ var page;
                 $('#container-index').removeClass("aparece");
             }
         });
-
+        $("#input-busqueda input").on('keyup', function(event){
+            var texto = event.currentTarget.value;
+            console.log(texto);
+            $.ajax({
+                url: '../../App/controllers/gestionaBusqueda.php',
+                type: "POST",
+                data: { 'buscar': texto},
+                success: function(data) {
+                    if (data.match(/\w+/g)) {
+                        $('#resultados').html(data);
+                    } 
+                },
+                error: function(jXHR, textStatus, errorThrown) {}
+            });
+        });
     });
 })(page);
 
@@ -116,3 +130,4 @@ $(document).on('click','button#seguir-usuario', function(event){
         error: function(jXHR, textStatus, errorThrown) {}
     });
 });
+

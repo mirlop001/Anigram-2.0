@@ -660,20 +660,28 @@
             background-size: 320px;
         }
         
-        #dropdownTipoMascota label {
+        .dropdownTipoMascota label {
             font-size: 20px;
             margin: 0;
             color: #d8817e;
             cursor: pointer;
         }
-        
-        #dropdownTipoMascota {
+        svg.svg-inline--fa.fa-spinner.fa-w-16.fa-spin {
+            margin-top: 54px;
+            color: white;
+            display: none;
+        }
+        .dropdownTipoMascota {
             background-color: #fff6f6;
             border: 2px solid #d8817e;
             width: 100%;
             margin-top: 20px;
         }
         
+        #modificacion-correcta{
+            display: none;
+        }
+
         .btn-secondary {
             color: #d8817e!important;
         }

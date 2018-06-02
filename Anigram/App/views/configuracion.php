@@ -29,6 +29,7 @@
     </div>
 
         <div class="container-anigram ">
+        <div id="modificacion-correcta" class="alert alert-success" role="alert">Cambios realizados con éxito!</div>
         <div class="row registro">
             <form id="form-update"  method="post" enctype="multipart/form-data">
                 <div class="row">
@@ -58,6 +59,7 @@
                 </div>
                 <div class="row">
                     <div id="boton_enviar" >
+                        <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                         <input id="submit" type="submit" name="submit"  onchange="muestraImagen" class="submitHueso" value="Guardar"/>	
                     </div>
                 </div>

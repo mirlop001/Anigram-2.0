@@ -4,7 +4,7 @@ namespace es\ucm\fdi\aw;
 class Hashtag_Model{
     private $db; 
     private $ID; 
-    private $IDComentario; 
+    private $IDMedia; 
     private $Nombre; 
 
     public function __construct(){
@@ -17,9 +17,21 @@ class Hashtag_Model{
         }
     }
 
-    private function creaObjetoHashtag($ID, $IDComentario, $Nombre){
+    function getID(){
+        return $this->ID;
+    }
+
+    function getIDMedia(){
+        return $this->IDMedia;
+    }
+
+    function getNombre(){
+        return $this->Nombre;
+    }
+
+    private function creaObjetoHashtag($ID, $IDMedia, $Nombre){
         $this->ID = $ID;
-        $this->IDComentario = $IDComentario;
+        $this->IDMedia = $IDMedia;
         $this->Nombre = $Nombre;
     }
 
@@ -29,7 +41,7 @@ class Hashtag_Model{
             if($result->num_rows > 0){
                 if($row = $result->fetch_assoc()){
                     $hashtagObject = new self();
-                    $hashtagObject->nuevoMediaObject($row['ID'], $row['IDComentario'], $row['Nombre']);
+                    $hashtagObject->creaObjetoHashtag($row['ID'], $row['IDMedia'], $row['Nombre']);
                     return $hashtagObject;
                 }
             }
@@ -37,13 +49,13 @@ class Hashtag_Model{
         return $result;
     }
 
-    public function buscaHashtagParecidoPorNombre($Nombre){
+    public function busquedaParcialHashtag($Nombre){
         $result = mysqli_query($this->db, "SELECT * from hashtag where Nombre like '%".$Nombre."%'");
         if($result){
             if($result->num_rows > 0){
                 if($row = $result->fetch_assoc()){
                     $hashtagObject = new self();
-                    $hashtagObject->nuevoMediaObject($row['ID'], $row['IDComentario'], $row['Nombre']);
+                    $hashtagObject->creaObjetoHashtag($row['ID'], $row['IDMedia'], $row['Nombre']);
                     return $hashtagObject;
                 }
             }
@@ -56,24 +68,24 @@ class Hashtag_Model{
         if($result->num_rows > 0){
             if($row = $result->fetch_assoc()){
                 $hashtagObject = new self();
-                $hashtagObject->nuevoMediaObject($row['ID'], $row['IDComentario'], $row['Nombre']);
+                $hashtagObject->creaObjetoHashtag($row['ID'], $row['IDMedia'], $row['Nombre']);
                 return $hashtagObject;
             }
         }
     }
 
-    public function insertaHashtag($IDComentario, $Nombre){
+    public function insertaHashtag($IDMedia, $Nombre){
         $result = false;
 
-        if (mysqli_query($this->db, "INSERT INTO hashtag (Comentario, Nombre) VALUES ('$IDComentario', '$Nombre')")) 
+        if (mysqli_query($this->db, "INSERT INTO hashtag (Comentario, Nombre) VALUES ('$IDMedia', '$Nombre')")) 
             $result = mysqli_insert_id ($this->db);
 
         return $result;
     }
 
-    public function actualizaHashtag($ID, $IDComentario, $Nombre){
+    public function actualizaHashtag($ID, $IDMedia, $Nombre){
         $result = false;
-        $result = mysqli_query($this->db, "UPDATE hashtag SET Nombre = ".$Nombre." WHERE ID=".$ID." AND Comentario = ".$IDComentario);
+        $result = mysqli_query($this->db, "UPDATE hashtag SET Nombre = ".$Nombre." WHERE ID=".$ID." AND Comentario = ".$IDMedia);
 
         return $result;
     }
