@@ -32,7 +32,22 @@ function muestraImagenMascota(evt) {
 
     };
 }
+function muestraImagenMascotaNuevo(evt) {
+    var imagen = evt.target.files[0];
 
+
+    var fr = new FileReader();
+    fr.readAsDataURL(imagen);
+
+    fr.onload = function(img) {
+        var image = new Image();
+        image.src = img.target.result;
+        $("#perfil-mascota-nuevo").css("background-image", "url(" + image.src + ")");
+
+        var height = $("#perfil-mascota-nuevo").height();
+
+    };
+}
 function muestraImagenComercio(evt) {
     var imagen = evt.target.files[0];
 

@@ -14,8 +14,7 @@
 
         });
         $("#fotoPerfilMascotaNuevo").on("change", function(event) {
-            muestraImagenMascota(event);
-
+            muestraImagenMascotaNuevo(event);
         });
 
         $("#fotoPerfilComercio").on("change", function(event) {

@@ -1,7 +1,7 @@
 <div class="row">
 		<div class="col-md-5">
-		<label for="fotoPerfilMascota" class="fotoPerfilMascota">
-				<div id="perfil-mascota" class="foto-perfil-mascota foto-perfil perfil-md subir-foto-md"></div>
+		<label for="fotoPerfilMascotaNuevo" class="fotoPerfilMascotaNuevo">
+				<div id="perfil-mascota-nuevo" class="foto-perfil-mascota foto-perfil perfil-md subir-foto-md"></div>
 				Foto mascota
 			</label>
 			<input id="fotoPerfilMascotaNuevo" class="input-perfil" name="nuevafotoPerfilMascota" type="file" accept=".jpg, .jpeg, .png"/>
