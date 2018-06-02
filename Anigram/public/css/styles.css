@@ -90,6 +90,36 @@
             color: #ffc37e;
         }
         /*------------------------- General ------------------------- */
+        div#input-busqueda {
+            margin: 30px 0;
+        }
+        img.perfil-basic {
+            width: 20vw;
+            cursor: pointer;
+            border-radius: 11px;
+        }
+        img.img-result {
+            width: 100%;
+            border-radius: 8px 8px 0px 0px;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #f5d1d1;
+        }
+
+        button.btn-basic.word-square {
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            opacity: 8.5;
+            padding: 0px;
+        }
+
+        .search-result h2 {
+            width: 100%;
+            margin: 20px;
+            color: #91c691;
+        }
+
+
         button.dropdown-toggle.dropdown-basic {
             border: 1px solid rgb(207, 207, 207);
             border-radius: 4px;
@@ -103,6 +133,7 @@
             color: #808080;
             font-size: 21px;
         }
+
         div#tipos-mascota.basic {
             border: 1px solid #cfcfcf;
             margin: 0;
