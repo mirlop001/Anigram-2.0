@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-05-2018 a las 12:13:45
+-- Tiempo de generación: 02-06-2018 a las 19:27:26
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -34,6 +34,15 @@ CREATE TABLE `amigos` (
   `Aceptado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `amigos`
+--
+
+INSERT INTO `amigos` (`IDSeguidor`, `IDSeguido`, `Aceptado`) VALUES
+(72, 73, 1),
+(73, 74, 1),
+(74, 72, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +56,14 @@ CREATE TABLE `comentario` (
   `Comentario` varchar(300) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`ID`, `IDMascota`, `IDMedia`, `Comentario`, `fecha`) VALUES
+(20, 72, 23, 'OY! <span class=\"hashtag\">#MONADA</span> <span class=\"hashtag\">#QUECOSA</span>', '2018-05-31 21:42:00'),
+(21, 72, 42, 'Hola!!', '2018-06-02 10:05:39');
 
 -- --------------------------------------------------------
 
@@ -84,9 +101,17 @@ CREATE TABLE `denuncia` (
 
 CREATE TABLE `hashtag` (
   `ID` int(11) NOT NULL,
-  `Comentario` int(11) NOT NULL,
+  `IDMedia` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `hashtag`
+--
+
+INSERT INTO `hashtag` (`ID`, `IDMedia`, `Nombre`) VALUES
+(11, 23, '#MONADA'),
+(12, 23, '#QUECOSA');
 
 -- --------------------------------------------------------
 
@@ -101,17 +126,20 @@ CREATE TABLE `mascota` (
   `Nombre` varchar(20) NOT NULL,
   `Raza` varchar(20) NOT NULL,
   `URLFoto` varchar(200) DEFAULT NULL,
-  `Bio` varchar(300) DEFAULT NULL
+  `Bio` varchar(300) DEFAULT NULL,
+  `Principal` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `mascota`
 --
 
-INSERT INTO `mascota` (`ID`, `Amo`, `Tipo`, `Nombre`, `Raza`, `URLFoto`, `Bio`) VALUES
-(72, 136, 1, 'Nina', 'Westy', '136-IMG_2189.jpg', NULL),
-(73, 137, 1, 'Zeus', 'Desconocida', '137-IMG_2313.jpg', NULL),
-(74, 138, 1, 'Bruno', 'Westy', '138-IMG_2115.jpg', NULL);
+INSERT INTO `mascota` (`ID`, `Amo`, `Tipo`, `Nombre`, `Raza`, `URLFoto`, `Bio`, `Principal`) VALUES
+(72, 136, 6, 'Nina Canina', 'West Highland Terrie', '136-fullsizeoutput_7f5.jpeg', NULL, 1),
+(73, 137, 1, 'Zeus', 'Desconocida', '137-IMG_2313.jpg', NULL, 1),
+(74, 138, 1, 'Bruno', 'Westy', '138-IMG_2115.jpg', NULL, 1),
+(80, 139, 2, 'Missi', 'Pardo', '139-A-fluffy-cat-looking-funny-surprised-or-concerned.jpg', 'Loca', 0),
+(86, 136, 2, 'Fluffy', 'Pardo', '136-A-fluffy-cat-looking-funny-surprised-or-concerned.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -124,6 +152,7 @@ CREATE TABLE `media` (
   `Mascota` int(11) NOT NULL,
   `Tipo` int(11) NOT NULL,
   `URLImagen` varchar(300) NOT NULL,
+  `Descripcion` varchar(300) DEFAULT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -131,13 +160,15 @@ CREATE TABLE `media` (
 -- Volcado de datos para la tabla `media`
 --
 
-INSERT INTO `media` (`ID`, `Mascota`, `Tipo`, `URLImagen`, `fecha`) VALUES
-(18, 72, 1, '136-136-fullsizeoutput_816.jpeg', '2018-05-29 09:27:24'),
-(19, 73, 1, '137-ace9f7fc-88cf-45ff-8daf-b72d9ea15270.jpg', '2018-05-29 09:36:07'),
-(20, 73, 1, '137-6c6de08d-7ff0-44e2-95a4-3dd6551dc671.jpg', '2018-05-29 09:36:45'),
-(21, 72, 1, '136-fullsizeoutput_777.jpeg', '2018-05-29 09:37:36'),
-(22, 74, 1, '138-fullsizeoutput_7db.jpeg', '2018-05-29 09:38:30'),
-(23, 72, 1, '136-fullsizeoutput_511.jpeg', '2018-05-29 09:41:01');
+INSERT INTO `media` (`ID`, `Mascota`, `Tipo`, `URLImagen`, `Descripcion`, `fecha`) VALUES
+(18, 72, 1, '136-136-fullsizeoutput_816.jpeg', NULL, '2018-05-29 09:27:24'),
+(19, 73, 1, '137-ace9f7fc-88cf-45ff-8daf-b72d9ea15270.jpg', NULL, '2018-05-29 09:36:07'),
+(20, 73, 1, '137-6c6de08d-7ff0-44e2-95a4-3dd6551dc671.jpg', NULL, '2018-05-29 09:36:45'),
+(21, 72, 1, '136-fullsizeoutput_777.jpeg', NULL, '2018-05-29 09:37:36'),
+(22, 74, 1, '138-fullsizeoutput_7db.jpeg', NULL, '2018-05-29 09:38:30'),
+(23, 72, 1, '136-fullsizeoutput_511.jpeg', NULL, '2018-05-29 09:41:01'),
+(41, 72, 1, '136-73c7d472-ca3c-47c7-aa02-0477051b70b9.jpg', NULL, '2018-05-30 22:59:02'),
+(42, 72, 1, '136-fullsizeoutput_77d.jpeg', NULL, '2018-05-30 23:00:33');
 
 -- --------------------------------------------------------
 
@@ -245,9 +276,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID`, `Rol`, `NombreCompleto`, `Email`, `Clave`, `URLFoto`, `Bio`, `IDMascotaPrincipal`, `Bloqueado`) VALUES
-(136, 1, 'Miriam López Sierra', 'miriam@email.com', '$2y$10$kxqZualFCh9nXDIwM5tSl.ogNmUX6ycycjunudVL/OirYtTujANrO', '', NULL, 72, 0),
+(136, 1, 'Miri López Sierra', 'miriam@email.com', '$2y$10$kxqZualFCh9nXDIwM5tSl.ogNmUX6ycycjunudVL/OirYtTujANrO', '', NULL, 72, 0),
 (137, 1, 'Tania López', 'tania@email.com', '$2y$10$R07WOR7zGu7wFJOxGwaf/uCOU5HN6OdYIuR6wBpeOUYY1k9jlPk6C', '', NULL, 73, 0),
-(138, 1, 'Araceli Sierra', 'araceli@email.com', '$2y$10$s/jWSS/2cm7Fny4AQ9mhcOvGqaRvlT/yI5BKLmnj9LX8cCCFgIx96', '', NULL, 74, 0);
+(138, 1, 'Araceli Sierra', 'araceli@email.com', '$2y$10$s/jWSS/2cm7Fny4AQ9mhcOvGqaRvlT/yI5BKLmnj9LX8cCCFgIx96', '', NULL, 74, 0),
+(139, 1, 'Mirilopsi', 'mirilopsi@email.com', '$2y$10$LP.Y.xsuNed5jxVMjUiRAeoIjXDDLvfriHyXkyTSuu0rWbf36m/fK', '', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -272,6 +304,16 @@ CREATE TABLE `woofs` (
   `Puntos` int(11) NOT NULL,
   `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `woofs`
+--
+
+INSERT INTO `woofs` (`IDMascota`, `IDMedia`, `Puntos`, `Fecha`) VALUES
+(72, 22, 2, '2018-05-31 19:24:38'),
+(72, 23, 1, '2018-05-31 14:58:06'),
+(72, 41, 5, '2018-05-31 14:58:05'),
+(72, 42, 3, '2018-06-02 17:13:39');
 
 --
 -- Índices para tablas volcadas
@@ -311,7 +353,7 @@ ALTER TABLE `denuncia`
 --
 ALTER TABLE `hashtag`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_Hashtag_comentario` (`Comentario`);
+  ADD KEY `FK_Hashtag_comentario` (`IDMedia`);
 
 --
 -- Indices de la tabla `mascota`
@@ -392,7 +434,7 @@ ALTER TABLE `woofs`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `comercio`
@@ -410,19 +452,19 @@ ALTER TABLE `denuncia`
 -- AUTO_INCREMENT de la tabla `hashtag`
 --
 ALTER TABLE `hashtag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de la tabla `media`
 --
 ALTER TABLE `media`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
@@ -458,7 +500,7 @@ ALTER TABLE `tipo_notificacion`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
 -- Restricciones para tablas volcadas
@@ -494,13 +536,12 @@ ALTER TABLE `denuncia`
 -- Filtros para la tabla `hashtag`
 --
 ALTER TABLE `hashtag`
-  ADD CONSTRAINT `FK_Hashtag_comentario` FOREIGN KEY (`Comentario`) REFERENCES `comentario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Hashtag_publicacion` FOREIGN KEY (`IDMedia`) REFERENCES `media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  ADD CONSTRAINT `FK_Mascota_amo` FOREIGN KEY (`Amo`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Mascota_tipo` FOREIGN KEY (`Tipo`) REFERENCES `tipo_mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -537,7 +578,7 @@ ALTER TABLE `usuarios_comercio`
 --
 ALTER TABLE `woofs`
   ADD CONSTRAINT `FK_Woofs_media` FOREIGN KEY (`IDMedia`) REFERENCES `media` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Woofs_usuario` FOREIGN KEY (`IDMascota`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_Woofs_usuario` FOREIGN KEY (`IDMascota`) REFERENCES `mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

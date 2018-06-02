@@ -128,9 +128,9 @@ include '../models/mascota_model.php';
             return $perfil;
         }
         
-        function getMPrincipal($IDUser){
+        function getMPrincipal($IDMascota){
             $modelo_mascota = new Mascota_Model();
-            return $modelo_mascota->getMascotaPrincipalByID($IDUser);
+            return $modelo_mascota->getMascotasByID($IDMascota);
         }
 
        

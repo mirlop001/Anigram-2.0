@@ -88,7 +88,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     if($nombreCompleto){
         $modeloUsuario->actualizaNombreUsuario($nombreCompleto);
         $_SESSION['ErrorRegistro'] = false;
-        $_SESSION['Nombre'] = $nombreCompleto;
+        $_SESSION['NombreCompleto'] = $nombreCompleto;
 
         if(isset($_FILES['fotoPerfilUsuario']) && $_FILES['fotoPerfilUsuario']['error'] == 0){
             $nombre_imagen = $_FILES['fotoPerfilUsuario']['name'];
@@ -102,7 +102,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
             echo 'IMAGEN GUARDADA';
         }
     }
-    $mascota = $modeloMascota->getMascotaPrincipalByID($_SESSION['UserID']);
+    $mascota = $modeloMascota->getMascotasByID($_SESSION['IDPerfilActivo']);
     $idMascota = $mascota->getID();
 
     if($nombreMascota){
