@@ -18,7 +18,7 @@ include_once '../models/amigos_model.php';
             if($peticionesAceptadas){
                 
                 foreach( $peticionesAceptadas as $peticiones ){
-                        $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
+                        $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguido());
                   
                     foreach($datosMascota as $mascota){
                         $lista = $lista.
@@ -43,7 +43,7 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                 $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
+                 $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguido());
                     if($datosMascota){
                
                         foreach ($datosMascota as $mascota) {
@@ -81,7 +81,7 @@ include_once '../models/amigos_model.php';
             $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
         
             foreach ($peticionesAceptadas as $peticiones) {
-                $mascotaBuscada = $peticiones->getIDSeguidor();
+                $mascotaBuscada = $peticiones->getIDSeguido();
                 $datosMascota = $mascota_model->buscarMascotasByNombre($nombreMascota);
                 if($datosMascota){
                     foreach ($datosMascota as $mascota) {
@@ -112,7 +112,7 @@ include_once '../models/amigos_model.php';
             $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
         
             foreach ($peticionesAceptadas as $peticiones) {
-                $mascotaBuscada = $peticiones->getIDSeguidor();
+                $mascotaBuscada = $peticiones->getIDSeguido();
                 $datosMascota = $mascota_model->getMascotasByIDUsuario($IDAmo);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -150,7 +150,7 @@ include_once '../models/amigos_model.php';
             $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
         
             foreach ($peticionesAceptadas as $peticiones) {
-                $mascotaBuscada = $peticiones->getIDSeguidor();
+                $mascotaBuscada = $peticiones->getIDSeguido();
                 $datosMascota = $mascota_model->buscarMascotasByAmoMascota($IDAmo, $nombreMascota);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -189,7 +189,7 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                 $mascotaBuscada = $peticiones->getIDSeguidor();
+                 $mascotaBuscada = $peticiones->getIDSeguido();
                 $datosMascota = $mascota_model->buscarMascotasByTipoNombre($tipo,$nombreMascota);
                 if($datosMascota){
                     foreach ($datosMascota as $mascota) {
@@ -221,7 +221,7 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                 $mascotaBuscada = $peticiones->getIDSeguidor();
+                 $mascotaBuscada = $peticiones->getIDSeguido();
                 $datosMascota = $mascota_model->buscarMascotasByTipoAmo($tipo,$IDAmo);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -253,7 +253,7 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                $mascotaBuscada = $peticiones->getIDSeguidor();
+                $mascotaBuscada = $peticiones->getIDSeguido();
                 $datosMascota = $mascota_model->buscarMascota($tipo,$nombreMascota,$IDAmo);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -323,7 +323,7 @@ include_once '../models/amigos_model.php';
         function compruebaAmistad($idMascota){
             $idSeguidor = $_SESSION['IDPerfilActivo'];
             $amigos_model= new Amigos_Model();
-            $amigos_model->compruebaAmistad($idSeguido, $idMascota);
+            $amigos_model->compruebaAmistad($idSeguidor, $idMascota);
         } 
     }
     

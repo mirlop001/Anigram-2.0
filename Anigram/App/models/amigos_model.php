@@ -81,8 +81,8 @@ class Amigos_Model{
 
     
     }
-    public function getAllPeticionesAceptadas($idSeguido) {
-        $result = mysqli_query($this->db, "SELECT * FROM amigos WHERE  IDSeguido= '$idSeguido' and Aceptado ='1'");
+    public function getAllPeticionesAceptadas($idSeguidor) {
+        $result = mysqli_query($this->db, "SELECT * FROM amigos WHERE  IDSeguidor= '$idSeguidor' and Aceptado ='1'");
         $newAmigos = null;
         if($result){
             if($result->num_rows > 0){
