@@ -2,7 +2,7 @@
     include_once '../controllers/mascota_controller.php';
 
     $mascota = new es\ucm\fdi\aw\Mascota_Controller(); 
-    $datos = $mascota->getMPrincipal($_SESSION['UserID']); 
+    $datos = $mascota->getMPrincipal($_SESSION['IDPerfilActivo']); 
 ?>
 
 <div class="row">
