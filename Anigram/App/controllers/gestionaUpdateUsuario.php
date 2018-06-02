@@ -11,7 +11,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     $modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
 
     $urlFoto = null;
-    $nuevaUrlFotoMascota = null;
+    $urlFotoMascota = null;
     $nombreCompleto = null;
     $email = null;
     $clave1 = null;
@@ -51,7 +51,7 @@ if(isset($_POST['rol'])) $rol = htmlspecialchars(trim(strip_tags($_POST['rol']))
     if(isset($_POST['raza']))   $raza = htmlspecialchars(trim(strip_tags($_POST['raza'])));
     if(isset($_POST['tipo']))$tipo = htmlspecialchars(trim(strip_tags($_POST['tipo'])));
     if(isset($_POST['bio']))$bio = htmlspecialchars(trim(strip_tags($_POST['bio'])));
-    if(isset($_POST['fotoPerfilMascota']))if($_GET['fotoPerfilMascota']) $urlFotoMascota = $_GET['fotoPerfilMascota'];
+    if(isset($_FILES['fotoPerfilMascota']))if($_FILES['fotoPerfilMascota']) $urlFotoMascota = $_FILES['fotoPerfilMascota'];
 
     //NuevaMascota
     if(isset($_POST['nuevoNombre']))$nuevoNombreMascota = htmlspecialchars(trim(strip_tags($_POST['nuevoNombre'])));
@@ -120,13 +120,14 @@ if(isset($_POST['rol'])) $rol = htmlspecialchars(trim(strip_tags($_POST['rol']))
         $modeloMascota->updateBio($bio, $idMascota);
     }
 
-    if($urlFoto){
-        $modeloMascota->updateURL($urlFoto, $idMascota);
+    if($urlFotoMascota){
+        $modeloMascota->updateURL($urlFotoMascota, $idMascota);
         $_SESSION['fotoPerfilMascota'] = $urlFoto;
+        echo 'foto perfil: '.$urlFotoMascota;
     }
 
     if($nuevoNombreMascota  && $nuevaRaza && $nuevoTipo ){
-        if($modeloMascota->registraMascota($_SESSION['UserID'], $nuevoTipo, $nuevoNombreMascota, $nuevaRaza, $nuevaBio, $urlFoto) ){
+        if($modeloMascota->registraMascota($_SESSION['UserID'], $nuevoTipo, $nuevoNombreMascota, $nuevaRaza, $nuevaBio, $urlFotoMascota) ){
 
             if($urlFoto )
                 $_SESSION['fotoPerfilMascota'] = $urlFoto;

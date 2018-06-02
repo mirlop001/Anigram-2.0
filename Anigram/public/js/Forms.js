@@ -172,10 +172,13 @@
             e.preventDefault();
             $.ajax({
                 url: '../../App/controllers/gestionaRegistroUsuario.php',
-                type: "POST",
-                data: $(this).serialize(),
+                type: "POST", 
+                data:   new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
                 success: function(data) {
-                    // window.location.href = '../views/home.php';
+                    window.location.href = '../views/home.php';
                 },
                 error: function(jXHR, textStatus, errorThrown) {
                     alert(errorThrown);
@@ -188,7 +191,10 @@
             $.ajax({
                 url: '../../App/controllers/gestionaUpdateUsuario.php',
                 type: "POST",
-                data: $(this).serialize(),
+                data:   new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
                 success: function(data) {
                         $('svg.svg-inline--fa.fa-spinner.fa-w-16.fa-spin ').show();
                         $('#submit').hide();
