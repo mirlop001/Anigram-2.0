@@ -9,7 +9,7 @@
     <div class="col-md-5">
         <label for="fotoPerfilMascota" class="fotoPerfilMascota">
             <div id="perfil-mascota" class="foto-perfil-mascota foto-perfil perfil-md subir-foto-md"></div>
-            Foto mascota
+           Nueva Foto mascota
         </label>
         <input id="fotoPerfilMascota" class="input-perfil" name="fotoPerfilMascota" type="file" accept=".jpg, .jpeg, .png"/>
     </div>

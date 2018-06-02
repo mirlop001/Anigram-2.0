@@ -6,20 +6,20 @@
 
 
 ?>
-<div class="col align-self-center col-lg-20">
 
-	<div class= col-6>
+	
+  <div class="row">
+	<div class="col align-self-center col-lg-10" id="peticiones-amistad">
   <div class="row" id="row-filtros">
-  
       <?php
    
- 
+  
         $idSeguido = $_SESSION['IDPerfilActivo'];
         $amigos_controller = new es\ucm\fdi\aw\Amigos_Controller();
         echo $amigos_controller->getPeticionesAmistad($idSeguido);
         
     ?>
-  </div>
-  </div>
+</div>
+</div>
 </div>
 

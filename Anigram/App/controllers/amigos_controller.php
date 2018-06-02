@@ -18,11 +18,8 @@ include_once '../models/amigos_model.php';
             if($peticionesAceptadas){
                 
                 foreach( $peticionesAceptadas as $peticiones ){
-                    if($actualUser == $peticiones->getIDSeguido())
                         $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
-                    else 
-                        $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguido());
-                    
+                  
                     foreach($datosMascota as $mascota){
                         $lista = $lista.
                         '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
@@ -46,15 +43,13 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
-                else $mascotaBuscada = $peticiones->getIDSeguido();
-                $datosMascota = $mascota_model->buscarMascotaByTipo($tipo);
+                 $datosMascota = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
                     if($datosMascota){
                
                         foreach ($datosMascota as $mascota) {
                   
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo()){
-                            $lista =   $lista . '<div class="panel panel-default">
+                            $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                             <div class="panel-body">
                                 <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
                                     <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
@@ -86,15 +81,13 @@ include_once '../models/amigos_model.php';
             $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
         
             foreach ($peticionesAceptadas as $peticiones) {
-
-                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
-                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $mascotaBuscada = $peticiones->getIDSeguidor();
                 $datosMascota = $mascota_model->buscarMascotasByNombre($nombreMascota);
                 if($datosMascota){
                     foreach ($datosMascota as $mascota) {
                   
                             if($mascotaBuscada == $mascota->getID() && $nombreMascota == $mascota->getNombre()){
-                                $lista =   $lista . '<div class="panel panel-default">
+                                $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                                 <div class="panel-body">
                                     <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
@@ -119,9 +112,7 @@ include_once '../models/amigos_model.php';
             $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
         
             foreach ($peticionesAceptadas as $peticiones) {
-
-                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
-                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $mascotaBuscada = $peticiones->getIDSeguidor();
                 $datosMascota = $mascota_model->getMascotasByIDUsuario($IDAmo);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -159,9 +150,7 @@ include_once '../models/amigos_model.php';
             $peticionesAceptadas = $amigos_model->getAllPeticionesAceptadas($actualUser);
         
             foreach ($peticionesAceptadas as $peticiones) {
-
-                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
-                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $mascotaBuscada = $peticiones->getIDSeguidor();
                 $datosMascota = $mascota_model->buscarMascotasByAmoMascota($IDAmo, $nombreMascota);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -200,8 +189,7 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
-                else $mascotaBuscada = $peticiones->getIDSeguido();
+                 $mascotaBuscada = $peticiones->getIDSeguidor();
                 $datosMascota = $mascota_model->buscarMascotasByTipoNombre($tipo,$nombreMascota);
                 if($datosMascota){
                     foreach ($datosMascota as $mascota) {
@@ -233,8 +221,7 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
-                else $mascotaBuscada = $peticiones->getIDSeguido();
+                 $mascotaBuscada = $peticiones->getIDSeguidor();
                 $datosMascota = $mascota_model->buscarMascotasByTipoAmo($tipo,$IDAmo);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -266,8 +253,7 @@ include_once '../models/amigos_model.php';
         
             foreach ($peticionesAceptadas as $peticiones) {
 
-                 if($peticiones->getIDSeguido() == $actualUser) $mascotaBuscada = $peticiones->getIDSeguidor();
-                else $mascotaBuscada = $peticiones->getIDSeguido();
+                $mascotaBuscada = $peticiones->getIDSeguidor();
                 $datosMascota = $mascota_model->buscarMascota($tipo,$nombreMascota,$IDAmo);
                     if($datosMascota){
                         foreach ($datosMascota as $mascota) {
@@ -302,8 +288,8 @@ include_once '../models/amigos_model.php';
                     $datosMascotas = $mascota_model->getDatosMascota($peticiones->getIDSeguidor());
                     foreach($datosMascotas as $mascota){
 
-                    $lista = $lista .  '<div class="panel1 panel-default" id="peticiones-amigos">
-                                <div class="panel-body1">
+                    $lista = $lista .  '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
+                                <div class="panel-body">
                                 <form method="post" name="Aceptar" action="../controllers/gestionaPeticionesPendientes.php">
                                     <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'

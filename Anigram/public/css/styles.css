@@ -1253,6 +1253,12 @@ margin: 10px 0px;
 background-color: #ffffff;
 
 } */
+#peticiones-amistad{
+
+margin-bottom: 220px;
+margin-right: 0px;
+margin-left: 140px;
+}
 .formulario-textbox2:focus {
     outline: none;
     background-color: #fffdfb;
