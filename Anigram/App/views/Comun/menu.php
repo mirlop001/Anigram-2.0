@@ -5,7 +5,7 @@
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu-lateral">
-    <a class="navbar-item" id="selector-mascota-icon"><img class="perfil-pe " src="<?php  if(isset($_SESSION['fotoPerfilActivo'])){ echo $_SESSION['fotoPerfilActivo']; } else{ echo ''.__urlFotoUsuario__;} ?>" alt="Haga click para cambiar de mascota" /></a>
+    <a class="navbar-item" id="selector-mascota-icon"><img class="perfil-pe " src="<?php  if(isset($_SESSION['fotoPerfilActivo'])){ echo $_SESSION['fotoPerfilActivo']; } else{ echo __urlFotoMascota__;} ?>" alt="Haga click para cambiar de mascota" /></a>
     <a class="navbar-item" href="./home.php"><i id="home-icon" class="material-icons">home</i></a>
     <?php 
        if(isset($_SESSION['UserID'])) 
