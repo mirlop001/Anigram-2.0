@@ -60,6 +60,10 @@ class Media_Model{
         return $this->woofs;
     }
 
+    public function setWoofs($avgWoofs){
+        $this->woofs = $avgWoofs;
+    }
+
     public function getDescripcion(){
         return $this->descripcion;
     }
@@ -138,15 +142,9 @@ class Media_Model{
         return $ultimasPublicaciones;
     }
 
-    function busquedaParcialPublicacion($mascota, $comentario, $hashtag){
-        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota, mascota.Nombre, mascota.URLFoto, fecha 
-        from media inner join mascota on mascota.ID = media.Mascota 
-        inner join comentario c on c.IDMedia = media.ID where mascota.ID = ".$IDMascota;
+    function busquedaParcialPublicacion($comentario){
+        $query = "SELECT media.ID as IDImagen, media.URLImagen, media.Descripcion, mascota.ID as idMascota, mascota.Nombre, mascota.URLFoto, media.fecha from media inner join mascota on mascota.ID = media.Mascota inner join comentario c on c.IDMedia = media.ID WHERE c.Comentario like '%".$comentario."%' or media.Descripcion like '%".$comentario."%'";
 
-        if($mascota) $query = $query." AND mascota.Nombre like '%".$mascota."%'";
-        if($comentario) $query = $query." AND c.Comentario like '%".$comentario."%'";
-        if($hashtag) $query = $query." AND c.Comentario like '%#".$hashtag."%'";
-        
         $result = mysqli_query($this->db, $query);
 
         $ultimasPublicaciones = null;
@@ -162,6 +160,23 @@ class Media_Model{
             }
         }
         return $ultimasPublicaciones;
+    }
+
+    function getDatosPublicacion($idMedia){
+        $query = "SELECT mascota.ID as idMascota, mascota.Nombre, mascota.URLFoto, m1.URLImagen, m1.Descripcion, (select coalesce(round(avg(woofs.Puntos)), 0) from woofs where woofs.IDMedia = m1.ID) as mediaWoofs FROM media m1 INNER JOIN mascota ON m1.Mascota = mascota.ID WHERE m1.ID = ".$idMedia;
+        $result = mysqli_query($this->db, $query);
+
+        $mediaObject = null;
+        if($result){
+            if($result->num_rows > 0){
+                if($row = $result->fetch_assoc()){
+                    $mediaObject = new self();
+                    $mediaObject->nuevoMediaObject($idMedia, $row['idMascota'], $row['Nombre'], $row['URLFoto'], $row['URLImagen'], $row['Descripcion']);
+                    $mediaObject->setWoofs($row['mediaWoofs']);
+                }
+            }
+        }
+        return $mediaObject;
     }
 
 }

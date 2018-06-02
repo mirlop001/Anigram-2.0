@@ -115,10 +115,12 @@ include '../models/mascota_model.php';
                 <label for="Publicaciones">Publicaciones</label>
                 <div class="row" id="publicaciones">';
 
-                foreach($publicaciones as $publicacion){    
-                    $perfil = $perfil.'<div class="col-4">
-                        <img src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="'.$publicacion->getDescripcion().'">
-                    </div>';
+                if($publicaciones){
+                    foreach($publicaciones as $publicacion){    
+                        $perfil = $perfil.'<div class="col-4">
+                            <img src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="'.$publicacion->getDescripcion().'">
+                        </div>';
+                    }
                 }
                 $perfil = $perfil.'</div>
             </div></div>';

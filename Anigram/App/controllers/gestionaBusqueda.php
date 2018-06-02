@@ -23,10 +23,10 @@ $publicaciones_encontradas = "";
 if(!$hashtag && !$mascota && !$comentario){
     
     $mascotas_encontradas = $busqueda_controller->busquedaParcialMascotas($busqueda);
-    $comentarios_encontrados = $busqueda_controller->busquedaParcialComentarios($busqueda);
+    $publicaciones = $busqueda_controller->busquedaParcialPublicaciones($busqueda);
 
     if($mascotas_encontradas){
-        $publicaciones_encontradas = $publicaciones_encontradas.'<div class="row search-result"><h2>Mascotas</h2>';
+        $publicaciones_encontradas = $publicaciones_encontradas.'<div class="row search-result offset-1"><h2>Mascotas</h2>';
         foreach($mascotas_encontradas as $mascota){
             $datos_mascota = $busqueda_controller->getBusquedaMascota($mascota);
             $publicaciones_encontradas = $publicaciones_encontradas.$datos_mascota;
@@ -34,24 +34,24 @@ if(!$hashtag && !$mascota && !$comentario){
         $publicaciones_encontradas = $publicaciones_encontradas.'</div>';
     }
 
-    if($comentarios_encontrados){
-        $publicaciones_encontradas = $publicaciones_encontradas.'<div class="row search-result"><h2>Comentarios</h2>';
-        foreach($comentarios_encontrados as $comentario){
-            $datos_comentario = $busqueda_controller->getBusquedaComentarios($comentario);
-            $publicaciones_encontradas = $publicaciones_encontradas.$datos_comentario;
-        }
-        $publicaciones_encontradas = $publicaciones_encontradas.'</div>';
+    if($publicaciones){
+        $publicaciones_encontradas = $publicaciones_encontradas.'<div class="row search-result offset-1"><h2>Publicaciones</h2>';
+        $publicaciones_encontradas = $publicaciones_encontradas.$publicaciones.'</div>';
     }
     
 }else{
     $publicaciones_encontradas = $publicacion_controller->busquedaParcialPublicacion($mascota, $comentario, $hashtag);
-    echo 'publicaciones_encontradas: '.$publicaciones_encontradas;
-    
 }
+
 if(!preg_match('/\w+/',$publicaciones_encontradas)){
-    $publicaciones_encontradas = "<h3>No se han encontrado coincidencias</h3>";
+    $publicaciones_encontradas = "<div class='row search-result offset-1'><h2>No se han encontrado coincidencias</h2></div>";
+}
+if($busqueda == ""){
+    $publicaciones_encontradas = "<div class='row search-result offset-1'><h2>Publicaciones</h2><div class='container-anigram'>".$publicacion_controller->obtenerTodasPublicaciones()."</div></div><div ID='masContenido'>
+    <button id='cargaMasContenido' class='btn btn-outline-info'>Cargar más</button></div>";
 }
 
 echo $publicaciones_encontradas;
 
 ?>
+

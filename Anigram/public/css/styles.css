@@ -90,19 +90,36 @@
             color: #ffc37e;
         }
         /*------------------------- General ------------------------- */
+        .line{
+            width: 112px;
+            height: 47px;
+            border-bottom: 1px solid black;
+            position: absolute;
+        }
+        img.vista-imagen {
+            width: 90%;
+            height: 90%;
+            border-radius: 15px;
+            margin: auto;
+        }
+        button.btn-perfil.vista-imagen {
+            width: 100%;
+        }
         div#input-busqueda {
             margin: 30px 0;
         }
         img.perfil-basic {
-            width: 20vw;
+            height: 35vh;
             cursor: pointer;
-            border-radius: 11px;
         }
         img.img-result {
             width: 100%;
             border-radius: 8px 8px 0px 0px;
             margin-bottom: 5px;
             border-bottom: 2px solid #f5d1d1;
+        }
+        div#resultados {
+            width: 100%;
         }
 
         button.btn-basic.word-square {
@@ -111,6 +128,8 @@
             width: 100%;
             opacity: 8.5;
             padding: 0px;
+            margin: 10px;
+
         }
 
         .search-result h2 {
@@ -193,7 +212,14 @@
         button.btn-perfil {
             background: none;
             border: none;
+            width: 15vw;
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 0;
+            margin: 5px;
         }
+        
+        
         svg.svg-inline--fa.fa-angle-down.fa-w-10,
         svg.svg-inline--fa.fa-angle-double-up.fa-w-10 {
             font-size: 60px;
@@ -203,7 +229,7 @@
         
         #container-index:before {
             content: " ";
-            background-color: #000000db;
+            background-color: #00000094;
             width: 100vw;
             height: 100vh;
             position: fixed;
@@ -982,7 +1008,6 @@
             cursor: pointer;
             z-index: 5;
         }
-        
         #ver-index-video {
             top: 45px;
         }
@@ -999,8 +1024,8 @@
             margin: 0;
             position: fixed;
             top: -5vh;
-            left: -15vw;
-            width: 135vw;
+            left: -20vw;
+            width: 140vw;
             height: 105vh;
         }
         
@@ -1016,7 +1041,7 @@
         
         @keyframes desaparece {
             from {
-                background-color: #000000de;
+                background-color: #00000094;
             }
             to {
                 background-color: #00000000;
@@ -1033,7 +1058,7 @@
                 background-color: #00000000;
             }
             to {
-                background-color: #000000de;
+                background-color: #00000094;
                 visibility: visible;
             }
         }

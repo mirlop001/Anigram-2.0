@@ -45,22 +45,7 @@ var page;
         }).mouseleave(function(e) {
             $(this).find('.d-inline-block').popover('hide');
         });
-        $('#cargaMasContenido').on('click', function() {
-            $.ajax({
-                url: '../../App/controllers/gestionaVistaHome.php',
-                type: "POST",
-                data: { 'page': page },
-                success: function(data) {
-                    if (data.match(/\w+/g)) {
-                        $('.container-anigram').append(data);
-                        page++;
-                    } else {
-                        $('#cargaMasContenido').hide();
-                    }
-                },
-                error: function(jXHR, textStatus, errorThrown) {}
-            });
-        });
+        
 
         $('#sonido-index-video').on('click', function() {
             $('#sonido-index-video svg').toggleClass('on');
@@ -92,7 +77,9 @@ var page;
                 success: function(data) {
                     if (data.match(/\w+/g)) {
                         $('#resultados').html(data);
-                    } 
+                    } else{
+
+                    }
                 },
                 error: function(jXHR, textStatus, errorThrown) {}
             });
@@ -103,7 +90,7 @@ var page;
 $(document).on('click','.btn-perfil', function(event){
     var idMascota = event.currentTarget.value;
     $.ajax({
-        url: '../../App/controllers/gestionaPerfilMascota.php',
+        url: '../../App/controllers/gestionaVistaModal.php',
         type: "POST",
         data: { 'idMascota': idMascota, 'comando': 'verPerfil' },
         success: function(data) {
@@ -118,7 +105,7 @@ $(document).on('click','.btn-perfil', function(event){
 $(document).on('click','button#seguir-usuario', function(event){
     var idMascota = event.currentTarget.value;
     $.ajax({
-        url: '../../App/controllers/gestionaPerfilMascota.php',
+        url: '../../App/controllers/gestionaVistaModal.php',
         type: "POST",
         data: { 'idMascota': idMascota, 'comando': 'seguirMascota' },
         success: function(data) {
@@ -131,3 +118,36 @@ $(document).on('click','button#seguir-usuario', function(event){
     });
 });
 
+$(document).on('click','.word-square', function(event){
+    var idMedia = event.currentTarget.value;
+    $('.bd-example-modal-lg').unbind('click');
+    $(".bd-example-modal-lg").modal({"backdrop": "static"});
+    $.ajax({
+        url: '../../App/controllers/gestionaVistaModal.php',
+        type: "POST",
+        data: { 'idMedia': idMedia , 'comando': 'verImagen'},
+        success: function(data) {
+            if (data.match(/\w+/g)) {
+                $('#perfil-mascota-content').html(data);
+            }
+        },
+        error: function(jXHR, textStatus, errorThrown) {}
+    });
+});
+
+$(document).on('click', '#cargaMasContenido',function() {
+    $.ajax({
+        url: '../../App/controllers/gestionaVistaHome.php',
+        type: "POST",
+        data: { 'page': page },
+        success: function(data) {
+            if (data.match(/\w+/g)) {
+                $('.container-anigram').append(data);
+                page++;
+            } else {
+                $('#cargaMasContenido').hide();
+            }
+        },
+        error: function(jXHR, textStatus, errorThrown) {}
+    });
+});

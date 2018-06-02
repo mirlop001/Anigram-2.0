@@ -25,17 +25,16 @@
         </div>
     </div>
     <div  class="row">
-        <div class="col-11 offset-1">
-            <div id="resultados" >
-                <div class="container-anigram">
-                    <?php
-                        $media_controller = new es\ucm\fdi\aw\Publicacion_Controller();
-                        echo $media_controller->obtenerTodasPublicaciones();
-                    ?>
-                </div>
-                <div ID="masContenido">
-                    <button id="cargaMasContenido" class="btn btn-outline-info">Cargar más</button>
-                </div>
+        <div id="resultados" >
+            <div class="container-anigram search-result">
+                <h2>Todas las publicaciones</h2>
+                <?php
+                    $media_controller = new es\ucm\fdi\aw\Publicacion_Controller();
+                    echo $media_controller->obtenerTodasPublicaciones();
+                ?>
+            </div>
+            <div ID="masContenido">
+                <button id="cargaMasContenido" class="btn btn-outline-info">Cargar más</button>
             </div>
         </div>
     </div>

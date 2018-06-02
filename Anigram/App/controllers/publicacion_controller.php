@@ -3,6 +3,7 @@ namespace es\ucm\fdi\aw;
 include_once '../models/media_model.php';
 include_once '../models/woof_model.php';
 include_once '../models/comentarios_model.php';
+include_once '../models/usuario_model.php';
 include_once '../models/hashtag_model.php';
 include_once '../models/amigos_model.php';
 
@@ -13,15 +14,18 @@ include_once '../models/amigos_model.php';
             $this->actualPage = $page;
         }
 
+       
+
         private function getVistaPublicaciones($publicaciones){
             $modelo_media = new Media_Model();
             $modelo_woofs = new Woof_Model();
             $modelo_comentario = new Comentario_Model();
             $posts ="";
             
+            
             foreach( $publicaciones as $publicacion ){
                 $post = '<div class="row"><div class="publicacion offset-md-1 col-md-6 col-sm-12">
-                                <button class="btn-perfil" value="'.$publicacion->getIDMascota().'" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                <button class="btn-perfil" value="'.$publicacion->getIDMascota().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
                                 <label><img ';
                 if($publicacion->getURLImagenMascota() != ""){
                     $post = $post.' src="'.__urlFotoGuardada__.$publicacion->getURLImagenMascota().'"';
@@ -71,9 +75,9 @@ include_once '../models/amigos_model.php';
             return $posts;
         }
 
-        public function busquedaParcialPublicaciones($mascota, $comentario, $hashtag){
+        public function busquedaParcialPublicaciones($comentario, $hashtag){
             $modelo_media = new Media_Model();
-            $publicaciones_encontradas = $modelo_media->busquedaParcialPublicacion($mascota, $comentario, $hashtag);
+            $publicaciones_encontradas = $modelo_media->busquedaParcialPublicacion($comentario, $hashtag);
             $posts  = "";
 
             if($publicaciones_encontradas){
@@ -144,6 +148,16 @@ include_once '../models/amigos_model.php';
             }
             return $btnWoofs;
             
+        }
+
+        private function showAvgWoofs($numWoofs){
+            $woofs = "";
+            for($i = 0; $i < $numWoofs; $i++){
+                $woofs = "<i class='fas fa-paw woofed'></i>";
+            }
+            for($i = $numWoofs ; $i < 5; $i++){
+                $woofs = "<i class='fas fa-paw'></i>";
+            }
         }
     }
 ?>
