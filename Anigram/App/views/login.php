@@ -6,7 +6,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 
 	<meta charset="utf-8">
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<a href="../../index.php"><img id="logo-grande" src="<?= __urlFotoIcono__?>Logo-Nombre.png" alt=""></a>
+	<a href="../../index.php" title="Acesso Usuarios registrados" ><img id="logo-grande" src="<?= __urlFotoIcono__?>Logo-Nombre.png" alt=""></a>
 	<div class="container-login">
 		<!-- <div class="col align-self-center col-lg-8 offset-lg-2"> -->
 		<h1>Login</h1>
@@ -23,7 +23,7 @@
 			
 			<label  >Email</label>
 			<input id="email-login" type="email" name="user" class="formulario-textbox"/>
-			<label for="Clave">Contraseña</label>
+			<label for="Clave-login">Contraseña</label>
 			<input id="Clave-login" type="password" name="password" class="formulario-textbox"/>
 			<div id="boton_enviar">
 				<input id="submit" type="submit" name="submit" class="submitHueso" value="Entrar"/>
