@@ -51,7 +51,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     if(isset($_POST['raza']))   $raza = htmlspecialchars(trim(strip_tags($_POST['raza'])));
     if(isset($_POST['tipo']))$tipo = htmlspecialchars(trim(strip_tags($_POST['tipo'])));
     if(isset($_POST['bio']))$bio = htmlspecialchars(trim(strip_tags($_POST['bio'])));
-    if(isset($_FILES['fotoPerfilMascota']))if($_FILES['fotoPerfilMascota']) $urlFotoMascota = $_SESSION['UserID'].'-'.$_FILES['fotoPerfilMascota'];
+    if(isset($_FILES['fotoPerfilMascota']))if($_FILES['fotoPerfilMascota']) $urlFotoMascota = $_FILES['fotoPerfilMascota']['name'];
 
     //NuevaMascota
     if(isset($_POST['nuevoNombre']))$nuevoNombreMascota = htmlspecialchars(trim(strip_tags($_POST['nuevoNombre'])));
@@ -59,11 +59,11 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     if(isset($_POST['nuevoTipo']))$nuevoTipo = htmlspecialchars(trim(strip_tags($_POST['nuevoTipo'])));
     if(isset($_POST['nuevaBio']))$nuevaBio = htmlspecialchars(trim(strip_tags($_POST['nuevaBio'])));
     if(isset($_FILES["nuevafotoPerfilMascota"]["name"][0])&& $_FILES["nuevafotoPerfilMascota"]["name"][0]!= "") 
-        $nuevafotoPerfilMascota = $_SESSION['UserID'].'-'.basename($_FILES['nuevafotoPerfilMascota']["name"]);
+        $nuevafotoPerfilMascota = basename($_FILES['nuevafotoPerfilMascota']["name"]);
 
     //Obtener foto de la mascota
     if(isset($_FILES["fotoPerfilMascota"]["name"][0])&& $_FILES["fotoPerfilMascota"]["name"][0]!= "")
-        $urlFotoMascota = $_SESSION['UserID'].'-'.basename($_FILES["fotoPerfilMascota"]["name"]);
+        $urlFotoMascota = basename($_FILES["fotoPerfilMascota"]["name"]);
 
     //Comercio
     if(isset($_POST['nombre_comercio'])) $nombreComercio = htmlspecialchars(trim(strip_tags($_POST['nombre_comercio'])));
@@ -74,7 +74,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
 
     //Obtener foto del comercio
     if(isset($_FILES["fotoPerfilComercio"]["name"][0])&& $_FILES["fotoPerfilComercio"]["name"][0]!= "")
-        $urlFotoComercio = $_SESSION['UserID'].'-'.basename($_FILES["fotoPerfilComercio"]["name"]);
+        $urlFotoComercio = basename($_FILES["fotoPerfilComercio"]["name"]);
 
     if($clave1){
         $hash =  password_hash($clave1, PASSWORD_BCRYPT);
@@ -165,7 +165,7 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
         }
         echo 'crea nuevo';
     }
-echo 'nombre: '.$nuevoNombreMascota.' raza: '.$nuevaRaza.' tipo: '.$nuevoTipo;
+echo 'foto: '.$urlFotoMascota;
 
 
 ?>

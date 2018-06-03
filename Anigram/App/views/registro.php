@@ -39,6 +39,7 @@
                             <?php include 'registroMascota.php' ?>
                         </div>
                         <div id="div-Comercio" class="tab-content">
+                            <div class="alert alert-warning" role="alert"><i class="material-icons">build</i><span class="bold">¡En construcción!</span>  Disculpe las molestias.</div>
                             <?php include 'registroComercio.php' ;
                             ?>
                         </div>

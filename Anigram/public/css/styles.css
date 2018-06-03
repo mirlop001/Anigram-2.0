@@ -379,7 +379,7 @@
                 z-index: 3;
                 background-color: transparent;
                 border: 2px solid whitesmoke;
-                left: calc(80% / 2);
+                /* left: calc(80% / 2); */
             }
         }
         /* Tabs */
