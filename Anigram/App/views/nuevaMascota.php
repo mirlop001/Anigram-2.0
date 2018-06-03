@@ -14,7 +14,7 @@
 
 						
 			<button class="btn btn-secondary dropdown-toggle dropdownTipoMascota" id="dropdownTipoNuevo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<label>Cambiar tipo de mascota:</label>
+				<label>Tipo de mascota:</label>
 				<i class="material-icons">arrow_drop_down</i>
 			</button>
 			<div id="tipos-mascota-nuevo" class="dropdown-menu" aria-labelledby="dropdownTipo">
