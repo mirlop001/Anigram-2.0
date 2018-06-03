@@ -319,9 +319,10 @@ include_once '../models/notificaciones_model.php';
             $notificaciones_model = new Notificaciones_Model;
             $idSeguidor = $_SESSION['IDPerfilActivo'];
 
-            $notificaciones_model->insertaNotificacion($idSeguidor, $idMascota, __tipo_peticion__);
+            $notificaciones_model->insertaNotificacion($idSeguidor, $idMascota, __tipo_peticion__, null);
             $amigos_model= new Amigos_Model();
             $amigos_model->nuevaPeticion($idSeguidor, $idMascota);
+            return $idSeguidor.' - '.$idMascota.'-'.__tipo_peticion__;
         } 
 
         function compruebaAmistad($idMascota){

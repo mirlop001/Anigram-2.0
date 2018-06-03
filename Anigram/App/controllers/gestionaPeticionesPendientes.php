@@ -17,7 +17,7 @@ $userActual = $_SESSION['IDPerfilActivo'];
 $idSeguidor = $_REQUEST['mascotaID'];
 if(isset($_REQUEST['Aceptar'])){
     $amigos->aceptarPeticion($idSeguidor, $userActual);
-    $notificaciones->insertaNotificacion($userActual, $idSeguidor, __tipo_aceptado__);
+    $notificaciones->insertaNotificacion($userActual, $idSeguidor, __tipo_aceptado__, null);
 }
 else if(isset($_REQUEST['Rechazar'])){
     $amigos->rechazarPeticion($idSeguidor, $userActual);

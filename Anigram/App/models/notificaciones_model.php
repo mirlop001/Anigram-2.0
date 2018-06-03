@@ -7,7 +7,8 @@ class Notificaciones_Model{
     private $IDEmisor; 
     private $NombreEmisor; 
     private $URLImagen; 
-    private $IDElem; 
+    private $IDMascota; 
+    private $IDMedia; 
     private $Mensaje; 
 
 
@@ -37,34 +38,39 @@ class Notificaciones_Model{
         return $this->Mensaje;
     }
 
-    public function getIDElem(){
-        return $this->IDElem;
+    public function getIDMascota(){
+        return $this->IDMascota;
     }
 
-    private function generaObjeto($IDEmisor,$URLImagen,  $NombreEmisor, $Mensaje, $IDElem){
+    public function getIDMedia(){
+        return $this->IDMedia;
+    }
+
+    private function generaObjeto($IDEmisor,$URLImagen,  $NombreEmisor, $Mensaje, $IDMedia, $IDMascota){
         $this->IDEmisor = $IDEmisor;
         $this->URLImagen = $URLImagen;
         $this->NombreEmisor = $NombreEmisor;
         $this->Mensaje = $Mensaje;
-        $this->IDElem = $IDElem;
+        $this->IDMedia = $IDMedia;
+        $this->IDMascota = $IDMascota;
     }
 
-    function insertaNotificacion($IDEmisor, $IDReceptor, $Tipo){
+    function insertaNotificacion($IDEmisor, $IDReceptor, $Tipo, $idMedia){
         $result = null;
-        if (mysqli_query($this->db, "INSERT INTO notificaciones (IDEmisor, IDReceptor, Tipo) VALUES ('".$IDEmisor."', '".$IDReceptor."', '".$Tipo."')")) 
+        if (mysqli_query($this->db, "INSERT INTO notificaciones (IDEmisor, IDReceptor, Tipo, IDMedia) VALUES ('$IDEmisor', '$IDReceptor', '$Tipo', '$idMedia')")) 
             $result = mysqli_insert_id ($this->db);
 
         return $result;
     }
 
     function buscaNotificacionesFoto($idUsuario){
-        $result = mysqli_query($this->db, "SELECT m1.ID, m2.ID as idImagen, m2.URLImagen as imagen, m1.Nombre as nombre, tn.Mensaje as mensaje from notificaciones n inner join tipo_notificacion tn on n.Tipo = tn.ID inner join mascota m1 on n.IDEmisor = m1.ID inner join media m2 on n.IDReceptor = m2.Mascota where IDReceptor =".$idUsuario." and n.tipo = 1 order by ID desc" );
-        $notificaciones = null;
+        $result = mysqli_query($this->db, "SELECT m2.ID as IDMedia, m1.ID as idMascota, m2.ID as idImagen, m2.URLImagen as imagen, m1.Nombre as nombre, tn.Mensaje as mensaje from notificaciones n inner join tipo_notificacion tn on n.Tipo = tn.ID inner join mascota m1 on n.IDEmisor = m1.ID inner join media m2 on n.IDMedia = m2.ID where IDReceptor = $idUsuario  order by n.ID desc" );
+        $notificaciones = null; 
         if($result){
             for($i=0; $i < $result->num_rows ; $i++){
                 if($row = $result->fetch_assoc()){
                     $notificacion = new self();
-                    $notificacion->generaObjeto($row['ID'], $row['imagen'], $row['nombre'], $row['mensaje'], $row['idImagen']);
+                    $notificacion->generaObjeto($row['idMascota'], $row['imagen'], $row['nombre'], $row['mensaje'], $row['IDMedia'], $row['idMascota']);
                     $notificaciones[$i] = $notificacion;
                 }
             }
@@ -73,13 +79,13 @@ class Notificaciones_Model{
     }
     
     function buscaNotificacionesUsuario($idUsuario){
-        $result = mysqli_query($this->db, "SELECT m1.ID as idMascota, m1.URLFoto as idImagen,  m1.Nombre, tn.Mensaje from notificaciones n inner join tipo_notificacion tn on n.Tipo = tn.ID inner join mascota m1 on n.IDEmisor = m1.ID inner join amigos a on n.IDReceptor = a.IDSeguidor where IDReceptor = $idUsuario and n.Tipo <> 1 order by m1.ID desc" );
+        $result = mysqli_query($this->db, "SELECT  m.ID as idMascota, m.URLFoto as imagen,  m.Nombre, tn.Mensaje FROM notificaciones n inner join mascota m on n.IDEmisor = m.ID inner join amigos a on m.ID = a.IDSeguidor inner join tipo_notificacion tn on n.Tipo = tn.ID where a.IDSeguido = $idUsuario  and n.IDReceptor = $idUsuario" );
         $notificaciones = null;
         if($result){
             for($i=0; $i < $result->num_rows ; $i++){
                 if($row = $result->fetch_assoc()){
                     $notificacion = new self();
-                    $notificacion->generaObjeto($row['idMascota'], $row['idImagen'], $row['Nombre'], $row['Mensaje'], $row['idMascota']);
+                    $notificacion->generaObjeto($row['idMascota'], $row['imagen'], $row['Nombre'], $row['Mensaje'], null, $row['idMascota']);
                     $notificaciones[$i] = $notificacion;
                 }
             }

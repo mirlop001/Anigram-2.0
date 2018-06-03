@@ -79,7 +79,7 @@ class Woof_Model{
                 if($result->num_rows > 0){
                     if($row = $result->fetch_assoc()){
                         $notificaciones_model = new Notificaciones_Model;
-                        $notificaciones_model->insertaNotificacion($IDMascota, $row['ID'], __tipo_woof__);
+                        $notificaciones_model->insertaNotificacion($IDMascota, $row['ID'], __tipo_woof__, $mediaID);
                         $resulta = 'emisor: '.$IDMascota.' receptor: '.$row['ID'];
                         
                     }

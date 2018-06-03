@@ -226,7 +226,7 @@ class ImageManipulator
         // $dir = '/var/www/html/public/img/saved'; --CAMBIAR PARA PASE A PRO
         if (!is_dir($dir)) {
             
-            if (!mkdir($dir, 0777, true)) {
+            if (!mkdir($dir, 0700, true)) {
                 throw new RuntimeException('Error creating directory ' . $dir);
             }
         }

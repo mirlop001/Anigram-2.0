@@ -44,13 +44,15 @@ include_once '../models/amigos_model.php';
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <label for="Publicaciones">Comentarios</label>
-                    <div class="row" id="publicaciones">';
+                    <div id="publicaciones">';
                         if($comentarios){
                             foreach($comentarios as $comentario){    
-                                $datos_imagen = $datos_imagen.'<div class="col-4">
-                                    <img src="'.__urlFotoGuardada__.$comentario->getImagenMascota().'" alt="'.$comentario->getComentario().'">
-                                </div>';
+                                $datos_imagen = $datos_imagen.' <div class="comentario row"> <div class="col-2"><img src="'.(($comentario->getImagenMascota()!="")? __urlFotoGuardada__.$comentario->getImagenMascota(): __urlFotoMascota__ ).'" class="perfil-md .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>
+                                <div class="col-10">
+                                    <label>'.$comentario->getNombreMascota().'</label>
+                                    <p>'.$comentario->getComentario().'</p>
+                                </div>
+                            </div>';
                             }
                         }
                     $datos_imagen = $datos_imagen.'</div>

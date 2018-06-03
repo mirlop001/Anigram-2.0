@@ -7,6 +7,7 @@
     define('__tipo_woof__','1');
     define('__tipo_peticion__','2');
     define('__tipo_aceptado__','3');
+    define('__tipo_comentario__','4');
 
     define('__maxPublicacionesPaginador__',5);
 ?>

@@ -97,10 +97,18 @@
             position: absolute;
         }
         img.vista-imagen {
-            width: 90%;
-            height: 90%;
             border-radius: 15px;
             margin: auto;
+        }
+        div#publicaciones {
+            width: 100%;
+        }
+        #publicaciones .comentario.row {
+            margin: 30px;
+        }
+        #publicaciones .comentario p {
+            color: white;
+            font-size: 30px;
         }
         button.btn-perfil.vista-imagen {
             width: 100%;

@@ -3,9 +3,13 @@
 require_once '../configuracion/config.php';
 require_once "../models/comentarios_model.php";  
 require_once "../models/hashtag_model.php";  
+require_once "../models/notificaciones_model.php";  
+require_once "../models/media_model.php";  
 
 $modeloComentario = new es\ucm\fdi\aw\Comentario_Model();
 $modeloHashtag = new es\ucm\fdi\aw\Hashtag_Model();
+$notificacionesModel = new es\ucm\fdi\aw\Notificaciones_Model();
+$mediaModel = new es\ucm\fdi\aw\Media_Model();
 
 $result = false;
 
@@ -29,6 +33,9 @@ if(preg_match('/\S+/',$Comentario)){
 	
 	$idNuevoComentario = $modeloComentario->nuevoComentario($Comentario, $IDPerfilActivo, $MediaID);
 	$datosComentario = $modeloComentario->getComentarioByID($idNuevoComentario);
+	$publicacion = $mediaModel->getDatosPublicacion($MediaID);
+
+	$notificacionesModel->insertaNotificacion($publicacion->getIDMascota(),$IDPerfilActivo,__tipo_comentario__, $MediaID);
 
 	$result['IDMedia'] = $MediaID;
 	$result['Comentario'] = $datosComentario[0]->getComentario();

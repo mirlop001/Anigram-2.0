@@ -20,7 +20,7 @@ include_once '../models/notificaciones_model.php';
                 foreach($notificacionesPendientes as $notificacion){
                     $vistaNotificaciones = $vistaNotificaciones.'<div class="panel panel-default col-md-6 col-xs-12 col-lg-4">
                         <div class="panel-body notificacion">
-                            <button class="word-square" value="'.$notificacion->getIDElem().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
+                            <button class="word-square" value="'.$notificacion->getIDMedia().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                 <label><img src="'.__urlFotoGuardada__.$notificacion->getURLImagen().'" class="imagen-publicacion"  alt="foto-perfil-publicación">'.$notificacion->getNombreEmisor().'</label><h3>'.$notificacion->getMensaje().'</h3>
                             </button> 
                         </div>
@@ -34,7 +34,7 @@ include_once '../models/notificaciones_model.php';
                 foreach($notificacionesPendientes as $notificacion){
                     $vistaNotificaciones = $vistaNotificaciones.'<div class="panel panel-default col-md-6 col-xs-12 col-lg-4">
                         <div class="panel-body">
-                            <button class="btn-perfil" value="'.$notificacion->getIDElem().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
+                            <button class="btn-perfil" value="'.$notificacion->getIDMascota().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                 <label><img src="'.__urlFotoGuardada__.$notificacion->getURLImagen().'" class="imagen-publicacion"  alt="foto-perfil-publicación">'.$notificacion->getNombreEmisor().'</label><h3>'.$notificacion->getMensaje().'</h3>
                             </button> 
                         </div>
@@ -42,8 +42,6 @@ include_once '../models/notificaciones_model.php';
                 }
             return $vistaNotificaciones;
         }
-
-
     }
 ?>
 
