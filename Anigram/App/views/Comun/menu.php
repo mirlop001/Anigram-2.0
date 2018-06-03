@@ -24,7 +24,7 @@
 
 </nav>
 
-<?php if(isset($_SESSION['LoginSuccess'] ) && $_SESSION['LoginSuccess'] ) { ?>
+<?php if(isset($_SESSION['IDPerfilActivo'] ) && $_SESSION['IDPerfilActivo'] ) { ?>
   <div id="menu-secundario" class="bounceOutLeft">
       <form action="../controllers/gestionaCambioMascota.php" method="post">
         <?php  

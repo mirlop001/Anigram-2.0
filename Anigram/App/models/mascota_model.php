@@ -70,7 +70,11 @@ class Mascota_Model{
 
     function registraMascota($Amo, $Tipo, $Nombre, $Raza, $Bio, $URLFoto){
         $esPrincipal = $this->existeMascotaPrincipal($Amo);
-        return mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio, Principal) VALUES ($Amo, $Tipo, '$Nombre', '$Raza', '$URLFoto', '$Bio','$esPrincipal')");
+        
+        if($result = mysqli_query($this->db, "INSERT INTO mascota (Amo, Tipo, Nombre, Raza, URLFoto, Bio, Principal) VALUES ($Amo, $Tipo, '$Nombre', '$Raza', '$URLFoto', '$Bio','$esPrincipal')"));
+            $result = mysqli_insert_id ($this->db);
+
+        return $result;
     }
 
     function getMascotasByIDUsuario($IDUsuario){
