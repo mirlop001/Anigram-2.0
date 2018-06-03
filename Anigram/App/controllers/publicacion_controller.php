@@ -77,7 +77,7 @@ include_once '../models/amigos_model.php';
                     $post = $post."src='".__urlFotoMascota__."'";
                                 $post = $post.' class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$publicacion->getNombreMascota().'</label></button>
                             <div class="foto-publicada">
-                                    <img  src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="foto-publicada"/>
+                                    <img  src="'.__urlFotoGuardada__.$publicacion->getURLImagen().'" alt="'.$publicacion->getDescripcion().'"/>
                             </div>
                         </div>
                         <div class="publicacion comentarios  offset-md-1 col-md-4 col-sm-12">

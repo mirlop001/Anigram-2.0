@@ -8,7 +8,11 @@ function selectTab(elem) {
     $(".tab-content").removeClass("active");
     $("#div-" + elem).addClass("active");
     $("#rol").val((elem == 'Mascota') ? 1 : 2);
-
+    if(elem == 'Comercio')
+        $('#boton_enviar').hide();
+    else
+        $('#boton_enviar').show();
+        
     cambiaRequeridos(elem);
 }
 

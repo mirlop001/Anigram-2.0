@@ -4,11 +4,14 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     require_once '../configuracion/config.php';
     require_once "gestionaSubidaImagen.php";   
 	require_once "../models/media_model.php";  
+	require_once "../models/comentarios_model.php";  
 
 $modeloMedia = new es\ucm\fdi\aw\Media_Model();
+$modelComentario = new es\ucm\fdi\aw\Comentario_Model();
 
 $userID = $_SESSION['UserID'];
 $IDmascota = $_SESSION['IDPerfilActivo'];
+$descripcion = $_REQUEST['descripcion'];
 
 //Obtener datos de la mascota
 if(isset($_FILES['fotoMascota']) && $_FILES['fotoMascota']['error'] == 0){
@@ -19,8 +22,8 @@ if(isset($_FILES['fotoMascota']) && $_FILES['fotoMascota']['error'] == 0){
     $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $userID, $foto);
     $imagen->guardaImagen();
 }
-$registrado = $modeloMedia->insertaNuevaImagen($IDmascota, $foto) == true;
-
-	header('Location: ../views/home.php');
+$registrado = $modeloMedia->insertaNuevaImagen($IDmascota, $foto, $descripcion);
+$modelComentario->nuevoComentario($descripcion, $IDmascota, $registrado);
+header('Location: ../views/home.php');
 
 ?>

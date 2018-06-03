@@ -68,11 +68,11 @@ class Media_Model{
         return $this->descripcion;
     }
     
-    function insertaNuevaImagen($IDMascota, $URLImagen, $tipo=1){
+    function insertaNuevaImagen($IDMascota, $URLImagen, $descripcion, $tipo=1){
         $result = null;
-        if (mysqli_query($this->db, "INSERT INTO media (Mascota, URLImagen, Tipo) VALUES ('".$IDMascota."', '".$URLImagen."', '".$tipo."')")) 
-            $result = mysqli_insert_id ($this->db);
-
+        if (mysqli_query($this->db, "INSERT INTO media (Mascota, URLImagen, Tipo, Descripcion) VALUES ('$IDMascota', '$URLImagen', '$tipo', '$descripcion')")) {
+            $result = mysqli_insert_id($this->db);
+        }
         return $result;
     }
     

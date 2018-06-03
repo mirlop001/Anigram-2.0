@@ -39,7 +39,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Selecciona Mascota</h5>
+        <h5 class="modal-title">Sube tu foto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -48,6 +48,7 @@
         <form action="../controllers/gestionaSubirFoto.php" method="post" enctype="multipart/form-data">
            
             <input name="fotoMascota" type="file" accept=".jpg, .jpeg, .png" required />
+            <textarea name="descripcion" id="sube-descripcion" cols="30" rows="10" placeholder="Descripción de la foto" required></textarea>
             <input type="submit" class="btn btn-info"  value="Subir">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
