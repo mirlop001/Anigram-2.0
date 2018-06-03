@@ -75,9 +75,11 @@ include '../models/mascota_model.php';
             $modelo_mascota = new Mascota_Model();
             $modelo_media = new Media_Model();
             $modelo_amigos = new Amigos_Model();
+            $amistad = null;
 
-            if(isset($_SESSION['IDPerfilActivo'])){ 
+            if(isset($_SESSION['IDPerfilActivo']) && $_SESSION['IDPerfilActivo'] != $IDMascota){ 
                 $idMascotaActual = $_SESSION['IDPerfilActivo'];
+                
                 $amistad = $modelo_amigos->compruebaAmistad($idMascotaActual, $IDMascota);
             }
 
@@ -88,7 +90,7 @@ include '../models/mascota_model.php';
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h2 class="modal-title">'.$mascota->getNombre().'</h2>';
-                if(isset($_SESSION['UserID'])){ 
+                if(isset($_SESSION['UserID']) && $amistad){ 
                     $perfil = $perfil.'<button id="seguir-usuario" class="btn btn-default" value="'.$mascota->getID().'"';
                     
                     if($amistad == 'no_seguido'){   
