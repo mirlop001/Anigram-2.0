@@ -57,7 +57,7 @@ class Notificaciones_Model{
 
     function insertaNotificacion($IDEmisor, $IDReceptor, $Tipo, $idMedia){
         $result = null;
-        if (mysqli_query($this->db, "INSERT INTO notificaciones (IDEmisor, IDReceptor, Tipo, IDMedia) VALUES ('$IDEmisor', '$IDReceptor', '$Tipo', '$idMedia')")) 
+        if (mysqli_query($this->db, "INSERT INTO notificaciones (IDEmisor, IDReceptor, Tipo, IDMedia) VALUES ('$IDEmisor', '$IDReceptor', '$Tipo', $idMedia)")) 
             $result = mysqli_insert_id ($this->db);
 
         return $result;

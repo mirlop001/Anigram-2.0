@@ -96,6 +96,9 @@
             border-bottom: 1px solid black;
             position: absolute;
         }
+        #resultados .container-anigram {
+            width: 100%;
+        }
         img.vista-imagen {
             border-radius: 15px;
             margin: auto;
@@ -927,7 +930,7 @@
         }
 
         .fa-paw {
-            font-size: 27px;
+            font-size: 20px;
             margin: 3px;
         }
         

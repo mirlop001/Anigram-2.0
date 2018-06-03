@@ -5,9 +5,11 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     require_once "../models/usuario_model.php";
     require_once "../controllers/gestionaSubidaImagen.php";
     require_once "../controllers/password_compat-master/lib/password.php";
+	require_once "../models/mascota_model.php";
 
+	$modeloMascota = new es\ucm\fdi\aw\Mascota_Model();
     $modeloUsuario = new es\ucm\fdi\aw\Usuario_Model();
-
+    $response = null;
     $urlFoto = null;
     //Obtener datos usuario
     if(isset($_FILES["fotoPerfilUsuario"]["name"][0]))
@@ -53,7 +55,6 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
             $nombre_imagen = $_FILES['perfilUsuario']['name'];
             $imagen_tmp =$_FILES['perfilUsuario']['tmp_name'];
             $foto = $result.'-'.$nombre_imagen;
-            $_SESSION['fotoPerfilActivo'] = $foto;
 
             $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $foto);
             $imagen->guardaImagen();
@@ -71,8 +72,16 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
                 $imagen = new SubidaImagen_Controller($imagen_tmp, $nombre_imagen, $result, $urlFotoMascota);
                 $imagen->guardaImagen();
             }
-            header('Location: ./gestionaRegistroMascota.php?id_amo='.$result.'&nombre='.$nombreMascota.'&raza='.$raza.'&tipo='.$tipo.'&bio='.$bio.'&urlFoto='.$urlFotoMascota);
-            exit;
+            
+            $nueva_mascota = $modeloMascota->registraMascota($result, $tipo, $nombreMascota, $raza, $bio, $urlFotoMascota);
+            if($nueva_mascota){
+                $_SESSION['IDPerfilActivo'] = $nueva_mascota;
+
+                if($urlFotoMascota )
+                    $_SESSION['fotoPerfilActivo'] = __urlFotoGuardada__.$urlFotoMascota;
+                $response = 'OK!';
+                // return new Exception('Error en el registro');
+            }
         }else if($rol == 2){
             if(isset($_FILES['fotoPerfilComercio'])  && $_FILES['fotoPerfilComercio']['error'] == 0){
                 $nombre_imagen = $_FILES['fotoPerfilComercio']['name'];
@@ -91,5 +100,6 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
         }
     
     }
+    echo $response;
 
 ?>

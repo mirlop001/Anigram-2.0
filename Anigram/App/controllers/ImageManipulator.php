@@ -223,10 +223,10 @@ class ImageManipulator
     public function save($fileName, $type = IMAGETYPE_JPEG)
     {
         $dir = dirname($fileName);
-        // $dir = '/var/www/html/public/img/saved'; --CAMBIAR PARA PASE A PRO
+        // $dir = '/var/www/html/public/img/saved/'; 
         if (!is_dir($dir)) {
             
-            if (!mkdir($dir, 0700, true)) {
+            if (!mkdir($dir, 0777, true)) {
                 throw new RuntimeException('Error creating directory ' . $dir);
             }
         }

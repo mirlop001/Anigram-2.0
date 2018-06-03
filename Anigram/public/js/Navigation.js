@@ -9,9 +9,9 @@ function selectTab(elem) {
     $("#div-" + elem).addClass("active");
     $("#rol").val((elem == 'Mascota') ? 1 : 2);
     if(elem == 'Comercio')
-        $('#boton_enviar').hide();
+        $('#boton_enviar.registro').hide();
     else
-        $('#boton_enviar').show();
+        $('#boton_enviar.registro').show();
         
     cambiaRequeridos(elem);
 }

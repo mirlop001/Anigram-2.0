@@ -86,7 +86,7 @@
                         }
                     },
                     error: function(err) {
-                        console.log(response);
+                        console.log(err);
                     }
                 });
             }
@@ -154,7 +154,8 @@
                 cache: false,
                 processData:false,
                 success: function(data) {
-                    window.location.href = '../views/home.php';
+                    if(data)
+                        window.location.href = '../views/home.php';
                 },
                 error: function(jXHR, textStatus, errorThrown) {
                     alert(errorThrown);
@@ -218,7 +219,7 @@ function muestraNuevoComentario(data) {
     if (data.ImagenMascota != "") {
         imagen = '../../public/img/saved/' + data.ImagenMascota;
     } else {
-        imagen = '../../public/img/Juan-Niebla.png';
+        imagen = '../../public/img/Espectro.png';
     }
     return '<div class="comentario row"> <div class="col-2"><img src="' + imagen + '" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación"></div>' +
         '<div class="col-10">' +

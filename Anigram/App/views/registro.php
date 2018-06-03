@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div id="boton_enviar" >
+                    <div id="boton_enviar" class="registro" >
                         <input id="submit" type="submit" name="submit"  onchange="muestraImagen" class="submitHueso" value="Guardar"/>	
                     </div>
                 </div>

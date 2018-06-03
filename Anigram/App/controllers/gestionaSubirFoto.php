@@ -25,5 +25,4 @@ if(isset($_FILES['fotoMascota']) && $_FILES['fotoMascota']['error'] == 0){
 $registrado = $modeloMedia->insertaNuevaImagen($IDmascota, $foto, $descripcion);
 $modelComentario->nuevoComentario($descripcion, $IDmascota, $registrado);
 header('Location: ../views/home.php');
-
 ?>

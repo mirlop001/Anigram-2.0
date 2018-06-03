@@ -89,7 +89,7 @@ namespace es\ucm\fdi\aw;
         function registraUsuario( $nombreCompleto, $email, $clave, $rol, $urlfoto){
             $result = false;
 
-            if (mysqli_query($this->db, "INSERT INTO Usuario (NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nombreCompleto', '$email', '$clave', '$rol', '$urlfoto')")) 
+            if (mysqli_query($this->db, "INSERT INTO usuario (NombreCompleto, Email, Clave, Rol, URLFoto) VALUES ('$nombreCompleto', '$email', '$clave', '$rol', '$urlfoto')")) 
                 $result = mysqli_insert_id ($this->db);
 
             return $result;
