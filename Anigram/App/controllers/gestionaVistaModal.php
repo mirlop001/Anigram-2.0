@@ -19,7 +19,7 @@
         echo $amigos_controller->seguirMascota($idMascota); 
 
     }
-    // else if($comando == 'verImagen'){
-    //     echo  $publicacion_controller->vistaImagen($idMedia);
-    // }
+    else if($comando == 'verImagen'){
+        echo  $publicacion_controller->vistaImagen($idMedia);
+    }
 ?>

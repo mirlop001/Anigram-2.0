@@ -11,7 +11,7 @@ include_once '../controllers/publicacion_controller.php';
         
         function getBusquedaMascota($mascota){
             
-            $imagenMascota = '<button class="btn-perfil basic" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">';
+            $imagenMascota = '<button class="btn-perfil basic" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >';
             
             if($mascota->getURLFoto() != ""){
                 $imagenMascota = $imagenMascota.'<img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-basic .foto-perfil-mascota"  alt="foto-perfil-publicación">';

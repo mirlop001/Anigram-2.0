@@ -16,12 +16,9 @@ $Modifica = $modeloWoof->compruebaWoof($IDMascota, $MediaID);
 if($Modifica > 0){
 	echo 'Se actualiza woof '.$modeloWoof->actualizaWoof($Puntos, $IDMascota, $MediaID);
 	
-}else if($modeloWoof->nuevoWoof($Puntos, $IDMascota, $MediaID) != NULL){
-	echo 'Nuevo woof ';
-	
-	
-}else{
-	echo 'MAL';
-}
+}else 
+	$result = $modeloWoof->nuevoWoof($Puntos, $IDMascota, $MediaID);
+
+echo $result;
 
 ?>

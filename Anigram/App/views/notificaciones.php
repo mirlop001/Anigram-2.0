@@ -1,6 +1,6 @@
 <?php
     include_once '../configuracion/config.php';
-    include_once '../controllers/publicacion_controller.php';
+    include_once '../controllers/notificaciones_controller.php';
     include 'Comun/cabecera.php';
 ?>
 <!DOCTYPE html>
@@ -17,8 +17,14 @@
         include 'Comun/menu.php';
     ?> 
 	<div class="container-anigram ">
-        <div class="row">
-         <h1>NOTIFICACIONES</h1>
+        <div class="col-11 offset-1">
+             <div class="row notificaciones">
+                <h2>NOTIFICACIONES</h2>
+                <?php
+                    $notificaciones_controller = new es\ucm\fdi\aw\Notificaciones_Controller();
+                    echo $notificaciones_controller->obtenerNotificaciones();
+                ?>
+            </div>
         </div>
     </div>
 </body>

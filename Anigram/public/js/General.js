@@ -120,8 +120,6 @@ $(document).on('click','button#seguir-usuario', function(event){
 
 $(document).on('click','.word-square', function(event){
     var idMedia = event.currentTarget.value;
-    $('.bd-example-modal-lg').unbind('click');
-    $(".bd-example-modal-lg").modal({"backdrop": "static"});
     $.ajax({
         url: '../../App/controllers/gestionaVistaModal.php',
         type: "POST",

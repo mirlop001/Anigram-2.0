@@ -1,5 +1,6 @@
 <?php
 namespace es\ucm\fdi\aw;
+include_once 'notificaciones_model.php';
 
 class Woof_Model{
     private $db; 
@@ -68,12 +69,24 @@ class Woof_Model{
         
     }
 
-    function nuevoWoof($puntos, $IDMascota, $mediaID ){
+    function nuevoWoof($puntos, $IDMascota, $mediaID){
         $result = null;
-        if (mysqli_query($this->db, "INSERT INTO woofs (IDMedia, IDMascota, Puntos) VALUES ('".$mediaID."', '".$IDMascota."', '".$puntos."')")) 
-            $result = mysqli_insert_id ($this->db);
-
-        return $result;
+        if (mysqli_query($this->db, "INSERT INTO woofs (IDMedia, IDMascota, Puntos) VALUES ('".$mediaID."', '".$IDMascota."', '".$puntos."')")) {
+            $resulta = mysqli_insert_id ($this->db);
+            $result = mysqli_query($this->db, "SELECT m2.ID FROM media m1 inner join mascota m2 on m1.Mascota = m2.ID where m1.ID = ".$mediaID);
+            
+            if($result){
+                if($result->num_rows > 0){
+                    if($row = $result->fetch_assoc()){
+                        $notificaciones_model = new Notificaciones_Model;
+                        $notificaciones_model->insertaNotificacion($IDMascota, $row['ID'], __tipo_woof__);
+                        $resulta = 'emisor: '.$IDMascota.' receptor: '.$row['ID'];
+                        
+                    }
+                }
+            }
+        }
+        return $resulta;
     }
 
     function actualizaWoof($puntos, $IDMascota, $mediaID ){

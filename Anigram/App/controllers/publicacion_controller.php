@@ -14,7 +14,50 @@ include_once '../models/amigos_model.php';
             $this->actualPage = $page;
         }
 
-       
+        function vistaImagen($idMedia){
+            $media_model = new Media_Model;
+            $comentario_model = new Comentario_Model;
+            $woof_model = new Woof_Model;
+
+            $publicacion = $media_model->getDatosPublicacion($idMedia);
+            $comentarios = $comentario_model->getComentariosPublicacion($idMedia);
+            $datos_imagen = "";
+
+            if($publicacion){
+                $datos_imagen = '<div class="modal-header">  
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <button class="btn-perfil vista-imagen" value="'.$publicacion->getIDMascota().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
+                        <h2 class="modal-title">'.$publicacion->getNombreMascota().'</h2>
+                    </button>';
+                    
+                $datos_imagen = $datos_imagen.'</div>
+                <div class="modal-body">
+                    <div class="row" id="vista-imagen">
+                        <img class="vista-imagen" src='.__urlFotoGuardada__.$publicacion->getURLImagen().' alt="Imagen temporal">
+                    </div>
+                    <div class="row">
+                        <div class="col-6 offset-3">
+                            '.$this->displayWoofsForm($idMedia).'
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <label for="Publicaciones">Comentarios</label>
+                    <div class="row" id="publicaciones">';
+                        if($comentarios){
+                            foreach($comentarios as $comentario){    
+                                $datos_imagen = $datos_imagen.'<div class="col-4">
+                                    <img src="'.__urlFotoGuardada__.$comentario->getImagenMascota().'" alt="'.$comentario->getComentario().'">
+                                </div>';
+                            }
+                        }
+                    $datos_imagen = $datos_imagen.'</div>
+                </div>';
+            }
+            return $datos_imagen;
+        }       
 
         private function getVistaPublicaciones($publicaciones){
             $modelo_media = new Media_Model();
@@ -25,7 +68,7 @@ include_once '../models/amigos_model.php';
             
             foreach( $publicaciones as $publicacion ){
                 $post = '<div class="row"><div class="publicacion offset-md-1 col-md-6 col-sm-12">
-                                <button class="btn-perfil" value="'.$publicacion->getIDMascota().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                <button class="btn-perfil" value="'.$publicacion->getIDMascota().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                 <label><img ';
                 if($publicacion->getURLImagenMascota() != ""){
                     $post = $post.' src="'.__urlFotoGuardada__.$publicacion->getURLImagenMascota().'"';
@@ -75,7 +118,7 @@ include_once '../models/amigos_model.php';
             return $posts;
         }
 
-        public function busquedaParcialPublicaciones($comentario, $hashtag){
+        public function publicacion_controller($comentario, $hashtag){
             $modelo_media = new Media_Model();
             $publicaciones_encontradas = $modelo_media->busquedaParcialPublicacion($comentario, $hashtag);
             $posts  = "";

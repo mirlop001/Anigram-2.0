@@ -142,31 +142,7 @@
             else $('div#boton_enviar #submit').show();
         });
 
-        $('.form-woof').on('submit', function(e) {
-            e.preventDefault();
-            var puntos = $(e.target).find("button[type=submit]:focus")[0].value;
-            var media = $(e.target).find(".mediaID")[0].value;
-            var datos = $(this).serialize() + '&Puntos=' + puntos;
-            $.ajax({
-                url: '../../App/controllers/gestionaWoof.php',
-                type: "POST",
-                data: datos,
-                success: function(data) {
-
-                    (function(p) {
-                        $('.btn-woof.media-' + media + ' .fa-paw').removeClass('woofed');
-                        for (var i = 1; i <= p; i++) {
-                            $('.btn-woof.puntos-' + i + '.media-' + media + ' .fa-paw').addClass('woofed');
-                        }
-
-
-                    })(puntos);
-                },
-                error: function(jXHR, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-            });
-        });
+        
 
         $('#form-registro').on('submit', function(e) {
             e.preventDefault();
@@ -213,25 +189,7 @@
             });
         });
 
-        $('.form-comentario').on('submit', function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: '../../App/controllers/gestionaNuevoComentario.php',
-                type: "POST",
-                data: $(this).serialize(),
-                success: function(data) {
-                    if (data) {
-                        data = JSON.parse(data);
-                        var htmlNuevoComentario = muestraNuevoComentario(data);
-                        $("#nuevos-comentarios-post" + data.IDMedia).prepend(htmlNuevoComentario);
-                        $("textarea.nuevoComentario").val("");
-                    }
-                },
-                error: function(jXHR, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-            });
-        });
+       
 
         $(".form-comentario ").on("keypress", function() {
             $(this).find('.btn-guardarComentario').css("width", "90px");
@@ -269,3 +227,49 @@ function muestraNuevoComentario(data) {
         '</div>' +
         '</div>';
 }
+
+$(document).on('submit','.form-woof', function(e) {
+    e.preventDefault();
+    var puntos = $(e.target).find("button[type=submit]:focus")[0].value;
+    var media = $(e.target).find(".mediaID")[0].value;
+    var datos = $(this).serialize() + '&Puntos=' + puntos;
+    $.ajax({
+        url: '../../App/controllers/gestionaWoof.php',
+        type: "POST",
+        data: datos,
+        success: function(data) {
+
+            (function(p) {
+                $('.btn-woof.media-' + media + ' .fa-paw').removeClass('woofed');
+                for (var i = 1; i <= p; i++) {
+                    $('.btn-woof.puntos-' + i + '.media-' + media + ' .fa-paw').addClass('woofed');
+                }
+
+
+            })(puntos);
+        },
+        error: function(jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+});
+
+$(document).on('submit', '.form-comentario',function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: '../../App/controllers/gestionaNuevoComentario.php',
+        type: "POST",
+        data: $(this).serialize(),
+        success: function(data) {
+            if (data) {
+                data = JSON.parse(data);
+                var htmlNuevoComentario = muestraNuevoComentario(data);
+                $("#nuevos-comentarios-post" + data.IDMedia).prepend(htmlNuevoComentario);
+                $("textarea.nuevoComentario").val("");
+            }
+        },
+        error: function(jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+});

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-06-2018 a las 19:27:26
+-- Tiempo de generación: 03-06-2018 a las 02:34:55
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `amigos` (
 
 INSERT INTO `amigos` (`IDSeguidor`, `IDSeguido`, `Aceptado`) VALUES
 (72, 73, 1),
-(73, 74, 1),
+(73, 72, 1),
 (74, 72, 1);
 
 -- --------------------------------------------------------
@@ -63,7 +63,8 @@ CREATE TABLE `comentario` (
 
 INSERT INTO `comentario` (`ID`, `IDMascota`, `IDMedia`, `Comentario`, `fecha`) VALUES
 (20, 72, 23, 'OY! <span class=\"hashtag\">#MONADA</span> <span class=\"hashtag\">#QUECOSA</span>', '2018-05-31 21:42:00'),
-(21, 72, 42, 'Hola!!', '2018-06-02 10:05:39');
+(21, 72, 42, 'Hola!!', '2018-06-02 10:05:39'),
+(22, 72, 20, 'Presioso!!', '2018-06-02 20:17:44');
 
 -- --------------------------------------------------------
 
@@ -183,6 +184,17 @@ CREATE TABLE `notificaciones` (
   `Tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`ID`, `IDReceptor`, `IDEmisor`, `Tipo`) VALUES
+(1, 73, 72, 1),
+(2, 73, 80, 2),
+(3, 73, 74, 3),
+(6, 72, 73, 2),
+(7, 73, 72, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -250,8 +262,18 @@ INSERT INTO `tipo_media` (`ID`, `Nombre`) VALUES
 
 CREATE TABLE `tipo_notificacion` (
   `ID` int(11) NOT NULL,
-  `Nombre` varchar(10) NOT NULL
+  `Nombre` varchar(10) NOT NULL,
+  `Mensaje` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_notificacion`
+--
+
+INSERT INTO `tipo_notificacion` (`ID`, `Nombre`, `Mensaje`) VALUES
+(1, 'Woof', 'le ha dado woofs a tu publicación'),
+(2, 'Peticion', 'ha pedido seguirte'),
+(3, 'Aceptado', 'te ha aceptado');
 
 -- --------------------------------------------------------
 
@@ -310,10 +332,7 @@ CREATE TABLE `woofs` (
 --
 
 INSERT INTO `woofs` (`IDMascota`, `IDMedia`, `Puntos`, `Fecha`) VALUES
-(72, 22, 2, '2018-05-31 19:24:38'),
-(72, 23, 1, '2018-05-31 14:58:06'),
-(72, 41, 5, '2018-05-31 14:58:05'),
-(72, 42, 3, '2018-06-02 17:13:39');
+(72, 20, 3, '2018-06-02 22:51:50');
 
 --
 -- Índices para tablas volcadas
@@ -434,7 +453,7 @@ ALTER TABLE `woofs`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `comercio`
@@ -458,7 +477,7 @@ ALTER TABLE `hashtag`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `media`
@@ -470,7 +489,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -494,7 +513,7 @@ ALTER TABLE `tipo_media`
 -- AUTO_INCREMENT de la tabla `tipo_notificacion`
 --
 ALTER TABLE `tipo_notificacion`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -555,8 +574,8 @@ ALTER TABLE `media`
 -- Filtros para la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  ADD CONSTRAINT `FK_Notificaciones_Emisor` FOREIGN KEY (`IDEmisor`) REFERENCES `usuario` (`ID`),
-  ADD CONSTRAINT `FK_Notificaciones_Receptor` FOREIGN KEY (`IDReceptor`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Notificaciones_Emisor` FOREIGN KEY (`IDEmisor`) REFERENCES `mascota` (`ID`),
+  ADD CONSTRAINT `FK_Notificaciones_Receptor` FOREIGN KEY (`IDReceptor`) REFERENCES `mascota` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Notificaciones_tipo` FOREIGN KEY (`Tipo`) REFERENCES `tipo_notificacion` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

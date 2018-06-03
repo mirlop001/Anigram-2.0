@@ -2,6 +2,7 @@
 namespace es\ucm\fdi\aw;
 include_once '../models/mascota_model.php';
 include_once '../models/amigos_model.php';
+include_once '../models/notificaciones_model.php';
 
 
     class Amigos_Controller{
@@ -24,7 +25,7 @@ include_once '../models/amigos_model.php';
                         $lista = $lista.
                         '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                             <div class="panel-body">
-                                <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                     <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label>
                                 </button> 
                             </div>
@@ -51,7 +52,7 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo()){
                             $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                             <div class="panel-body">
-                                <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                     <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
                                 </button> 
                             </div>';
@@ -89,7 +90,7 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $nombreMascota == $mascota->getNombre()){
                                 $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                                 <div class="panel-body">
-                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
                                     </button> 
                                 </div>';
@@ -120,7 +121,7 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $IDAmo = $mascota->getAmo()){
                                 $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                                 <div class="panel-body">
-                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
                                     </button> 
                                 </div>';
@@ -158,7 +159,7 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $IDAmo = $mascota->getAmo() && $nombreMascota = $mascota->getNombre()){
                                 $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                                 <div class="panel-body">
-                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
                                     </button> 
                                 </div>';
@@ -197,7 +198,7 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $nombreMascota == $mascota->getNombre() ){
                                 $lista =   $lista . '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                                 <div class="panel-body">
-                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
                                     </button> 
                                 </div>';
@@ -229,7 +230,7 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $IDAmo = $mascota->getAmo()){
                                 $lista =   $lista . '<div class="panel panel-default">
                                 <div class="panel-body">
-                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
                                     </button> 
                                 </div>';
@@ -261,7 +262,7 @@ include_once '../models/amigos_model.php';
                             if($mascotaBuscada == $mascota->getID() && $tipo == $mascota->getTipo() && $nombreMascota = $mascota->getNombre() && $IDAmo = $mascota->getAmo()){
                                 $lista =   $lista . '<div class="panel panel-default">
                                 <div class="panel-body">
-                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'</label></div>
                                     </button> 
                                 </div>';
@@ -291,7 +292,7 @@ include_once '../models/amigos_model.php';
                     $lista = $lista .  '<div class="panel panel-default col-md-4 col-xs-12 col-lg-6">
                                 <div class="panel-body">
                                 <form method="post" name="Aceptar" action="../controllers/gestionaPeticionesPendientes.php">
-                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                    <button class="btn-perfil" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >
                                         <label><img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-pe .foto-perfil-mascota"  alt="foto-perfil-publicación">'.$mascota->getNombre().'
                                     </button>
                                     <div id= "boton-rechazar">
@@ -315,7 +316,10 @@ include_once '../models/amigos_model.php';
         }
 
         function seguirMascota($idMascota){
+            $notificaciones_model = new Notificaciones_Model;
             $idSeguidor = $_SESSION['IDPerfilActivo'];
+
+            $notificaciones_model->insertaNotificacion($idSeguidor, $idMascota, __tipo_peticion__);
             $amigos_model= new Amigos_Model();
             $amigos_model->nuevaPeticion($idSeguidor, $idMascota);
         } 
