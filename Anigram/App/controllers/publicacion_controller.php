@@ -118,7 +118,7 @@ include_once '../models/amigos_model.php';
             return $posts;
         }
 
-        public function publicacion_controller($comentario, $hashtag){
+        public function busquedaParcialPublicaciones($comentario, $hashtag){
             $modelo_media = new Media_Model();
             $publicaciones_encontradas = $modelo_media->busquedaParcialPublicacion($comentario, $hashtag);
             $posts  = "";
