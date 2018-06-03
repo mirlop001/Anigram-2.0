@@ -109,7 +109,7 @@
             margin: 30px 0;
         }
         img.perfil-basic {
-            height: 35vh;
+            width: 100%;
             cursor: pointer;
         }
         img.img-result {

@@ -11,12 +11,12 @@ include_once '../controllers/publicacion_controller.php';
         
         function getBusquedaMascota($mascota){
             
-            $imagenMascota = '<button class="btn-perfil basic" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >';
+            $imagenMascota = '<div class="col-lg-2 col-md-4 col-xs-6"><button class="btn-perfil basic" value="'.$mascota->getID().'" type="button" data-target=".bd-example-modal-lg" data-toggle="modal" >';
             
             if($mascota->getURLFoto() != ""){
                 $imagenMascota = $imagenMascota.'<img src="'.__urlFotoGuardada__.$mascota->getURLFoto().'" class="perfil-basic .foto-perfil-mascota"  alt="foto-perfil-publicación">';
             } 
-            $imagenMascota = $imagenMascota.'<h3>'.$mascota->getNombre().'</h3></button>';
+            $imagenMascota = $imagenMascota.'<h3>'.$mascota->getNombre().'</h3></button></div>';
             
             return $imagenMascota;
         }
