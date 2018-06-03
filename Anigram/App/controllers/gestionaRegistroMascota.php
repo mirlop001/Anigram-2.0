@@ -14,7 +14,9 @@ $bio = htmlspecialchars(trim(strip_tags($_GET['bio'])));
 if($_GET['urlFoto']) $urlFoto = $_GET['urlFoto'];
 
 if($modeloMascota->registraMascota($amo, $tipo, $nombre, $raza, $bio, $urlFoto) ){
-
+	$datos = $modeloMascota->getMascotaPrincipalByID($amo); 
+	$_SESSION['IDPerfilActivo'] = $datos->getID(); 
+	
 	if($urlFoto ) 
 		$_SESSION['fotoPerfilMascota'] = $urlFoto;
 	return new Exception('Error en el registro');

@@ -45,8 +45,9 @@ use es\ucm\fdi\aw\SubidaImagen_Controller;
     if($result = $modeloUsuario->registraUsuario($nombreCompleto, $email, $hash , $rol, $urlFoto)){
         $_SESSION['ErrorRegistro'] = false;
         $_SESSION['UserID'] = $result;
-        $_SESSION['NombrePerfilActivo'] = $nombreCompleto;
+        $_SESSION['NombreCompleto'] = $nombreCompleto;
         $_SESSION['RolUsuario'] = $rol;
+        $_SESSION['Email'] = $email; 
 
         if(isset($_FILES['perfilUsuario']) && $_FILES['perfilUsuario']['error'] == 0){
             $nombre_imagen = $_FILES['perfilUsuario']['name'];

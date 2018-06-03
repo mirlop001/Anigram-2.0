@@ -65,9 +65,9 @@ include '../models/mascota_model.php';
             return $selectMascota;
         }
 
-        function getDatosMascota($IDMascota){
+        function getDatosMascota($IDUser){
             $modelo_mascota = new Mascota_Model();
-            return  $modelo_mascota->getMascotasByID($IDMascota);
+            return  $modelo_mascota->getMascotaPrincipalByID($IDUser);
             
         }
 

@@ -61,7 +61,7 @@ class Mascota_Model{
 
     function existeMascotaPrincipal($Amo){
         $esPrincipal = 0;
-        $result = mysqli_query($this->db, "SELECT FROM mascota where Amo = $Amo and IDMascotaPrincipal <> null");
+        $result = mysqli_query($this->db, "SELECT * FROM mascota where Amo = $Amo and Principal <> null");
         if($result){
             $esPrincipal = ($result->num_rows == 0);
         }
